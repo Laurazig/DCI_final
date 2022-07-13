@@ -4,6 +4,10 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
+import globalErrorHandler from "./middleware/globalErrorHandler.js";
+import registerRouter from "./routes/registerRouter.js";
+import loginRouter from "./routes/loginRouter.js";
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -20,6 +24,7 @@ app.use("/login", loginRouter);
 
 app.use(globalErrorHandler);
 
+
 app.listen(3001, () => {
     console.log("The server has started on part 3001")
-})
+});
