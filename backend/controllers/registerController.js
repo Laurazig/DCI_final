@@ -1,12 +1,12 @@
-import User from "../models/user.js"
-import { v4 as uuid } from "uuid";
-import createError from "http-errors";
 
-export const registerPost = async (req, res, next) => {
+import createError from "http-errors";
+import Customer from "../models/customers.js";
+
+const registerController = async (req, res, next) => {
     const { username, password, firstName, lastName, emailAddress } = req.body;
     let found;
     try{
-        found = await User.findOne({
+        found = await Customer.findOne({
             username: username,
             password: password,
             firstName: firstName,
@@ -41,3 +41,4 @@ export const registerPost = async (req, res, next) => {
         return next(createError(409, "Sorry, this username has been taken. Please choose another. ***********registerController.js**********"));
     }    
 }
+export default registerController;
