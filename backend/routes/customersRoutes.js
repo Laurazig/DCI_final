@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/:id", getCustomerData);
 
-router.post("/:id/meals", postMeals);
+router.patch("/:id/meals", postMeals);
 
 router.delete("/:id/meals", deleteAllMeals);
 

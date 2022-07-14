@@ -8,7 +8,7 @@ const customerSchema = new Schema({
     firstName: String,
     lastName: String,
     email: { type: String, required: true, unique: true },
-    meals: [{ type: mongoose.Types.ObjectId, required: true, ref:"Album" }],
+    meals: [{ type: mongoose.Types.ObjectId, required: true, ref:"Meal" }],
 }, {timestamps: true});
 
 customerSchema.pre("save", async function(next){

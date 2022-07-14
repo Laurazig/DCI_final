@@ -1,4 +1,4 @@
-import Customer from "../models/customers.js";
+import Customer from "../models/customer.js";
 import createError from "http-errors";
 
 // ==============================================
@@ -12,11 +12,14 @@ export const getCustomerData = async (req, res, next) => {
     try {
         foundCustomer = await Customer.findById(customerId);
     } catch {
-        return next(createError(500, "findById -user could not be created (http-errors in userController) usersController"));
+        return next(createError(500, "Could not query database. Please try again!"));
     }
 
     // If a user was found with the same id as the :id parameter...
     if (foundCustomer) {
+        // Populate the data in model called Meal
+        await foundCustomer.populate("meals", {_id: 1, mealName: 1, category: 1, amount: 1})
+
         const customerData = {
             firstName: foundCustomer.firstName,
             lastName: foundCustomer.lastName,
@@ -35,7 +38,7 @@ export const getCustomerData = async (req, res, next) => {
 
 export const postMeals = async (req, res, next) => {
     const customerId = req.params.id; // customer id
-    const newMeal = req.body; // new meal from the frontend
+    const mealId = req.body.id; // new meal id from the frontend
 
     // is the customer found?
     let foundCustomer;
@@ -46,26 +49,23 @@ export const postMeals = async (req, res, next) => {
     };
 
     // are the meals found?
-    const foundMeal = foundCustomer.meals.find( meal => {
-        return (
-            meal.pizza.toLowerCase() === newMeal.pizza.toLowerCase()
-            && meal.lazagna.toLowerCase() === newMeal.lazagna.toLowerCase()
-        )
-    });
+    const foundMeal = foundCustomer.meals.find( existingId => existingId === mealId);
 
     if(!foundMeal) {
         let updatedMeal;
         try{
             updatedMeal = await Customer.findByIdAndUpdate(
                 customerId,
-                {$push: {meals: newMeal}},
+                {$push: {meals: mealId}},
                 {new: true, runValidators: true}
             )
         }catch{
             return next(createError[500]("Could not be posted. Please try again!"));
         }
+        // Populate all the meals and the new meal added
+        await updatedMeal.populate("meals", {_id: 1, mealName: 1, category: 1, amount: 1})
 
-        res.json.status(201).json(updatedMeal.meals)
+        res.json.status(201).json({meals: updatedMeal.meals})
 
     } else {
         next(new createError[409]("The meal already exists in your collection!"));
@@ -86,6 +86,9 @@ export const deleteAllMeals = async (req, res, next) => {
         return next(createError(500, "Meals could not be deleted. Please try again!"))
     }
 
+     // Populate after you delete albums. However, it is not relevant.
+     await foundCustomer.populate("meals");
+
     res.json(foundCustomer.meals)
 }
 // =============================================================
@@ -99,12 +102,15 @@ export const deleteSingleMeal = async (req, res, next) => {
     try{
         foundCustomer = await Customer.findByIdAndUpdate(
             customerId,
-            {$pull: {meals: {_id: mealId}}},
+            {$pull: {meals: mealId}},
             {new: true, runValidators: true}
         )
     }catch{
         return next(createError(500, "The meal could not be deleted. Please try again!"))
     }
+
+    // Populate after you delete a single album
+    await foundCustomer.populate("meals");
 
     res.json({meals: foundCustomer.meals})
 }
