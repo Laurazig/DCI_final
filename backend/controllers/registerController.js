@@ -1,9 +1,12 @@
-import Customer from "../models/customers.js";
+
 import createError from "http-errors";
+import Customer from "../models/customers.js";
+
 
 export const registerController = async (req, res, next) => {
     const { username, password, firstName, lastName, email } = req.body;
     let foundCustomer;
+
     try{
         found = await Customer.findOne({
             username: username,
@@ -41,3 +44,4 @@ export const registerController = async (req, res, next) => {
         return next(createError(409, "Sorry, this username has been taken. Please choose another!"));
     }    
 }
+export default registerController;

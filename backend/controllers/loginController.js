@@ -1,5 +1,5 @@
-import Customer from "../models/customers.js";
 import createError from "http-errors";
+import Customer from "../models/customers.js";
 
 export const loginController = async  (req, res, next) => {
     // Take the username and password the user tried to log in with
