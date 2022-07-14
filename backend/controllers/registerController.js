@@ -1,26 +1,26 @@
-import User from "../models/user.js"
-import { v4 as uuid } from "uuid";
+import Customer from "../models/customers.js";
 import createError from "http-errors";
 
-export const registerPost = async (req, res, next) => {
-    const { username, password, firstName, lastName, emailAddress } = req.body;
-    let found;
+export const registerController = async (req, res, next) => {
+    const { username, password, firstName, lastName, email } = req.body;
+    let foundCustomer;
     try{
-        found = await User.findOne({
+        found = await Customer.findOne({
             username: username,
             password: password,
             firstName: firstName,
             lastName: lastName,
-            emailAddress: emailAddress,
-            //albums: []
+            emailAddress: email,
+            meals: []
         }) 
         }catch {
-            return next(createError(500, "could not query database. Please try again. ***********registerController.js**********"));
-            }
+            return next(createError(500, "could not query database. Please try again. please try again!"));
+        }
+
     // If there is no user in the db with the username received from the frontend
-    if (!found) {
+    if (!foundCustomer) {
         // Create a new user based on data received from req.body
-        const newUser = new User({
+        const newCustomer = new User({
             id: uuid(),
             username: username,
             password: password,
@@ -28,16 +28,16 @@ export const registerPost = async (req, res, next) => {
             lastName: lastName,
             emailAddress: emailAddress,
             albums: []
-        })
+        });
+
        try {
-        await newUser.save();
+        await newCustomer.save();
        } catch {
-        return next(createError(500, "couldn't create user, please try again. ***********registerController.js**********"));
+        return next(createError(500, "couldn't create user, please try again. Please try again!"));
        } 
-        res.status(201).json(newUser._id);
-    // If there is already a user in the db with the username received from the frontend
-    // Create an error object with a relevant message and statusCode  (409 conflict), and pass it to the error handling middleware
+        res.status(201).json(newCustomer._id);
+   
     } else {
-        return next(createError(409, "Sorry, this username has been taken. Please choose another. ***********registerController.js**********"));
+        return next(createError(409, "Sorry, this username has been taken. Please choose another!"));
     }    
 }
