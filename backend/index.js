@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import globalErrorHandler from "./middleware/globalErrorHandler.js";
 import registerRouter from "./routes/registerRouter.js";
 import loginRouter from "./routes/loginRouter.js";
+import customersRouter from "./routes/customersRoutes.js"
 
 const app = express();
 app.use(cors());
@@ -21,6 +22,7 @@ mongoose.connection("error", () => console.error);
 app.use(morgan("tiny"));
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+app.use("/customers", customersRouter)
 
 app.use(globalErrorHandler);
 
