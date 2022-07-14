@@ -1,7 +1,6 @@
 // code from class 30th May
-
-import User from "../models/user.js"  
 import createError from "http-errors";
+import Customer from "../models/customers.js";
 
 export const loginPost = async  (req, res, next) => {
     // Take the username and password the user tried to log in with
@@ -12,7 +11,7 @@ export const loginPost = async  (req, res, next) => {
    // const found = db.data.users.find(user => user.username === username && user.password === password);
    let found;
    try{
-    found = await User.findOne({
+    found = await Customer.findOne({
         username: username,
         password: password})
    } catch {
