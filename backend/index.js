@@ -7,7 +7,8 @@ import dotenv from "dotenv";
 import globalErrorHandler from "./middleware/globalErrorHandler.js";
 import registerRouter from "./routes/registerRouter.js";
 import loginRouter from "./routes/loginRouter.js";
-import customersRouter from "./routes/customersRoutes.js"
+import customersRouter from "./routes/customersRoutes.js";
+import mealsRouter from "./routes/mealRoute.js"
 
 const app = express();
 app.use(cors());
@@ -16,13 +17,14 @@ app.use(express.json());
 dotenv.config();
 
 mongoose.connect(`mongodb+srv://Yohannes:Haftey100@cluster0.uvleeqn.mongodb.net/flys-project?retryWrites=true&w=majority`);
-mongoose.connection("open", () => console.log("Database has started"));
-mongoose.connection("error", () => console.error);
+mongoose.connection.on("open", () => console.log("Database has started"));
+mongoose.connection.on("error", () => console.error);
 
 app.use(morgan("tiny"));
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
-app.use("/customers", customersRouter)
+app.use("/customers", customersRouter);
+app.use("/meals", mealsRouter)
 
 app.use(globalErrorHandler);
 

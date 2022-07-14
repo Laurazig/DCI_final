@@ -1,6 +1,6 @@
 
 import createError from "http-errors";
-import Customer from "../models/customers.js";
+import Customer from "../models/customer.js";
 
 
 export const registerController = async (req, res, next) => {
