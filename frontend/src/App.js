@@ -1,6 +1,6 @@
-import './App.css';
+import './stylingCss/Login.css';
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from './views/Home.js';
 
 
