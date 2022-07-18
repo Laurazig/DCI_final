@@ -2,6 +2,7 @@ import './stylingCss/Login.css';
 import React from "react";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from './views/Home.js';
+import Navbar from './views/navbar/Navbar.jsx';
 
 
 const App = () =>
@@ -12,6 +13,7 @@ const App = () =>
      
 
         <Router>
+          <Navbar></Navbar>
           <header>
             <h1>Bio Bites</h1>
           </header>
