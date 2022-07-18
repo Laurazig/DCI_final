@@ -9,6 +9,8 @@ const customerSchema = new Schema({
     lastName: String,
     email: { type: String, required: true, unique: true },
     meals: [{ type: mongoose.Types.ObjectId, required: true, ref:"Meal" }],
+    orders: [{type: mongoose.Types.ObjectId, required: true, ref:"Oder"}]
+    
 }, {timestamps: true});
 
 customerSchema.pre("save", async function(next){
