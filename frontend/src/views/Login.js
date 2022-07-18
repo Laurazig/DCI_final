@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import '../stylingCss/Login.css';
+
+
 
 const Login = props =>
 {
-  const [ username, setUsername ] = useState( "" );
+  const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
 
  
@@ -10,8 +13,8 @@ const Login = props =>
   {
     switch ( event.target.name )
     {
-      case "username":
-        setUsername( event.target.value );
+      case "email":
+        setEmail( event.target.value );
         break;
       case "password":
         setPassword( event.target.value );
@@ -27,7 +30,7 @@ const Login = props =>
     event.preventDefault();
 
     const loginData = {
-      username: username,
+      email: email,
       password: password
     };
 
@@ -54,7 +57,7 @@ const Login = props =>
     } catch ( err )
     {
       alert( err.message );
-      setUsername( "" );
+      setEmail( "" );
       setPassword( "" );
     }
   };
@@ -64,24 +67,31 @@ const Login = props =>
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="loginPage">
+<div className="loginDiv">
+      <h1>Login-In Page</h1>
 
-      <form onSubmit={ attemptLogin }>
+      <form onSubmit={ attemptLogin } className={'loginForm'}>
+       <div className="loginFormInput">
         <div>
-          <label>Username</label>
-          <input name="username" onChange={ updateData } value={ username } />
+          <input name="email" onChange={ updateData } value={ email } placeholder={"Email Address"}  className="loginFormEmailPassword"/>
         </div>
         <div>
-          <label>Password</label>
-          <input name="password" onChange={ updateData } value={ password } />
+          <input name="password" onChange={ updateData } value={ password } placeholder={"Password"} className="loginFormEmailPassword"/>
         </div>
+        </div> 
+        
 
-        <button>Sign In</button>
+       <div className="buttonDiv"><button>Log In</button> </div> 
       </form>
 
       <button onClick={ updateShowLogin }>Not registered yet? Register for an account!</button>
     </div>
+<p className="login paragraph">
+  " <b>Every Weekends We Update Our Meals</b>, So Please Kindly Don't Forget To Visit <b>"Meals Page"</b> To Experience Different Cuisine From All Around The World " 
+</p>
+    </div>
+    
   );
 };
 

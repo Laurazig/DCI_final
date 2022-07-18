@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Register from "../views/Register";
 import Login from "../views/Login";
 
-import "../App.css";
+import '../stylingCss/Login.css';
+
 
 const Home = () =>
 {
