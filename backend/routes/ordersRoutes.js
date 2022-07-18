@@ -2,9 +2,6 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/:id");
-
-router.post("/:id/orders");
-
+router.post("/");
 
 export default router;
