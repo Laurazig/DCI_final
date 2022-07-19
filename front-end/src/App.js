@@ -1,9 +1,22 @@
 import LandingPage from "./views/landingpage/LandingPage";
+import RegisterPage from './views/registerpage/RegisterPage'
+import Navbar from "./components/globalComponents/navbar/Navbar";
+import { ReactDOM } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className='App'>
-      <LandingPage/>
+      <Navbar/>
+      <BrowserRouter>
+      
+      <Routes>
+      <Route path="/" element={<LandingPage/>} />
+      <Route path="/register" element={<RegisterPage/>} />
+      </Routes>
+
+      </BrowserRouter>
+
      </div>
   );
 }
