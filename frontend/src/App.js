@@ -1,7 +1,8 @@
 import './stylingCss/Login.css';
+import Home from './views/Home.js';
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from './views/Home.js';
+
 import Navbar from './views/Navbar';
 import Meals from './views/Meals';
 import Register from './views/Register';
