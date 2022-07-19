@@ -1,134 +1,41 @@
-import Customer from "../models/customer.js";
+import User from "../models/user.js";
 import createError from "http-errors";
 
-// ==============================================
-// GET the logged in customer's data
-// ==============================================
-
-export const getCustomerData = async (req, res, next) => {
+export const updatedOrder = async (req, res, next) => {
     const customerId = req.params.id;
+    const orderId = req.params.id;
 
-    let foundCustomer;
-    try {
-        foundCustomer = await Customer.findById(customerId);
-    } catch {
-        return next(createError(500, "Could not query database. Please try again!"));
-    }
-
-    // If a user was found with the same id as the :id parameter...
-    if (foundCustomer) {
-        // Populate the data in model called Meal
-        await foundCustomer.populate("meals", {_id: 1, mealName: 1, category: 1, amount: 1})
-
-        const customerData = {
-            firstName: foundCustomer.firstName,
-            lastName: foundCustomer.lastName,
-            meals: foundCustomer.meals
-        }
-        res.json(customerData);
-    
-    } else {
-        next(createError(404, "Customer could not be created. Please try again"))
-    }
-}
-
-// =======================================================
-// POST a new meal to the meals page
-// =======================================================
-
-export const postMeals = async (req, res, next) => {
-    const customerId = req.params.id; // customer id
-    const mealId = req.body.id; // new meal id from the frontend
-
-    // is the customer found?
+    // Is the customer found?
     let foundCustomer;
     try{
-        foundCustomer = await Customer.findById(customerId)
+        foundCustomer = await User.findById(customerId);
     }catch{
-        return next(createError(500, "Customer could not be created. Please try again!"))
-    };
+        return next(createError(500, "Customer could not be queried. Please try again!"));
+    }
 
-    // are the meals found?
-    const foundMeal = foundCustomer.meals.find( existingId => existingId === mealId);
 
-    if(!foundMeal) {
-        let updatedMeal;
+    // Is the order ordered by the customer already exist?
+    const foundOrder = foundCustomer.orders.find(existingId => existingId == orderId); //! The orderId will be a composite id, which is userId + orderID
+
+    // If the customer is found, then post the order of the customer
+    if(!foundOrder) {
+        let updatedOrder;
         try{
-            updatedMeal = await Customer.findByIdAndUpdate(
+            updatedOrder = await User.findByIdAndUpdate(
                 customerId,
-                {$push: {meals: mealId}},
+                {$push: {orders: orderId}},
                 {new: true, runValidators: true}
             )
         }catch{
-            return next(createError[500]("Could not be posted. Please try again!"));
+            return next(createError(500, "Order could not be queried. Please try again!"))
         }
-        // Populate all the meals and the new meal added
-        await updatedMeal.populate("meals", {_id: 1, mealName: 1, category: 1, amount: 1})
 
-        res.json.status(201).json({meals: updatedMeal.meals})
+        // Populate the ordered meals
+        await updatedOrder.populate("orders", {id: 1, mealName: 1, category: 1, amount: 1});
+
+        res.status(201).json({orders: updatedOrder.orders});
 
     } else {
-        next(new createError[409]("The meal already exists in your collection!"));
+        next(createError(409, "The customer order could not be submitted. Please try again!"))
     }
-
-}
-
-// =======================================================
-// DELETE all meals from the page
-// ==========================================================
-export const deleteAllMeals = async (req, res, next) => {
-    const customerId = req.params.id;
-
-    let foundCustomer;
-    try{
-        foundCustomer = await Customer.findByIdAndUpdate(customerId, {meals: []}, {new: true, runValidators: true})
-    }catch{
-        return next(createError(500, "Meals could not be deleted. Please try again!"))
-    }
-
-     // Populate after you delete albums. However, it is not relevant.
-     await foundCustomer.populate("meals");
-
-    res.json(foundCustomer.meals)
-}
-// =============================================================
-// DELETE a single meal from the page
-// =============================================================
-export const deleteSingleMeal = async (req, res, next) => {
-    const customerId = req.params.id;
-    const mealId = req.params.mealId;
-
-    let foundCustomer;
-    try{
-        foundCustomer = await Customer.findByIdAndUpdate(
-            customerId,
-            {$pull: {meals: mealId}},
-            {new: true, runValidators: true}
-        )
-    }catch{
-        return next(createError(500, "The meal could not be deleted. Please try again!"))
-    }
-
-    // Populate after you delete a single album
-    await foundCustomer.populate("meals");
-
-    res.json({meals: foundCustomer.meals})
-}
-
-
-//=============================================================
-// DELETE a customer account
-// =============================================================
-
-export const deleteAccount = async (req, res, next) => {
-    const customerId = req.params.id;
-
-    let foundCustomer;
-    try{
-        foundCustomer = await Customer.findByIdAndRemove(customerId)
-    }catch{
-        return next(createError(500, "Account could not be deleted. Please try again!"))
-    }
-
-    res.json({ message: `The account belong to ${foundCustomer.firstName} has been successfully deleted. Come back soon!` });
 }

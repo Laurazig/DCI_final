@@ -4,6 +4,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
+// Routes router 
 import globalErrorHandler from "./middleware/globalErrorHandler.js";
 import registerRouter from "./routes/registerRouter.js";
 import loginRouter from "./routes/loginRouter.js";
@@ -23,15 +24,17 @@ mongoose.connection.on("open", () => console.log("Database has started"));
 mongoose.connection.on("error", () => console.error);
 
 app.use(morgan("tiny"));
-// Customers path
+// General users (Customers and Employees) endpoints
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+// Customers endpoint
 app.use("/customers", customersRouter);
 app.use("/orders", ordersRouter);
-// Admin path
-app.use("/employees", employeesRouter);
+// Employees endpoint
+app.use("/employees", employeesRouter); // ! we need to discuss with the group
 app.use("/meals", mealsRouter);
 
+// Global error handler
 app.use(globalErrorHandler);
 
 
