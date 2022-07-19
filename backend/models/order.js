@@ -6,7 +6,7 @@ const orderSchema = new Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    telephone: {type: true, required: true},
+    telephone: {type: Number, required: true},
     city: {type: String, require: true},
     StreetAddress: {type: String, require: true},
     ZipCode: {type: String, require: true},

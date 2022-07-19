@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const customerSchema = new Schema({
+const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     firstName: String,
@@ -13,7 +13,7 @@ const customerSchema = new Schema({
     
 }, {timestamps: true});
 
-customerSchema.pre("save", async function(next){
+userSchema.pre("save", async function(next){
     if(!this.firstName) {
         this.firstName = "John";
     };
@@ -26,6 +26,6 @@ customerSchema.pre("save", async function(next){
 })
 
 
-const Customer = mongoose.model("Customer", customerSchema);
+const User = mongoose.model("User", userSchema);
 
-export default Customer;
+export default User;

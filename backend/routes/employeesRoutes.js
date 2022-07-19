@@ -1,9 +1,9 @@
 import express from "express";
-import { deleteAccount, deleteAllMeals, deleteSingleMeal, getCustomerData, postMeals } from "../controllers/customersController.js";
+import { deleteAccount, deleteAllMeals, deleteSingleMeal, getMealsData, postMeals } from "../controllers/employeesController.js";
 
 const router = express.Router();
 
-router.get("/:id", getCustomerData);
+router.get("/:id", getMealsData);
 
 router.patch("/:id/meals", postMeals);
 
