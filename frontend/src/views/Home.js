@@ -63,15 +63,12 @@ const Home = () =>
         const parsedRes = await response.json();
         try
         {
-            // If the request was successful...
             if ( response.ok )
             {
                 alert( parsedRes.message );
                 setIsLoggedIn( false );
                 setShowLogin( true );
                 setCurrentUserId( "" );
-
-                // If the request was UNsuccessful...
             } else
             {
                 throw new Error( parsedRes.message );
@@ -82,9 +79,6 @@ const Home = () =>
         }
     };
 
-
-
-    
     if ( !isLoggedIn )
     {
       
