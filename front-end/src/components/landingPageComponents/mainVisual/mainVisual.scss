@@ -1,0 +1,81 @@
+@import '../../../scss-styling/styleVariables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  color: $mainCol;
+  justify-content: space-around;
+  margin: 0 auto;
+
+  .logoAndTitle {
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+
+    .logoImg {
+      width: 50px;
+      margin: -7px 10px 0 0px;
+    }
+  }
+
+  .ulNav {
+    display: flex;
+    padding-right: 20rem;
+
+    li {
+      margin: 20px;
+      list-style: none;
+    }
+  }
+
+  .navButtons {
+    display: flex;
+
+    .logInButton {
+      @include buttonOutline;
+      margin-right: 20px;
+    }
+
+    .regButton {
+    @include buttonFilled;
+    }
+
+  }
+
+}
+*{margin: 0px;
+padding: 0px;}
+
+.mainVisual{
+display: flex;
+flex-direction: column; 
+background-image:url(../../../assets/mainVisual.jpg);
+background-size: cover;
+justify-content: center;
+align-items: center;
+padding-top: 300px;
+padding-bottom: 100px;
+
+
+h1,h2{
+opacity: 90%;
+}
+
+h1{
+    @include mainTitle;
+}
+h2{
+    @include mainTitleAccent;
+    margin-bottom: 40px
+}
+
+button{
+    @include buttonFilled;
+}
+
+}
