@@ -1,17 +1,11 @@
 import express from "express";
-import { deleteAccount, deleteAllMeals, deleteSingleMeal, getCustomerData, postMeals } from "../controllers/customersController.js";
+import { updatedOrder } from "../controllers/customersController.js";
 
 const router = express.Router();
 
-router.get("/:id", getCustomerData);
+router.get("/:id"); // This will be done later on
 
-router.post("/:id/meals", postMeals);
+router.patch("/:id/orders", updatedOrder);
 
-router.delete("/:id/meals", deleteAllMeals);
-
-router.delete("/:id/meals/:mealId", deleteSingleMeal);
-
-router.delete("/:id", deleteAccount);
 
 export default router;
-

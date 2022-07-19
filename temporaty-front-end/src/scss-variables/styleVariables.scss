@@ -1,0 +1,87 @@
+$mainCol: #91c88a;
+$secondaryCol: white;
+$tertiaryCol: black;
+*{margin: 0;
+padding: 0;}
+
+//------- Buttons -------
+@mixin buttonStyle {
+    width: 130px;
+    height: 35px;
+    border-radius: 7px;
+}
+
+@mixin buttonFilled {
+    @include buttonStyle;
+    background-color: $mainCol;
+    border: none;
+    color: $secondaryCol;
+}
+
+@mixin buttonOutline {
+    @include buttonStyle;
+    color: $mainCol;
+    background-color: transparent;
+    border: 2px solid $mainCol;
+}
+
+
+//------- typography -------
+@mixin mainTitle {
+    font-size: 60px;
+    font-weight: bold;
+    color: $secondaryCol;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 0.9;
+}
+
+@mixin mainTitleAccent {
+    @include mainTitle;
+    font-size: 120px;
+}
+
+@mixin sectionTitle {
+    font-size: 48px;
+    color: $tertiaryCol;
+    font-weight: 250;
+    padding:40px 0 ;
+}
+
+@mixin sectionSubTitle {
+    font-size: 22px;
+    color: $tertiaryCol;
+    font-weight: 500;
+    padding:20px 0 10px 0;
+}
+
+@mixin paragraphStyle {
+
+    font-size: 17px;
+    color: $tertiaryCol;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+@mixin paragraphAccentStyle {
+
+    font-weight: bold;
+    color: $mainCol;
+}
+
+
+//------- Layout & Cards -------
+
+@mixin cardInnerLayout {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+@mixin cardImg {
+    width: 400px;
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+}

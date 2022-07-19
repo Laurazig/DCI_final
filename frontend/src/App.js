@@ -1,9 +1,9 @@
 import './stylingCss/Login.css';
 import Home from './views/Home.js';
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Navbar from './views/Navbar';
+import Navbar from './views/navbar/Navbar.jsx';
 import Meals from './views/Meals';
 import Register from './views/Register';
 import Orders from './views/Orders';
@@ -20,7 +20,7 @@ const App = () =>
 
       <Router>
         <header>
-          <h1>Bio Bites</h1>
+             <Navbar />
         </header>
         <main>
           <Routes>
@@ -30,16 +30,10 @@ const App = () =>
             <Route path="/register" element={ <Register /> } />
             <Route path="/orders" element={ <Orders /> } />
             <Route path="/cart" element={ <Cart /> } /> */}
-
           </Routes>
         </main>
         <footer>
-
-
         </footer>
-
-
-
       </Router>
 
     </div>

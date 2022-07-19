@@ -1,5 +1,5 @@
 import createError from "http-errors";
-import Customer from "../models/customers.js";
+import Customer from "../models/user.js";
 
 export const loginController = async  (req, res, next) => {
     // Take the username and password the user tried to log in with
@@ -16,7 +16,7 @@ export const loginController = async  (req, res, next) => {
 
     if (foundCustomer) {
         const customerId = {
-            id: found.id
+            id: foundCustomer.id
         };
 
         res.json(customerId);

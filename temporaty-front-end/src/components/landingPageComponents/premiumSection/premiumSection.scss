@@ -1,0 +1,56 @@
+@import '../../../scss-variables/styleVariables.scss';
+
+.premiumSection {
+    width: 80%;
+    margin: 0 auto;
+  
+    h2 {
+        @include sectionTitle
+    }
+
+    .horizontalCardContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .premiumVisual {
+        width: 870px;
+        height: 440px;
+        background-image: url(../../../assets/premiumVisual.jpeg);
+        background-size: cover;
+        background-position:0 -200px;
+    }
+
+    .titleAndParagraph {
+        @include cardInnerLayout;
+
+        h3{
+           @include sectionSubTitle;
+           padding-top: 0px
+        }   
+
+        p{
+            @include paragraphStyle;
+        }
+    
+        span{
+            @include paragraphAccentStyle;
+        }
+        
+        ul{
+            padding-left: 20px;
+
+        }
+    
+        button{
+            @include buttonFilled;
+            margin-top: 20px;
+           
+        }
+
+    }
+
+
+   
+
+}
