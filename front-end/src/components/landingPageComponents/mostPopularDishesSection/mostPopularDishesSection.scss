@@ -1,0 +1,55 @@
+@import '../../../scss-styling/styleVariables.scss';
+
+.mostPopularDishesSection {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+
+
+    h2 {
+        @include sectionTitle
+    }
+
+    .cardsContainer {
+        display: flex;
+        justify-content: space-between;
+        align-content: space-between;
+
+        .card {
+            @include cardInnerLayout;
+
+            .cardImg {
+                @include cardImg;
+            }
+
+            .cardImg1 {
+                background-image: url(../../../assets/dish1.jpg);
+            }
+
+            .cardImg2 {
+                background-image: url(../../../assets/dish2.jpg);
+            }
+
+            .cardImg3 {
+                background-image: url(../../../assets/dish3.jpg);
+            }
+
+        }
+
+        h3 {
+            @include sectionSubTitle
+        }
+
+        p {
+            @include paragraphStyle
+        }
+
+
+        button{
+            @include buttonOutline
+        }
+
+    }
+
+}
