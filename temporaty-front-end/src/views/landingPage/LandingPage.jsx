@@ -13,7 +13,6 @@ export default function () {
         <TrademarkSection/>
         <MostPopularDishesSection/>
         <PremiumSection/>
-        
     </div>
   )
 }

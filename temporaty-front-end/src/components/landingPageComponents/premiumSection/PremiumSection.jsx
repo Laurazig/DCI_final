@@ -27,10 +27,6 @@ export default function PremiumSection() {
           </ul>
           <button>Try premium</button>
         </div>
-
-        
-
-
       </div>
     </div>
   );
