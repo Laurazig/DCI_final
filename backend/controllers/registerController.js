@@ -4,7 +4,7 @@ import User from "../models/user.js";
 
 
 export const registerController = async (req, res, next) => {
-    const { username, password, firstName, lastName, email } = req.body;
+    const { firstName, lastName, email, password, confirmPassword, year,month,day,street,houseNo,zipCode,city  } = req.body;
 
 
     let foundCustomer;
@@ -19,11 +19,20 @@ export const registerController = async (req, res, next) => {
     if (!foundCustomer) {
         // Create a new user based on data received from req.body
         const newCustomer = new User({
-            username: username,
-            password: password,
+           // username: username,
             firstName: firstName,
             lastName: lastName,
             email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+            year:year,
+            month:month,
+            day:day,
+            street:street,
+            houseNo:houseNo,
+            zipCode:zipCode,
+            city:city,
+            // meals:[],
             orders: []
         });
 
