@@ -1,9 +1,9 @@
+
 import "./navbar.scss";
 import React from 'react';
 import Logo from '../../../assets/logo.jpg';
 import { NavLink } from "react-router-dom"
 // RFC
-
 export default function Navbar() {
   return (
     <div className="navbar">
@@ -22,9 +22,8 @@ export default function Navbar() {
 
       <div className='navButtons'>
         <button className='logInButton'><NavLink to="/login">Login</NavLink></button>
-        <button className='regButton'><NavLink to="/register">Register</NavLink></button>
+        <button className='regButton'><NavLink to="/register">Register</NavLink></butto
       </div>
-
     </div>
   )
 }
