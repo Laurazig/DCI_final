@@ -3,35 +3,22 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    //username: { type: String, required: true, unique: true },
-    firstName: String,
-    lastName: String,
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true},
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    confirmPassword:  { type: String, required: true },
-    year: Number,
-    month: Number,
-    day: Number,
-    street: String,
-    houseNo: Number,
-    zipCode: Number,
-    city: String,
+    confirmPassword: {type: String, required: true},
+    year: {type: Number, required: true },
+    month: {type: Number, required: true },
+    day: {type: Number, required: true },
+    street: {type: String, required: true },
+    houseNo: {type: Number, required: true },
+    zipCode: {type: Number, required: true },
+    city: {type: String, required: true },
     meals: [{ type: mongoose.Types.ObjectId, required: true, ref:"Meal" }],
     orders: [{type: mongoose.Types.ObjectId, required: true, ref:"Oder"}]
     
 }, {timestamps: true});
-
-userSchema.pre("save", async function(next){
-    if(!this.firstName) {
-        this.firstName = "John";
-    };
-
-    if(!this.lastName) {
-        this.lastName = "Doe"
-    };
-
-    next();
-})
 
 
 const User = mongoose.model("User", userSchema);

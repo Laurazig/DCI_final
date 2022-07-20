@@ -3,12 +3,12 @@ import Customer from "../models/user.js";
 
 export const loginController = async  (req, res, next) => {
     // Take the username and password the user tried to log in with
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
    let foundCustomer;
    try{
     foundCustomer = await Customer.findOne({
-        username: username,
+        email: email,
         password: password})
    } catch {
     return next(createError(500, "could not query database. Please try again!"));

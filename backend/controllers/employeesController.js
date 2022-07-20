@@ -35,7 +35,7 @@ export const getMealsData = async (req, res, next) => {
 // POST a new meal to the meals page
 // =======================================================
 
-export const postMeals = async (req, res, next) => {
+export const updatedMeals = async (req, res, next) => {
     const employeeId = req.params.id; // employee id
     const mealId = req.body.id; // new meal id from the frontend
 
