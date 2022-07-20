@@ -6,11 +6,7 @@ import "./landingPage.scss"
 import PremiumSection from '../../components/landingPageComponents/premiumSection/PremiumSection'
 
 
-export default function () {
-
-
-
-  
+export default function LandingPage () {
   return (
     <div className='LandingPage'>
         <MainVisual/>

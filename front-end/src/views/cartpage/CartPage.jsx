@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import { MyContext } from "../App";
+import { MyContext } from "../../App";
 
-const Cart = () => {
+const CartPage = () => {
   const { cart, setCart, user, setUser, setOrders, orders } =
     useContext(MyContext);
   const [message, setMessage] = useState("");
@@ -140,4 +140,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;
