@@ -15,7 +15,7 @@ const Register = props =>
   const [ street, setStreet ] = useState( "" );
   const [houseNo, setHouseNo ] = useState(  );
   const [ zipCode, setZipCode ] = useState(  );
-  const [  city, setCity ] = useState( "" );
+  const [ city, setCity ] = useState( "" );
 
 
 
