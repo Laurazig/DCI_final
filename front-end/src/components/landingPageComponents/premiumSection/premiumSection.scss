@@ -1,9 +1,9 @@
 @import '../../../scss-styling/styleVariables.scss';
 
 .premiumSection {
-    width: 80%;
-    margin: 0 auto;
-  
+    @include pageSectionSizeAndDisplay;
+    flex-direction: column;
+
     h2 {
         @include sectionTitle
     }

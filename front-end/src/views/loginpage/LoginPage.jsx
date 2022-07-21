@@ -58,20 +58,21 @@ const LoginPage = (props) => {
   return (
     <div className="loginPage">
       <div className="loginDiv">
-        <h1>Login-In Page</h1>
+        <h1>Login-In to your account</h1>
 
         <form onSubmit={attemptLogin} className={'loginForm'}>
           <div className="loginFormInput">
-            <div>
+            <div className="emailFormSection">
               <input
                 name="email"
                 onChange={updateData}
                 value={email}
-                placeholder={'Email Address'}
+                placeholder={"Email"}
+
                 className="loginFormEmailPassword"
               />
             </div>
-            <div>
+            <div className="passwordlFormSection">
               <input
                 name="password"
                 onChange={updateData}
@@ -86,9 +87,9 @@ const LoginPage = (props) => {
             <button>Log In</button>{' '}
           </div>
         </form>
-
+        <p> Not registered yet? Register for an account!</p>
         <button onClick={updateShowLogin}>
-          Not registered yet? Register for an account!
+         Register
         </button>
       </div>
       <p className="login paragraph">

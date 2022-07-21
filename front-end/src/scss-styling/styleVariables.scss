@@ -2,7 +2,9 @@ $mainCol: #91c88a;
 $secondaryCol: white;
 $tertiaryCol: black;
 *{margin: 0;
-padding: 0;}
+padding: 0;
+a{text-decoration: none;}
+}
 
 //------- Buttons -------
 @mixin buttonStyle {
@@ -16,6 +18,11 @@ padding: 0;}
     background-color: $mainCol;
     border: none;
     color: $secondaryCol;
+
+    a {
+        color: $secondaryCol;
+        text-decoration: none;
+      }
 }
 
 @mixin buttonOutline {
@@ -23,6 +30,21 @@ padding: 0;}
     color: $mainCol;
     background-color: transparent;
     border: 2px solid $mainCol;
+
+    a{
+        color: $mainCol;
+        text-decoration: none;
+    }
+}
+
+// ------- input flieds -------
+@mixin standardInput {
+
+    width: 500px;
+    height: 35px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    
 }
 
 
@@ -84,4 +106,32 @@ padding: 0;}
     height: 280px;
     background-size: cover;
     background-position: center;
+}
+
+@mixin pageSectionSizeAndDisplay{
+    display: flex;
+    width: 1450px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    padding-top: 20px;
+    background-color: none;  
+}
+
+
+
+@mixin  formSizeAndDisplay {
+    width: 600px;
+    height: 1000px;
+    display: flex;
+    border-radius: 20px;
+    border: 2px solid $mainCol;
+    margin: 0 auto;
+flex-direction: column;
+padding: 40px;}
+
+// icons
+
+@mixin socialMediaIcons {
+    font-size: 40px;
+    margin: 0 10px;
 }

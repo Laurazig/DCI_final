@@ -7,38 +7,40 @@ import HowItWorksPage from "./views/howitworks/HowItWorksPage";
 import SupportPage from "./views/support/SupportPage";
 import CommunityPage from "./views/community/CommunityPage";
 import MealsPage from "./views/mealspage/MealsPage";
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import CartPage from "./views/cartpage/CartPage";
+import Footer from "./components/globalComponents/footer/Footer";
 
 export const MyContext = React.createContext();
-console.log( MyContext ); 
+console.log(MyContext);
 
 
-function App ()
-{
-const [meals,setMeals]=useState([]);
-const [cart,setCart]=useState([]);
-const [orders,setOrders]=useState([]);
-const [user,setUser]=useState([]);
+function App() {
+  const [meals, setMeals] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [user, setUser] = useState([]);
 
   return (
-    <MyContext.Provider value={{meals,setMeals,cart,setCart,orders,setOrders,user,setUser}}>
+    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>
       <div className='App'>
-      <HashRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={ <LandingPage /> } />
-          <Route path="/howitworks" element={ <HowItWorksPage /> } />
-          <Route path="/support" element={ <SupportPage /> } />
-          <Route path="/meals" element={ <MealsPage /> } />
-          <Route path="/community" element={ <CommunityPage /> } />
-          <Route path="/login" element={ <LoginPage /> } />
-          <Route path="/register" element={ <RegisterPage /> } />
-          <Route path="/cart" element={<CartPage/> } />
-        </Routes>
-      </HashRouter>
+        <HashRouter>
+        <Navbar/>
 
-    </div>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/howitworks" element={<HowItWorksPage />} />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/meals" element={<MealsPage />} />
+            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/cart" element={<CartPage />} />
+          </Routes>
+          <Footer/>
+
+        </HashRouter>
+      </div>
     </MyContext.Provider>
   );
 }
