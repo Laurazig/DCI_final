@@ -12,7 +12,7 @@ import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
 
 export const MyContext = React.createContext();
-console.log(MyContext);
+// console.log(MyContext);
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>
       <div className='App'>
         <HashRouter>
-        <Navbar/>
+          <Navbar />
 
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -37,7 +37,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<CartPage />} />
           </Routes>
-          <Footer/>
+          <Footer />
 
         </HashRouter>
       </div>
