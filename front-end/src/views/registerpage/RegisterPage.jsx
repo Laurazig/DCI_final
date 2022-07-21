@@ -97,7 +97,7 @@ const Register = props => {
         /* const now = new Date();
         const tokenExpiry = new Date( now.getTime() + 1000 * 60 * 60 );//1 hour Expiry Time of server calculation 
         localStorage.setItem( "data", JSON.stringify( { token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString() } ) ); */
-        props.login( /*parsedRes.token ,*/ parsedRes.id);
+        props.login( /*parsedRes.token ,*/ parsedRes.id); // login needs to be created in app.js
 
       } else {
         throw new Error(parsedRes.message);

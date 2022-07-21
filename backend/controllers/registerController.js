@@ -37,7 +37,7 @@ export const registerController = async (req, res, next) => {
         });
 console.log(`console log registerController newCustomer ${newCustomer}`)
        try {
-        await newCustomer.save(); //200 /201
+        await newCustomer.save(); 
        } catch {
         return next(createError(500, "couldn't create user. please try again! **registerController.js line42**"));
        } 
