@@ -4,10 +4,10 @@ import User from "../models/user.js";
 
 
 export const registerController = async (req, res, next) => {
+
     const {firstName, lastName, email, password, confirmPassword, year, month, day, street, houseNo, zipCode, city} = req.body;
 
     let foundCustomer;
-
     try{
         foundCustomer = await User.findOne({email: email});
         }catch {
@@ -18,6 +18,7 @@ export const registerController = async (req, res, next) => {
     if (!foundCustomer) {
         // Create a new user based on data received from req.body
         const newCustomer = new User({
+
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -30,6 +31,9 @@ export const registerController = async (req, res, next) => {
           houseNo: houseNo,
           zipCode: zipCode,
           city: city
+          // meals:[],
+           /*  orders: [] */
+
         });
 console.log(newCustomer)
        try {

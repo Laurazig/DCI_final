@@ -7,7 +7,7 @@ import HowItWorksPage from "./views/howitworks/HowItWorksPage";
 import SupportPage from "./views/support/SupportPage";
 import CommunityPage from "./views/community/CommunityPage";
 import MealsPage from "./views/mealspage/MealsPage";
-import React,{useState,useEffect} from "react";
+import React,{useState, useEffect} from "react";
 import CartPage from "./views/cartpage/CartPage";
 
 export const MyContext = React.createContext();
