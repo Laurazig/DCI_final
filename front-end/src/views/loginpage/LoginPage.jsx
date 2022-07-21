@@ -30,19 +30,21 @@ const LoginPage = (props) => {
       method: "POST",
       body: JSON.stringify(loginData),
       headers: {
-        "Content-Type": "application/json",
-      },
-      Credential: "include",
+
+        'Content-Type': 'application/json',
+      }
+      // ,
+      // credentials: 'include', //when we use cookies
     };
-    const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + "/login",
-      settings
+    const response = await fetch(  
+      process.env.REACT_APP_SERVER_URL + '/login', settings
+
     );
     const parsedRes = await response.json();
 
     try {
       if (response.ok) {
-        props.login(parsedRes.token, parsedRes.id);
+        props.login(/*parsedRes.token, */ parsedRes.id); //not using tokens 
       } else {
         throw new Error(parsedRes.message);
       }
@@ -52,9 +54,9 @@ const LoginPage = (props) => {
       setPassword("");
     }
   };
-  const updateShowLogin = () => {
-    props.setShowLogin(false);
-  };
+  // const updateShowLogin = () => {
+  //   props.setShowLogin(false);   //using separate page for login& reg
+  // };
 
   return (
     <div className="loginPage">
@@ -92,8 +94,6 @@ const LoginPage = (props) => {
         
         <button onClick={updateShowLogin}>Register</button>
       </div>
-
-
     </div>
   );
 };
