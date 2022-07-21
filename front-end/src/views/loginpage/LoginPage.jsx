@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import "./loginPage.scss";
+import React, { useState } from 'react';
+import './loginPage.scss';
 
-const LoginPage= (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginPage = (props) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const updateData = (event) => {
     switch (event.target.name) {
-      case "email":
+      case 'email':
         setEmail(event.target.value);
         break;
-      case "password":
+      case 'password':
         setPassword(event.target.value);
         break;
       default:
@@ -27,16 +27,15 @@ const LoginPage= (props) => {
     };
 
     const settings = {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(loginData),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      Credential: "include",
+      Credential: 'include',
     };
     const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + "/login",
-      settings
+      process.env.REACT_APP_SERVER_URL + '/login', settings
     );
     const parsedRes = await response.json();
 
@@ -48,8 +47,8 @@ const LoginPage= (props) => {
       }
     } catch (err) {
       alert(err.message);
-      setEmail("");
-      setPassword("");
+      setEmail('');
+      setPassword('');
     }
   };
   const updateShowLogin = () => {
@@ -61,14 +60,14 @@ const LoginPage= (props) => {
       <div className="loginDiv">
         <h1>Login-In Page</h1>
 
-        <form onSubmit={attemptLogin} className={"loginForm"}>
+        <form onSubmit={attemptLogin} className={'loginForm'}>
           <div className="loginFormInput">
             <div>
               <input
                 name="email"
                 onChange={updateData}
                 value={email}
-                placeholder={"Email Address"}
+                placeholder={'Email Address'}
                 className="loginFormEmailPassword"
               />
             </div>
@@ -77,14 +76,14 @@ const LoginPage= (props) => {
                 name="password"
                 onChange={updateData}
                 value={password}
-                placeholder={"Password"}
+                placeholder={'Password'}
                 className="loginFormEmailPassword"
               />
             </div>
           </div>
 
           <div className="buttonDiv">
-            <button>Log In</button>{" "}
+            <button>Log In</button>{' '}
           </div>
         </form>
 

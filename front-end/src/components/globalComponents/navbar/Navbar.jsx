@@ -22,7 +22,7 @@ export default function Navbar() {
 
       <div className='navButtons'>
         <button className='logInButton'><NavLink to="/login">Login</NavLink></button>
-        <button className='regButton'><NavLink to="/register">Register</NavLink></butto
+        <button className='regButton'><NavLink to="/register">Register</NavLink></button>
       </div>
     </div>
   )

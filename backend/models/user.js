@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     //username: { type: String, required: true, unique: true },
-    firstName: String,
-    lastName: String,
+    firstName:{ type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    confirmPassword:  { type: String, required: true },
+    confirmPassword:  { type: String, required: true, unique:true },
     year: Number,
     month: Number,
     day: Number,
@@ -21,7 +21,7 @@ const userSchema = new Schema({
     
 }, {timestamps: true});
 
-userSchema.pre("save", async function(next){
+/* userSchema.pre("save", async function(next){
     if(!this.firstName) {
         this.firstName = "John";
     };
@@ -31,7 +31,7 @@ userSchema.pre("save", async function(next){
     };
 
     next();
-})
+}) */
 
 
 const User = mongoose.model("User", userSchema);

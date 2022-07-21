@@ -40,7 +40,7 @@ const CartPage = () => {
     if (!user) {
       setMessage("You need to login first");
     } else if (cart.length !== 0) {
-      fetch("http://localhost:4000/orders", {
+      fetch("http://localhost:3001/orders", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -54,7 +54,7 @@ const CartPage = () => {
         .then((result) => {
           if (result.success) {
             console.log(result);
-            fetch(`http://localhost:4000/orders/${result.data._id}`)
+            fetch(`http://localhost:3001/orders/${result.data._id}`)
               .then((res) => res.json())
               .then((final) => {
                 console.log(final);

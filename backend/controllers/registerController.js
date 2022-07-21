@@ -5,10 +5,7 @@ import User from "../models/user.js";
 
 export const registerController = async (req, res, next) => {
     const { firstName, lastName, email, password, confirmPassword, year,month,day,street,houseNo,zipCode,city  } = req.body;
-
-
     let foundCustomer;
-
     try{
         foundCustomer = await User.findOne({username: username}) 
         }catch {
@@ -33,7 +30,7 @@ export const registerController = async (req, res, next) => {
             zipCode:zipCode,
             city:city,
             // meals:[],
-            orders: []
+           /*  orders: [] */
         });
 
        try {
