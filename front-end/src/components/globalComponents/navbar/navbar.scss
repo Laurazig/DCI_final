@@ -25,11 +25,14 @@
 
   .ulNav {
     display: flex;
-    padding-right: 20rem;
 
     li {
       margin: 20px;
       list-style: none;
+      
+      a{
+        color: $mainCol;
+      }
     }
   }
 

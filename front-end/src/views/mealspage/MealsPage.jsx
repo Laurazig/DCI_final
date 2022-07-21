@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../../App';
-import ReactStars from "react-rating-stars-component"
+// import ReactStars from "react-rating-stars-component"
 
 
 const MealsPage = () => {
@@ -28,13 +28,13 @@ const MealsPage = () => {
               <strong>$ {meal.price}</strong>
             </h3>
             <img src={meal.thumbnail} width="300" alt="" />
-            <ReactStars
+            {/* <ReactStars
               count={5}
               value={meal.rating}
               size={24}
               half={true}
               activeColor="yellow"
-            />
+            /> */}
             <div>
               <button onClick={() => addToCart(meal)}>Add To Cart</button>
             </div>
