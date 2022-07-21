@@ -21,10 +21,9 @@ export default function LandingPage () {
 
 // to revise together: register function / general login
 // import React, { useEffect, useState } from "react";
-// import Register from "../views/Register";
-// import Login from "../views/Login";
+// import RegisterPage from "../views/registerpage/RegisterPage";
+// import LoginPage from "../views/loginpage/LoginPage";
 
-// import '../stylingCss/Login.css';
 
 
 // const Home = () =>

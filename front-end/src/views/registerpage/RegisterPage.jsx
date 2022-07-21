@@ -15,7 +15,7 @@ const Register = props =>
   const [ street, setStreet ] = useState( "" );
   const [houseNo, setHouseNo ] = useState(  );
   const [ zipCode, setZipCode ] = useState(  );
-  const [  city, setCity ] = useState( "" );
+  const [ city, setCity ] = useState( "" );
 
 
 
@@ -93,24 +93,16 @@ const Register = props =>
         "Content-Type": "application/json"
       }
     };
-
-
     const response = await fetch( process.env.REACT_APP_SERVER_URL + "/register", settings );
     const parsedRes = await response.json();
-
     try
     {
-
       if ( response.ok )
       {
-        const now = new Date();
-        const tokenExpiry = new Date( now.getTime() + 1000 * 60 * 60 );//1 hour Expiry Time of server calculation
-
-        //27 TASK 27 June 2022     
-        localStorage.setItem( "data", JSON.stringify( { token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString() } ) );
-
-
-        props.login( parsedRes.token, parsedRes.id );
+        /* const now = new Date();
+        const tokenExpiry = new Date( now.getTime() + 1000 * 60 * 60 );//1 hour Expiry Time of server calculation 
+        localStorage.setItem( "data", JSON.stringify( { token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString() } ) ); */
+        props.login( /*parsedRes.token ,*/ parsedRes.id );
 
       } else
       {
@@ -121,8 +113,6 @@ const Register = props =>
       alert( err.message );
     }
   };
-
-
   const updateShowLogin = () =>
   {
     props.setShowLogin( true );
@@ -157,7 +147,6 @@ const Register = props =>
         <div>
           <div>
             <label>Date of Birth:</label>
-
             <input name="year" onChange={ updateData } value={ year } placeholder={ "Year" } />
             <input name="month" onChange={ updateData } value={ month } placeholder={ "Month" } />
             <input name="day" onChange={ updateData } value={ day } placeholder={ "Day" } />
@@ -168,7 +157,6 @@ const Register = props =>
         <div>
           <div>
             <label>Physical Address:</label>
-
             <input name="street" onChange={ updateData } value={ street } placeholder={ "Street" } />
             <input name="houseNo" onChange={ updateData } value={ houseNo } placeholder={ "House No." } />
             <input name="zipCode" onChange={ updateData } value={ zipCode } placeholder={ "Zip Code" } />

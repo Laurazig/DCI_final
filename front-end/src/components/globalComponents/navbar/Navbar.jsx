@@ -39,6 +39,7 @@ export default function Navbar() {
         <button className="regButton">
           <NavLink to="/register">Register</NavLink>
         </button>
+
       </div>
     </div>
   );
