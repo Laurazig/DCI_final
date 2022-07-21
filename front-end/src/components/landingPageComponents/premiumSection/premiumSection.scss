@@ -3,6 +3,7 @@
 .premiumSection {
     @include pageSectionSizeAndDisplay;
     flex-direction: column;
+    margin-bottom: 80px;
 
     h2 {
         @include sectionTitle

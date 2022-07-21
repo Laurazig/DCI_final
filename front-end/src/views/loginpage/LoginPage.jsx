@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import './loginPage.scss';
+import React, { useState } from "react";
+import "./loginPage.scss";
 
 const LoginPage = (props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const updateData = (event) => {
     switch (event.target.name) {
-      case 'email':
+      case "email":
         setEmail(event.target.value);
         break;
-      case 'password':
+      case "password":
         setPassword(event.target.value);
         break;
       default:
@@ -27,15 +27,16 @@ const LoginPage = (props) => {
     };
 
     const settings = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(loginData),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      Credential: 'include',
+      Credential: "include",
     };
     const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + '/login', settings
+      process.env.REACT_APP_SERVER_URL + "/login",
+      settings
     );
     const parsedRes = await response.json();
 
@@ -47,8 +48,8 @@ const LoginPage = (props) => {
       }
     } catch (err) {
       alert(err.message);
-      setEmail('');
-      setPassword('');
+      setEmail("");
+      setPassword("");
     }
   };
   const updateShowLogin = () => {
@@ -57,46 +58,42 @@ const LoginPage = (props) => {
 
   return (
     <div className="loginPage">
-      <div className="loginDiv">
+
+      <div className="loginSectionDiv">
         <h1>Login-In to your account</h1>
-
-        <form onSubmit={attemptLogin} className={'loginForm'}>
-          <div className="loginFormInput">
-            <div className="emailFormSection">
-              <input
-                name="email"
-                onChange={updateData}
-                value={email}
-                placeholder={"Email"}
-
-                className="loginFormEmailPassword"
-              />
-            </div>
-            <div className="passwordlFormSection">
-              <input
-                name="password"
-                onChange={updateData}
-                value={password}
-                placeholder={'Password'}
-                className="loginFormEmailPassword"
-              />
-            </div>
-          </div>
-
-          <div className="buttonDiv">
-            <button>Log In</button>{' '}
-          </div>
+        <form onSubmit={attemptLogin} className={"loginForm"}>
+          <input
+            name="email"
+            onChange={updateData}
+            value={email}
+            placeholder={"Email"}
+            className="loginFormEmailPassword"
+          />
+          <input
+            name="password"
+            onChange={updateData}
+            value={password}
+            placeholder={"Password"}
+            className="loginFormEmailPassword"
+          />
+        
         </form>
-        <p> Not registered yet? Register for an account!</p>
-        <button onClick={updateShowLogin}>
-         Register
-        </button>
+        <button>Log In</button>{" "}
       </div>
-      <p className="login paragraph">
-        " <b>Every Weekends We Update Our Meals</b>, So Please Kindly Don't
-        Forget To Visit <b>"Meals Page"</b> To Experience Different Cuisine From
-        All Around The World "
-      </p>
+
+      <div className="notRegisteredSection">
+      
+        <h2> Not registered yet? <br/> click here!</h2>
+        <p>
+          Every Weekends We Update Our Meals, So Please Kindly Don't Forget To
+          Visit <span>Meals Page </span>To Experience Different Cuisine From All
+          Around The World
+        </p>
+        
+        <button onClick={updateShowLogin}>Register</button>
+      </div>
+
+
     </div>
   );
 };
