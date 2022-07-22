@@ -20,7 +20,13 @@ function App() {
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
-
+useEffect(()=>{
+  fetch(process.env.REACT_APP_SERVER_URL + "/meals")
+  .then(res=>res.json())
+.then(data=>{
+ setMeals(data)
+})
+},[])
   return (
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>
       <div className='App'>

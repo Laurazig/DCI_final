@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './loginPage.scss';
+import { MyContext } from '../../App';
 
 const LoginPage = (props) => {
+  const {setUser}=useContext(MyContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,7 +34,7 @@ const LoginPage = (props) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      Credential: 'include',
+      credentials: 'include',
     };
     const response = await fetch(
       process.env.REACT_APP_SERVER_URL + '/login', settings
@@ -41,7 +43,8 @@ const LoginPage = (props) => {
 
     try {
       if (response.ok) {
-        props.login(parsedRes.token, parsedRes.id);
+        setUser(parsedRes)
+      /*  props.login( parsedRes.token,  parsedRes.id);*/
       } else {
         throw new Error(parsedRes.message);
       }
@@ -51,9 +54,9 @@ const LoginPage = (props) => {
       setPassword('');
     }
   };
-  const updateShowLogin = () => {
+ /*  const updateShowLogin = () => {
     props.setShowLogin(false);
-  };
+  }; */
 
   return (
     <div className="loginPage">
@@ -83,14 +86,14 @@ const LoginPage = (props) => {
             </div>
           </div>
 
-          <div className="buttonDiv">
-            <button>Log In</button>{' '}
+          <div /* className="buttonDiv" */>
+            <button>Log In</button>
           </div>
         </form>
-        <p> Not registered yet? Register for an account!</p>
+       {/*  <p> Not registered yet? Register for an account!</p>
         <button onClick={updateShowLogin}>
          Register
-        </button>
+        </button> */}
       </div>
       <p className="login paragraph">
         " <b>Every Weekends We Update Our Meals</b>, So Please Kindly Don't
