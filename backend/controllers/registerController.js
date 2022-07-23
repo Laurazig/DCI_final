@@ -41,7 +41,7 @@ console.log(`console log registerController newCustomer ${newCustomer}`)
        } catch {
         return next(createError(500, "couldn't create user. please try again! **registerController.js line42**"));
        } 
-        res.status(201).json(newCustomer._id);
+        res.status(201).json(newCustomer/* ._id */);
    
     } else {
         return next(createError(409, "Sorry, this username has been taken. Please choose another! **registerController.js line47**"));

@@ -20,6 +20,6 @@ const orderSchema = new Schema({
     ExpirationYear: {type: Number, required: true},
 }, {timestamps: true});
 
-const Order = mongoose.model("Order", orderSchema);
+const Order = mongoose.model("orders", orderSchema);
 
 export default Order;
