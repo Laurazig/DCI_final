@@ -1,26 +1,78 @@
 
+
 /* @import '../../scss-styling/styleVariables.scss';
 
 
-.loginPage{
-@include formSizeAndDisplay;
 
-.loginDiv{
-
-  h1{
-    @include sectionTitle;
-  }
+.loginPage {
+    @include pageSectionSizeAndDisplay;
 
 
-  .loginFormInput{
+    .loginSectionDiv {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 70vh;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 50px;
 
-    .emailFormSection, .passwordlFormSection{
-      display: flex;
-      flex-direction: column;
-      input{
-        @include standardInput;}
+
+        h1 {
+            @include sectionTitle;
+        }
+
+        form {
+
+            @include flexColumn;
+            input{
+                margin-bottom: 10px;
+                @include standardInput
+
+            }
+   
+
+        }
+        button {
+            @include buttonFilled;
+        }
+    }
+
+    .notRegisteredSection {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 70vh;
+        background-color:$mainCol;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 50px;
+
+
+
+        h2 {
+            @include sectionTitle;
+            color: $secondaryCol;
+        }
+
+        p{color:$secondaryCol;
+        
+            span{
+                font-weight: bold;
+            }
+        }
+
+       
+            button {
+                @include buttonFilled;
+                background-color: $secondaryCol;
+                color: $mainCol;
+            }
+
+        
 
     }
+
 
 
   }
@@ -100,4 +152,5 @@ button{
   //   box-shadow: 0 2px rgba(245, 129, 52, 0.772);
   //   transform: translateY(4px);
   // }
-  
+
+//}
