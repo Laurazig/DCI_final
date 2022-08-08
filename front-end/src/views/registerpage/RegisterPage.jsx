@@ -127,10 +127,10 @@ setUser(parsedRes)
       <form onSubmit={registerUser} className={'registerForm'}>
         <h4>Sign-up for free account</h4>
 
-        {/* <div className="feRegister firstLastName">
+       <div className="feRegister firstLastName">
           <input name="firstName" onChange={updateData} value={firstName} placeholder={"First Name"} />
           <input name="lastName" onChange={updateData} value={lastName} placeholder={"Last Name"} />
-        </div> */}
+        </div> 
 
         <div className="feRegister emailPassword">
           <div>
@@ -139,14 +139,14 @@ setUser(parsedRes)
           <div>
             <input name="password" onChange={updateData} value={password} placeholder={"Create Password"} />
           </div>
-          {/* <div> 
-          to check the match Create Password and Confirm password 
-          {/* <input name="confirmPassword" onChange={updateData} value={confirmPassword} placeholder={"Confirm Password"} />
+           <div> 
+         {/*  to check the match Create Password and Confirm password */}
+         <input name="confirmPassword" onChange={updateData} value={confirmPassword} placeholder={"Confirm Password"} />
           </div>
-          */}
+          
         </div>
 
-        {/* <div>
+         <div>
           <div>
             <label>Date of Birth:</label>
             <input name="year" onChange={updateData} value={year} placeholder={"Year"} />
@@ -164,10 +164,10 @@ setUser(parsedRes)
             <input name="zipCode" onChange={updateData} value={zipCode} placeholder={"Zip Code"} />
             <input name="city" onChange={updateData} value={city} placeholder={"City"} />
           </div>
-        </div> 
- */}
 
-          <button className="Register feButton">Register</button>
+        </div>
+        <button className="Register feButton">Register</button>
+
       </form>
 
       <button onClick={updateShowLogin}>Already registered? Log in to your account!</button>
