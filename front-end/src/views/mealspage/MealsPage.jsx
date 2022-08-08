@@ -22,7 +22,7 @@ const MealsPage = () => {
       {meals.map((meal) => {
         return (
           <div key={meal._id} style={{ width: '300px', padding: '20px' }}>
-            <h2>{meal.title}</h2>
+            <h2>{meal.meal}</h2>
             <p>{meal.description}</p>
             <h3>
               <strong>$ {meal.price}</strong>

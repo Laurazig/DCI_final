@@ -167,8 +167,6 @@ setUser(parsedRes)
             <input name="city" onChange={ updateData } value={ city } placeholder={ "City" } />
           </div>
         </div>
-
-
         <button className="Register feButton">Register</button>
       </form>
 
