@@ -20,6 +20,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 useEffect(()=>{
   fetch(process.env.REACT_APP_SERVER_URL + "/meals")
   .then(res=>res.json())
@@ -27,6 +28,8 @@ useEffect(()=>{
  setMeals(data)
 })
 },[])
+
+
   return (
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>
       <div className='App'>
@@ -40,7 +43,8 @@ useEffect(()=>{
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/register" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/>
+            {/* isLoggedIn ? (<Navigate replace to="/meals" />): (<RegisterPage setIsLoggedIn={setIsLoggedIn} />)  */}
             <Route path="/cart" element={<CartPage />} />
           </Routes>
           <Footer/>
