@@ -8,6 +8,6 @@ const mealSchema = new Schema({
     amount: {type: Number, required: true, min: 3}
 }, {timestamps: true});
 
-const Meal = mongoose.model("Meal", mealSchema);
+const Meal = mongoose.model("meals", mealSchema);
 
 export default Meal;

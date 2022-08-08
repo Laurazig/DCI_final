@@ -15,11 +15,7 @@ export const loginController = async  (req, res, next) => {
     }
 
     if (foundCustomer) {
-        const customerId = {
-            id: foundCustomer.id
-        };
-
-        res.json(customerId);
+        res.json(foundCustomer);
 
     } else {
         return next(createError(401, "You could not be logged in. Please try again"));

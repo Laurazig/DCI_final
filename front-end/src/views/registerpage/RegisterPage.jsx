@@ -1,29 +1,35 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import { MyContext } from "../../App";
 
+const Register = props =>
+{
+  const {setUser}=useContext(MyContext)
 
+const [userData, setUserdata]=useState({
+firstName:"",
+lastName:"",
+email:"",
+password:"",
+confirmPassword:"",
+year:"",
+month:"",
+day:"",
+street: "" ,
+houseNo:"",
+zipCode:"",
+city:""
+});
 
-const Register = props => {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  // const [year, setYear] = useState();
-  // const [month, setMonth] = useState();
-  // const [day, setDay] = useState();
-  // const [street, setStreet] = useState("");
-  // const [houseNo, setHouseNo] = useState();
-  // const [zipCode, setZipCode] = useState();
-  // const [city, setCity] = useState("");
+const {firstName,lastName,email,password,confirmPassword,year,month,day,street,houseNo,zipCode,city}= userData;
 
-
-
-
-  const updateData = event => {
-    switch (event.target.name) {
-      // case "confirmPassword":
-      //   setConfirmPassword(event.target.value);
-      //   break;
+  const updateData = event =>{
+setUserdata({...userData, [event.target.name]:event.target.value})
+    /* switch ( event.target.name )
+    {
+      case "confirmPassword":
+        setConfirmPassword( event.target.value );
+        break;
       case "password":
         setPassword(event.target.value);
         break;
@@ -59,48 +65,51 @@ const Register = props => {
       //   break;
       default:
         break;
-    }
+    } */
   };
 
   const registerUser = async event => 
   {
     event.preventDefault();
 
-
-    const newUser = {
-      // firstName: firstName,
-      // lastName: lastName,
+   /*  const newUser = {
+      firstName: firstName,
+      lastName: lastName,
       email: email,
       password: password,
-      // confirmPassword: confirmPassword,
-      // year: year,
-      // month: month,
-      // day: day,
-      // street: street,
-      // houseNo: houseNo,
-      // zipCode: zipCode,
-      // city: city,
-    };
+      confirmPassword: confirmPassword,
+      year: year,
+      month: month,
+      day: day,
+      street: street,
+      houseNo: houseNo,
+      zipCode: zipCode,
+      city: city,
+    }; */
 
 
     const settings = {
       method: "POST",
-      body: JSON.stringify(newUser),
+      body: JSON.stringify( userData ),
       headers: {
         "Content-Type": "application/json"
       }
     };
-    const response = await fetch(process.env.REACT_APP_SERVER_URL + "/register", settings);
+
+  console.log(process.env.REACT_APP_SERVER_URL);
+    const response = await fetch(process.env.REACT_APP_SERVER_URL + "/register", settings );
     const parsedRes = await response.json();
     try {
       if (response.ok) {  //200 /201
         /* const now = new Date();
         const tokenExpiry = new Date( now.getTime() + 1000 * 60 * 60 );//1 hour Expiry Time of server calculation 
         localStorage.setItem( "data", JSON.stringify( { token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString() } ) ); */
-        props.login( /*parsedRes.token ,*/ parsedRes.id); // login needs to be created in app.js
 
-      } else {
-        throw new Error(parsedRes.message);
+       /* props.login( parsedRes.token , parsedRes.id );*/
+setUser(parsedRes)
+      } else
+      {
+        throw new Error( parsedRes.message );
       }
     } catch (err) {
       alert(err.message);

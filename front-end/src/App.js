@@ -20,12 +20,14 @@ function App() {
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showLogin, setShowLogin] = useState(true);
-  
-  const login = () => {
-    setIsLoggedIn(true);
-}
+
+useEffect(()=>{
+  fetch(process.env.REACT_APP_SERVER_URL + "/meals")
+  .then(res=>res.json())
+.then(data=>{
+ setMeals(data)
+})
+},[])
 
   return (
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>

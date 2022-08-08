@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import "./loginPage.scss";
+
+import React, { useContext, useState } from 'react';
+import './loginPage.scss';
+import { MyContext } from '../../App';
 
 const LoginPage = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {setUser}=useContext(MyContext)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
 
   const updateData = (event) => {
     switch (event.target.name) {
@@ -32,9 +36,9 @@ const LoginPage = (props) => {
       headers: {
 
         'Content-Type': 'application/json',
-      }
-      // ,
-      // credentials: 'include', //when we use cookies
+      },
+      credentials: 'include',
+
     };
     const response = await fetch(  
       process.env.REACT_APP_SERVER_URL + '/login', settings
@@ -44,7 +48,10 @@ const LoginPage = (props) => {
 
     try {
       if (response.ok) {
-        props.login(/*parsedRes.token, */ parsedRes.id); //not using tokens 
+
+        setUser(parsedRes)
+      /*  props.login( parsedRes.token,  parsedRes.id);*/
+
       } else {
         throw new Error(parsedRes.message);
       }
@@ -54,45 +61,46 @@ const LoginPage = (props) => {
       setPassword("");
     }
   };
-  // const updateShowLogin = () => {
-  //   props.setShowLogin(false);   //using separate page for login& reg
-  // };
+
+ /*  const updateShowLogin = () => {
+    props.setShowLogin(false);
+  }; */
 
   return (
     <div className="loginPage">
 
-      <div className="loginSectionDiv">
-        <h1>Login-In to your account</h1>
-        <form onSubmit={attemptLogin} className={"loginForm"}>
-          <input
-            name="email"
-            onChange={updateData}
-            value={email}
-            placeholder={"Email"}
-            className="loginFormEmailPassword"
-          />
-          <input
-            name="password"
-            onChange={updateData}
-            value={password}
-            placeholder={"Password"}
-            className="loginFormEmailPassword"
-          />
-        
-        </form>
-        <button>Log In</button>{" "}
-      </div>
+        <form onSubmit={attemptLogin} className={'loginForm'}>
+          <div className="loginFormInput">
+            <div className="emailFormSection">
+              <input
+                name="email"
+                onChange={updateData}
+                value={email}
+                placeholder={"Email"}
 
-      <div className="notRegisteredSection">
-      
-        <h2> Not registered yet? <br/> click here!</h2>
-        <p>
-          Every Weekends We Update Our Meals, So Please Kindly Don't Forget To
-          Visit <span>Meals Page </span>To Experience Different Cuisine From All
-          Around The World
-        </p>
-        
-        <button onClick={updateShowLogin}>Register</button>
+                className="loginFormEmailPassword"
+              />
+            </div>
+            <div className="passwordlFormSection">
+              <input
+                name="password"
+                onChange={updateData}
+                value={password}
+                placeholder={'Password'}
+                className="loginFormEmailPassword"
+              />
+            </div>
+          </div>
+
+          <div /* className="buttonDiv" */>
+            <button>Log In</button>
+          </div>
+        </form>
+       {/*  <p> Not registered yet? Register for an account!</p>
+        <button onClick={updateShowLogin}>
+         Register
+        </button> */}
+
       </div>
     </div>
   );

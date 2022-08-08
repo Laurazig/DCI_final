@@ -33,3 +33,9 @@ export const mealPost = async (req, res, next) => {
 
 };
 
+export const mealGet = async (req, res, next)=>{
+const meals = await Meal.find()
+res.send(meals)
+
+}
+
