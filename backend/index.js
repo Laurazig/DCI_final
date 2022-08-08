@@ -33,6 +33,8 @@ app.use("/orders", ordersRouter);
 // Employees endpoint
 app.use("/employees", employeesRouter); // ! we need to discuss with the group
 app.use("/meals", mealsRouter);
+
+// http://localhost:3001/Meal1_HummusBowl.jpg
 app.use(express.static("assets"));
 
 // Global error handler
