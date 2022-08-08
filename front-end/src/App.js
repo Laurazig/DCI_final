@@ -12,7 +12,7 @@ import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
 
 export const MyContext = React.createContext();
-// console.log(MyContext);
+console.log(MyContext);
 
 
 function App() {
@@ -20,7 +20,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
-
 useEffect(()=>{
   fetch(process.env.REACT_APP_SERVER_URL + "/meals")
   .then(res=>res.json())
@@ -28,12 +27,11 @@ useEffect(()=>{
  setMeals(data)
 })
 },[])
-
   return (
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>
       <div className='App'>
         <HashRouter>
-          <Navbar />
+        <Navbar/>
 
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -44,24 +42,8 @@ useEffect(()=>{
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<CartPage />} />
-
-            {/* // code copied from last class - If no user is currently logged in
-            if (!isLoggedIn) {
-                // Display the login view
-                if (showLogin) {
-                    return <Login setShowLogin={setShowLogin} login={login} />
-                    // Display the register view
-                } else {
-                    return <Register setsetShowLogin={setShowLogin} login={login} />
-                }
-                // Else, if a user is logged in, display the "albums" page for that user
-            } else {
-                return <Albums token={token} currentUserId={currentUserId} logout={logout} deregister={deregister}   />
-            } */}
-
-
           </Routes>
-          <Footer />
+          <Footer/>
 
         </HashRouter>
       </div>

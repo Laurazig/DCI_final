@@ -19,9 +19,7 @@ app.use(express.json());
 
 dotenv.config();
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.uvleeqn.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`);
-
-
+mongoose.connect(`mongodb+srv://Yohannes:Haftey100@cluster0.uvleeqn.mongodb.net/flys-project?retryWrites=true&w=majority`);
 mongoose.connection.on("open", () => console.log("Database has started"));
 mongoose.connection.on("error", () => console.error);
 
