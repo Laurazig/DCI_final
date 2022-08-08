@@ -40,6 +40,7 @@ const LoginPage = (props) => {
       credentials: 'include',
 
     };
+
     const response = await fetch(  
       process.env.REACT_APP_SERVER_URL + '/login', settings
 
