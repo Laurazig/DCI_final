@@ -103,7 +103,6 @@ const LoginPage = (props) => {
         </button> */}
 
       </div>
-    </div>
   );
 };
 
