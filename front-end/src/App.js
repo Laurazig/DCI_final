@@ -2,7 +2,7 @@ import LandingPage from "./views/landingpage/LandingPage";
 import RegisterPage from './views/registerpage/RegisterPage';
 import Navbar from "./components/globalComponents/navbar/Navbar";
 import LoginPage from "./views/loginpage/LoginPage";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import HowItWorksPage from "./views/howitworks/HowItWorksPage";
 import SupportPage from "./views/support/SupportPage";
 import CommunityPage from "./views/community/CommunityPage";
@@ -43,9 +43,9 @@ useEffect(()=>{
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/>
-            {/* isLoggedIn ? (<Navigate replace to="/meals" />): (<RegisterPage setIsLoggedIn={setIsLoggedIn} />)  */}
-            <Route path="/cart" element={<CartPage />} />
+            {/* <Route path="/register" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
+          <Route path="/register" element={isLoggedIn ? (<Navigate replace to="/meals" />): (<RegisterPage setIsLoggedIn={setIsLoggedIn} />) }/>
+          <Route path="/cart" element={<CartPage />} />
           </Routes>
           <Footer/>
 
