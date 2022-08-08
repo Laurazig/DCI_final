@@ -6,15 +6,6 @@ padding: 0;
 a{text-decoration: none;}
 }
 
-//------- displays -------
-
-@mixin flexColumn {
-    display: flex;
-    flex-direction: column;  
-}
-
-
-
 //------- Buttons -------
 @mixin buttonStyle {
     width: 130px;
@@ -53,9 +44,6 @@ a{text-decoration: none;}
     height: 35px;
     margin-bottom: 20px;
     border-radius: 7px;
-    border: 2px solid $mainCol;
-    padding-left: 20px;
-
     
 }
 
@@ -124,6 +112,8 @@ a{text-decoration: none;}
     display: flex;
     width: 1450px;
     margin: 0 auto;
+    padding-bottom: 60px;
+    padding-top: 20px;
     background-color: none;  
 }
 
