@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react';
 import './loginPage.scss';
 import { MyContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = (props) => {
-  const {setUser}=useContext(MyContext)
+  let navigate = useNavigate();
+
+  const { setUser} = useContext(MyContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,19 +36,21 @@ const LoginPage = (props) => {
       body: JSON.stringify(loginData),
       headers: {
         'Content-Type': 'application/json',
-      },
-      credentials: 'include',
+      }
+      /* credentials: 'include', */
     };
-    
+
     const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + '/login', settings
+      process.env.REACT_APP_SERVER_URL + '/login',
+      settings
     );
     const parsedRes = await response.json();
 
     try {
       if (response.ok) {
-        setUser(parsedRes)
-      /*  props.login( parsedRes.token,  parsedRes.id);*/
+        props.setIsLoggedIn(true);
+        setUser(parsedRes); 
+        navigate('/meals');
       } else {
         throw new Error(parsedRes.message);
       }
@@ -55,9 +60,6 @@ const LoginPage = (props) => {
       setPassword('');
     }
   };
- /*  const updateShowLogin = () => {
-    props.setShowLogin(false);
-  }; */
 
   return (
     <div className="loginPage">
@@ -71,8 +73,7 @@ const LoginPage = (props) => {
                 name="email"
                 onChange={updateData}
                 value={email}
-                placeholder={"Email"}
-
+                placeholder={'Email'}
                 className="loginFormEmailPassword"
               />
             </div>
@@ -83,6 +84,7 @@ const LoginPage = (props) => {
                 value={password}
                 placeholder={'Password'}
                 className="loginFormEmailPassword"
+                type={password}
               />
             </div>
           </div>
@@ -91,10 +93,6 @@ const LoginPage = (props) => {
             <button>Log In</button>
           </div>
         </form>
-       {/*  <p> Not registered yet? Register for an account!</p>
-        <button onClick={updateShowLogin}>
-         Register
-        </button> */}
       </div>
       <p className="login paragraph">
         " <b>Every Weekends We Update Our Meals</b>, So Please Kindly Don't
