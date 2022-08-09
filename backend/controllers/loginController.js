@@ -1,5 +1,5 @@
 import createError from "http-errors";
-import Customer from "../models/user.js";
+import User from "../models/user.js";
 
 export const loginController = async  (req, res, next) => {
     // Take the username and password the user tried to log in with
@@ -7,7 +7,7 @@ export const loginController = async  (req, res, next) => {
 
    let foundCustomer;
    try{
-    foundCustomer = await Customer.findOne({
+    foundCustomer = await User.findOne({
         email: email,
         password: password})
    } catch {

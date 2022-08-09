@@ -42,7 +42,7 @@ useEffect(()=>{
             <Route path="/support" element={<SupportPage />} />
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn}/>} />
             {/* <Route path="/register" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
           <Route path="/register" element={isLoggedIn ? (<Navigate replace to="/meals" />): (<RegisterPage setIsLoggedIn={setIsLoggedIn} />) }/>
           <Route path="/cart" element={<CartPage />} />

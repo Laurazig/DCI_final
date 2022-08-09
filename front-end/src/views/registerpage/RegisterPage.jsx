@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { MyContext } from "../../App";
+import {useNavigate } from "react-router-dom";
 
 const Register = props => {
   const { setUser } = useContext(MyContext)
+let navigate = useNavigate()
 
   const [userData, setUserdata] = useState({
     firstName: "",
@@ -60,6 +62,7 @@ const Register = props => {
       if (response.ok) {
         props.setIsLoggedIn(true);
         setUser(parsedRes)
+        navigate('/login')
       } else {
         throw new Error(parsedRes.message);
       }
@@ -90,11 +93,11 @@ const Register = props => {
             <input name="email" onChange={updateData} value={email} placeholder={"Email address"} />
           </div>
           <div>
-            <input name="password" onChange={updateData} value={password} placeholder={"Create Password"} />
+            <input name="password" onChange={updateData} value={password} placeholder={"Create Password"} type={password}/>
           </div>
           <div>
             {/* to check the match Create Password and Confirm password */}
-            <input name="confirmPassword" onChange={updateData} value={confirmPassword} placeholder={"Confirm Password"} />
+            <input name="confirmPassword" onChange={updateData} value={confirmPassword} placeholder={"Confirm Password"} type={password}/>
           </div>
         </div>
 
