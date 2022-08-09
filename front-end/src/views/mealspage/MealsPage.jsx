@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../../App';
- import ReactStars from "react-rating-stars-component"
+import ReactStars from "react-rating-stars-component"
 
 
-const MealsPage = () => {
+const MealsPage = props => {
   const { meals, cart, setCart } = useContext(MyContext);
-  console.log(meals);
+  // console.log(`console.log MealsPage user: ${props.user.firstName}`);
 
   const addToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
@@ -19,6 +19,9 @@ const MealsPage = () => {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      {/* <div>
+        <h2>Welcome {user.email}</h2>
+      </div> */}
       {meals.map((meal) => {
         return (
           <div key={meal._id} style={{ width: '300px', padding: '20px' }}>
@@ -28,7 +31,7 @@ const MealsPage = () => {
               <strong>$ {meal.price}</strong>
             </h3>
             <img src={meal.img} width="300" alt="" />
-             <ReactStars
+            <ReactStars
               count={5}
               value={meal.rating}
               size={24}
