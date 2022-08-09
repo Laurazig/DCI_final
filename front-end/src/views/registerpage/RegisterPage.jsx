@@ -2,73 +2,69 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { MyContext } from "../../App";
 
-const Register = props =>
-{
-  const {setUser}=useContext(MyContext)
+const Register = props => {
+  const { setUser } = useContext(MyContext)
 
-const [userData, setUserdata]=useState({
-firstName:"",
-lastName:"",
-email:"",
-password:"",
-confirmPassword:"",
-year:"",
-month:"",
-day:"",
-street: "" ,
-houseNo:"",
-zipCode:"",
-city:""
-});
+  const [userData, setUserdata] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    year: "",
+    month: "",
+    day: "",
+    street: "",
+    houseNo: "",
+    zipCode: "",
+    city: ""
+  });
 
-const {firstName,lastName,email,password,confirmPassword,year,month,day,street,houseNo,zipCode,city}= userData;
+  const { firstName, lastName, email, password, confirmPassword, year, month, day, street, houseNo, zipCode, city } = userData;
 
-  const updateData = event =>{
-setUserdata({...userData, [event.target.name]:event.target.value})
+  const updateData = event => {
+    setUserdata({ ...userData, [event.target.name]: event.target.value })
+  }
 
-  const registerUser = async event =>
-  {
+  const registerUser = async event => {
     event.preventDefault();
 
 
-   /*  const newUser = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword,
-      year: year,
-      month: month,
-      day: day,
-      street: street,
-      houseNo: houseNo,
-      zipCode: zipCode,
-      city: city,
-    }; */
+    /*  const newUser = {
+       firstName: firstName,
+       lastName: lastName,
+       email: email,
+       password: password,
+       confirmPassword: confirmPassword,
+       year: year,
+       month: month,
+       day: day,
+       street: street,
+       houseNo: houseNo,
+       zipCode: zipCode,
+       city: city,
+     }; */
 
 
     const settings = {
       method: "POST",
-      body: JSON.stringify( userData ),
+      body: JSON.stringify(userData),
       headers: {
         "Content-Type": "application/json"
       }
     };
-  console.log(process.env.REACT_APP_SERVER_URL);
-    const response = await fetch(process.env.REACT_APP_SERVER_URL + "/register", settings );
+    console.log(process.env.REACT_APP_SERVER_URL);
+    const response = await fetch(process.env.REACT_APP_SERVER_URL + "/register", settings);
     const parsedRes = await response.json();
-    try
-    {
-      if ( response.ok ){
+    try {
+      if (response.ok) {
         props.setIsLoggedIn(true);
-      setUser(parsedRes)
-      } else
-      {
-        throw new Error( parsedRes.message );
+        setUser(parsedRes)
+      } else {
+        throw new Error(parsedRes.message);
       }
-    } catch ( err )
-    {
-      alert( err.message );
+    } catch (err) {
+      alert(err.message);
     }
   };
   // const updateShowLogin = () =>
@@ -81,33 +77,33 @@ setUserdata({...userData, [event.target.name]:event.target.value})
       <h1>New Users gets 50% off !</h1>
       <p>We proudly like to welcome you to our prestigious family. As our appreciation please accept 50% off on your First ORDER!</p>
 
-      <form onSubmit={ registerUser } className={'registerForm'}>
-      <h4>Sign-up for free account</h4>
+      <form onSubmit={registerUser} className={'registerForm'}>
+        <h4>Sign-up for free account</h4>
 
         <div className="feRegister firstLastName">
-          <input name="firstName" onChange={ updateData } value={ firstName } placeholder={ "First Name" } />
-          <input name="lastName" onChange={ updateData } value={ lastName } placeholder={ "Last Name" } />
+          <input name="firstName" onChange={updateData} value={firstName} placeholder={"First Name"} />
+          <input name="lastName" onChange={updateData} value={lastName} placeholder={"Last Name"} />
         </div>
 
         <div className="feRegister emailPassword">
           <div>
-            <input name="email" onChange={ updateData } value={ email } placeholder={ "Email address" } />
+            <input name="email" onChange={updateData} value={email} placeholder={"Email address"} />
           </div>
           <div>
-            <input name="password" onChange={ updateData } value={ password } placeholder={ "Create Password" } />
+            <input name="password" onChange={updateData} value={password} placeholder={"Create Password"} />
           </div>
           <div>
-            {/* to check the match Create Password and Confirm password */ }
-            <input name="confirmPassword" onChange={ updateData } value={ confirmPassword } placeholder={ "Confirm Password" } />
+            {/* to check the match Create Password and Confirm password */}
+            <input name="confirmPassword" onChange={updateData} value={confirmPassword} placeholder={"Confirm Password"} />
           </div>
         </div>
 
         <div>
           <div>
             <label>Date of Birth:</label>
-            <input name="year" onChange={ updateData } value={ year } placeholder={ "Year" } />
-            <input name="month" onChange={ updateData } value={ month } placeholder={ "Month" } />
-            <input name="day" onChange={ updateData } value={ day } placeholder={ "Day" } />
+            <input name="year" onChange={updateData} value={year} placeholder={"Year"} />
+            <input name="month" onChange={updateData} value={month} placeholder={"Month"} />
+            <input name="day" onChange={updateData} value={day} placeholder={"Day"} />
           </div>
         </div>
 
@@ -115,10 +111,10 @@ setUserdata({...userData, [event.target.name]:event.target.value})
         <div>
           <div>
             <label>Physical Address:</label>
-            <input name="street" onChange={ updateData } value={ street } placeholder={ "Street" } />
-            <input name="houseNo" onChange={ updateData } value={ houseNo } placeholder={ "House No." } />
-            <input name="zipCode" onChange={ updateData } value={ zipCode } placeholder={ "Zip Code" } />
-            <input name="city" onChange={ updateData } value={ city } placeholder={ "City" } />
+            <input name="street" onChange={updateData} value={street} placeholder={"Street"} />
+            <input name="houseNo" onChange={updateData} value={houseNo} placeholder={"House No."} />
+            <input name="zipCode" onChange={updateData} value={zipCode} placeholder={"Zip Code"} />
+            <input name="city" onChange={updateData} value={city} placeholder={"City"} />
           </div>
         </div>
         <button className="Register feButton">Register</button>
@@ -129,5 +125,5 @@ setUserdata({...userData, [event.target.name]:event.target.value})
 
   );
 };
-}
+
 export default Register;
