@@ -12,7 +12,7 @@ import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
 
 export const MyContext = React.createContext();
-console.log(MyContext);
+console.log(`myContext= ${MyContext}`);
 
 
 function App() {
@@ -43,7 +43,7 @@ useEffect(()=>{
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn}/>} />
-            {/* <Route path="/register" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
+            {/* <Route path="/login" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
           <Route path="/register" element={isLoggedIn ? (<Navigate replace to="/meals" />): (<RegisterPage setIsLoggedIn={setIsLoggedIn} />) }/>
           <Route path="/cart" element={<CartPage />} />
           </Routes>
