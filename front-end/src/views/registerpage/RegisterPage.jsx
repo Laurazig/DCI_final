@@ -25,48 +25,6 @@ const {firstName,lastName,email,password,confirmPassword,year,month,day,street,h
 
   const updateData = event =>{
 setUserdata({...userData, [event.target.name]:event.target.value})
-    /* switch ( event.target.name )
-    {
-      case "confirmPassword":
-        setConfirmPassword( event.target.value );
-        break;
-      case "password":
-        setPassword( event.target.value );
-        break;
-      case "firstName":
-        setFirstName( event.target.value );
-        break;
-      case "lastName":
-        setLastName( event.target.value );
-        break;
-      case "email":
-        setEmail( event.target.value );
-        break;
-      case "year":
-        setYear( event.target.value );
-        break; 
-        case "month":
-        setMonth( event.target.value );
-        break; 
-        case "day":
-        setDay( event.target.value );
-        break; 
-        case "street":
-        setStreet( event.target.value );
-        break; 
-        case "houseNo":
-        setHouseNo( event.target.value );
-        break; 
-        case " zipCode":
-        setZipCode( event.target.value );
-        break; 
-        case "city":
-        setCity( event.target.value );
-        break;
-      default:
-        break;
-    } */
-  };
 
   const registerUser = async event =>
   {
@@ -101,13 +59,9 @@ setUserdata({...userData, [event.target.name]:event.target.value})
     const parsedRes = await response.json();
     try
     {
-      if ( response.ok )
-      {
-        /* const now = new Date();
-        const tokenExpiry = new Date( now.getTime() + 1000 * 60 * 60 );//1 hour Expiry Time of server calculation 
-        localStorage.setItem( "data", JSON.stringify( { token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString() } ) ); */
-       /* props.login( parsedRes.token , parsedRes.id );*/
-setUser(parsedRes)
+      if ( response.ok ){
+        props.setIsLoggedIn(true);
+      setUser(parsedRes)
       } else
       {
         throw new Error( parsedRes.message );
@@ -117,10 +71,10 @@ setUser(parsedRes)
       alert( err.message );
     }
   };
-  const updateShowLogin = () =>
-  {
-    props.setShowLogin( true );
-  };
+  // const updateShowLogin = () =>
+  // {
+  //   props.setShowLogin( true );
+  // };
 
   return (
     <div>
@@ -170,10 +124,10 @@ setUser(parsedRes)
         <button className="Register feButton">Register</button>
       </form>
 
-      <button onClick={ updateShowLogin }>Already registered? Log in to your account!</button>
+      {/* <button onClick={ updateShowLogin }>Already registered? Log in to your account!</button> */}
     </div>
 
   );
 };
-
+}
 export default Register;
