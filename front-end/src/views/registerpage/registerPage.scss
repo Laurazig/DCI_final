@@ -1,0 +1,55 @@
+@import "../../scss-styling/styleVariables.scss";
+
+.registerPage {
+  display: flex;
+  justify-content: center;
+  padding:100px 0px;
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+    width: 1088px;
+
+    h1 {
+      @include sectionTitle;
+      padding: 0;
+      padding-left: 30px;
+
+    }
+
+    h2 {
+      @include sectionSubTitle;
+      padding: 0;
+      padding-left: 30px;
+
+    }
+
+    form {
+      display: flex;
+
+      .inputLeft {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+      }
+
+      .inputRight {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+      }
+
+      input {
+        @include standardInput;
+      }
+      label{
+        margin-bottom: 10px;
+      }
+      button {
+        @include buttonFilled;
+      }
+    }
+  }
+}
