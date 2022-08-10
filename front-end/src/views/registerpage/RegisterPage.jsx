@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { MyContext } from "../../App";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "./registerPage.scss";
 
-const Register = props => {
-  const { setUser } = useContext(MyContext)
-let navigate = useNavigate()
+const Register = (props) => {
+  const { setUser } = useContext(MyContext);
+  let navigate = useNavigate();
 
   const [userData, setUserdata] = useState({
     firstName: "",
@@ -19,18 +20,30 @@ let navigate = useNavigate()
     street: "",
     houseNo: "",
     zipCode: "",
-    city: ""
+    city: "",
   });
 
-  const { firstName, lastName, email, password, confirmPassword, year, month, day, street, houseNo, zipCode, city } = userData;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    confirmPassword,
+    year,
+    month,
+    day,
+    street,
+    houseNo,
+    zipCode,
+    city,
+  } = userData;
 
-  const updateData = event => {
-    setUserdata({ ...userData, [event.target.name]: event.target.value })
-  }
+  const updateData = (event) => {
+    setUserdata({ ...userData, [event.target.name]: event.target.value });
+  };
 
-  const registerUser = async event => {
+  const registerUser = async (event) => {
     event.preventDefault();
-
 
     /*  const newUser = {
        firstName: firstName,
@@ -47,22 +60,24 @@ let navigate = useNavigate()
        city: city,
      }; */
 
-
     const settings = {
       method: "POST",
       body: JSON.stringify(userData),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     };
     console.log(process.env.REACT_APP_SERVER_URL);
-    const response = await fetch(process.env.REACT_APP_SERVER_URL + "/register", settings);
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + "/register",
+      settings
+    );
     const parsedRes = await response.json();
     try {
       if (response.ok) {
         props.setIsLoggedIn(true);
-        setUser(parsedRes)
-        navigate('/login')
+        setUser(parsedRes);
+        navigate("/login");
       } else {
         throw new Error(parsedRes.message);
       }
@@ -76,56 +91,87 @@ let navigate = useNavigate()
   // };
 
   return (
-    <div>
-      <h1>New Users gets 50% off !</h1>
-      <p>We proudly like to welcome you to our prestigious family. As our appreciation please accept 50% off on your First ORDER!</p>
+    <div className="registerPage">
+      <div className="formContainer">
+        <h1>New users get 50% off!</h1>
+        <h2>Sign-up for a free account</h2>
+        <form onSubmit={registerUser} className={"registerForm"}>
+          <div className="inputLeft">
+            <label>Contact information:</label>
 
-      <form onSubmit={registerUser} className={'registerForm'}>
-        <h4>Sign-up for free account</h4>
+            <input
+              name="firstName"
+              onChange={updateData}
+              value={firstName}
+              placeholder={"First Name"}
+            />
+            <input
+              name="lastName"
+              onChange={updateData}
+              value={lastName}
+              placeholder={"Last Name"}
+            />
 
-        <div className="feRegister firstLastName">
-          <input name="firstName" onChange={updateData} value={firstName} placeholder={"First Name"} />
-          <input name="lastName" onChange={updateData} value={lastName} placeholder={"Last Name"} />
-        </div>
-
-        <div className="feRegister emailPassword">
-          <div>
-            <input name="email" onChange={updateData} value={email} placeholder={"Email address"} />
-          </div>
-          <div>
-            <input name="password" onChange={updateData} value={password} placeholder={"Create Password"} type={password}/>
-          </div>
-          <div>
+            <input
+              name="email"
+              onChange={updateData}
+              value={email}
+              placeholder={"Email address"}
+            />
+            <input
+              name="password"
+              onChange={updateData}
+              value={password}
+              placeholder={"Create Password"}
+              type={password}
+            />
             {/* to check the match Create Password and Confirm password */}
-            <input name="confirmPassword" onChange={updateData} value={confirmPassword} placeholder={"Confirm Password"} type={password}/>
+            <input
+              name="confirmPassword"
+              onChange={updateData}
+              value={confirmPassword}
+              placeholder={"Confirm Password"}
+              type={password}
+            />
           </div>
-        </div>
 
-        <div>
-          <div>
-            <label>Date of Birth:</label>
-            <input name="year" onChange={updateData} value={year} placeholder={"Year"} />
-            <input name="month" onChange={updateData} value={month} placeholder={"Month"} />
-            <input name="day" onChange={updateData} value={day} placeholder={"Day"} />
+          <div className="inputRight">
+            <label>Address:</label>
+            <input
+              name="street"
+              onChange={updateData}
+              value={street}
+              placeholder={"Street"}
+            />
+            <input
+              name="houseNo"
+              onChange={updateData}
+              value={houseNo}
+              placeholder={"House No."}
+            />
+            <input
+              name="zipCode"
+              onChange={updateData}
+              value={zipCode}
+              placeholder={"Zip Code"}
+            />
+            <input
+              name="city"
+              onChange={updateData}
+              value={city}
+              placeholder={"City"}
+            />
+            <button className="Register feButton">Register</button>
           </div>
-        </div>
+        </form>
+        {/* <button onClick={ updateShowLogin }>Already registered? Log in to your account!</button> */}
+      </div>
 
+      {/* <div className="goToRegisterSection">
+    <h1>New Users get 50% off !</h1>
 
-        <div>
-          <div>
-            <label>Physical Address:</label>
-            <input name="street" onChange={updateData} value={street} placeholder={"Street"} />
-            <input name="houseNo" onChange={updateData} value={houseNo} placeholder={"House No."} />
-            <input name="zipCode" onChange={updateData} value={zipCode} placeholder={"Zip Code"} />
-            <input name="city" onChange={updateData} value={city} placeholder={"City"} />
-          </div>
-        </div>
-        <button className="Register feButton">Register</button>
-      </form>
-
-      {/* <button onClick={ updateShowLogin }>Already registered? Log in to your account!</button> */}
+    </div> */}
     </div>
-
   );
 };
 
