@@ -93,7 +93,7 @@ const LoginPage = (props) => {
         </form>
 
         <p className="loginParagraph">
-        Every Weekend we update our menu! Don't forget to visit our
+        Every Weekend we update our menu! Don't forget to visit our <br></br>
         <span><NavLink to="/meals"> Meals Page</NavLink></span> to discover new dishes from all around the world.
       </p>
 
