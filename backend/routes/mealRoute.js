@@ -3,7 +3,7 @@ import { mealPost, mealGet } from "../controllers/mealsController.js";
 
 const router = express.Router();
 
-router.post("/", mealPost);
+router.post("/", mealPost);  //not using- only for employees
 router.get("/", mealGet);
 
 
