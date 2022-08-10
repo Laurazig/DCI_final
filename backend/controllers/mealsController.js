@@ -1,12 +1,16 @@
 import Meal from "../models/meal.js";
 import createError from "http-errors";
 
+//=====================================
+//POST route not used. Needed for admin to add meals in database (postman?)
+//=====================================
+
 export const mealPost = async (req, res, next) => {
 
-    // Check if the same meal already exists in the user's "meals" array. Remember, only one from each meals has to be on the meals page to show the availability of the meal to the customers.
+    // Check if the same meal already exists in the companies "meals" array. 
 
    let existingMeal;
-   //is the particular "meal" that the employee tried to add already exist in the meal page?
+   //Does the particular "meal" that the employee tried to add, already exists in the meal page?
    try{
     existingMeal = await Meal.findOne(req.body);
    }catch{
@@ -18,7 +22,7 @@ export const mealPost = async (req, res, next) => {
    if(existingMeal) {
         res.json({ id: existingMeal._id });
 
-        // If no, create a new meal document and save it in the "meals" collection, and send back its id in the server's response.
+        // If not, create a new meal document and save it in the "meals" collection, and send back its id in the server's response.
    } else {
         let newMeal;
         try{
@@ -32,6 +36,10 @@ export const mealPost = async (req, res, next) => {
    }
 
 };
+
+//=====================================
+//GET route - get all meals from database & display on meals page
+//=====================================
 
 export const mealGet = async (req, res, next)=>{
 const meals = await Meal.find()

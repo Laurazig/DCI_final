@@ -7,6 +7,7 @@ import mealValidator from "../validators/mealValidator.js";
 const router = express.Router();
 
 router.post("/", requiredValues(["mealName", "category", "amount"]), mealValidator(), checkValidation, mealPost);
+
 router.get("/", mealGet);
 
 
