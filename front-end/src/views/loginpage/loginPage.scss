@@ -1,49 +1,56 @@
 @import "../../scss-styling/styleVariables.scss";
 
 .loginPage {
-  @include pageSectionSizeAndDisplay;
-  flex-direction: column;
-  .formWrapper{
-    width: 500px;
-    margin: 100px auto;
-  
-    padding: 40px 80px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  margin: 100px 0;
+
+
+  .formWrapper {
+    display: flex;
+    flex-direction: column;
     border-radius: 30px;
+    border: 2px solid $mainCol;
     box-shadow:
-    12px 12px 44px #dbdbdb81;
+      12px 12px 44px #dbdbdb16;
+    padding: 50px;
 
+    h1 {
+      @include sectionSubTitle;
+      color: $mainCol;
+    }
 
-  h1 {
-    @include sectionTitle;
-    color: $mainCol;
-  }
-  form {
-    .loginFormInput {
-      margin-bottom: 10px;
-      .emailFormSection,
-      .passwordlFormSection {
-        display: flex;
-        flex-direction: column;
-        input {
-          @include standardInput;
+    form {
+      .loginFormInput {
+
+        .emailFormSection,
+        .passwordlFormSection {
+          display: flex;
+          flex-direction: column;
+
+          input {
+            @include standardInput;
+          }
         }
       }
     }
+
+    button {
+      @include buttonFilled;
+    }
+
+
   }
 
-  button {
-    @include buttonFilled;
+  .loginParagraph {
+    @include paragraphStyle;
+    margin: 50px 10px;
+
+    span {
+      @include paragraphAccentStyle;
+    }
+
   }
-
-
-}
-.loginParagraph{
-  @include paragraphStyle;
-  margin: 50px 10px;
-  
-span{
-  @include paragraphAccentStyle;
-}
-
-}
 }
