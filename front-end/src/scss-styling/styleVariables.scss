@@ -1,9 +1,14 @@
 $mainCol: #91c88a;
 $secondaryCol: white;
 $tertiaryCol: black;
-*{margin: 0;
-padding: 0;
-a{text-decoration: none;}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    a {
+        text-decoration: none;
+    }
 }
 
 //------- Buttons -------
@@ -22,7 +27,7 @@ a{text-decoration: none;}
     a {
         color: $secondaryCol;
         text-decoration: none;
-      }
+    }
 }
 
 @mixin buttonOutline {
@@ -31,7 +36,7 @@ a{text-decoration: none;}
     background-color: transparent;
     border: 2px solid $mainCol;
 
-    a{
+    a {
         color: $mainCol;
         text-decoration: none;
     }
@@ -40,11 +45,13 @@ a{text-decoration: none;}
 // ------- input flieds -------
 @mixin standardInput {
 
-    width: 500px;
+    width: 470px;
     height: 35px;
     margin-bottom: 20px;
     border-radius: 7px;
-    
+    border: 2px solid $mainCol;
+    padding-left: 10px;
+
 }
 
 
@@ -67,14 +74,14 @@ a{text-decoration: none;}
     font-size: 48px;
     color: $tertiaryCol;
     font-weight: 250;
-    padding:40px 0 ;
+    padding: 40px 0;
 }
 
 @mixin sectionSubTitle {
     font-size: 22px;
     color: $tertiaryCol;
     font-weight: 500;
-    padding:20px 0 10px 0;
+    padding: 20px 0 10px 0;
 }
 
 @mixin paragraphStyle {
@@ -89,6 +96,10 @@ a{text-decoration: none;}
 
     font-weight: bold;
     color: $mainCol;
+    a {
+        color: $mainCol;
+        text-decoration: none;
+    }
 }
 
 
@@ -108,26 +119,26 @@ a{text-decoration: none;}
     background-position: center;
 }
 
-@mixin pageSectionSizeAndDisplay{
+@mixin pageSectionSizeAndDisplay {
     display: flex;
     width: 1450px;
     margin: 0 auto;
     padding-bottom: 60px;
     padding-top: 20px;
-    background-color: none;  
+    background-color: none;
 }
 
 
 
-@mixin  formSizeAndDisplay {
+@mixin formSizeAndDisplay {
     width: 600px;
     height: 1000px;
     display: flex;
     border-radius: 20px;
-    border: 2px solid $mainCol;
     margin: 0 auto;
-flex-direction: column;
-padding: 40px;}
+    flex-direction: column;
+    padding: 40px;
+}
 
 // icons
 

@@ -1,21 +1,22 @@
-import React, { useContext, useState } from 'react';
-import './loginPage.scss';
-import { MyContext } from '../../App';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import "./loginPage.scss";
+import { MyContext } from "../../App";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const LoginPage = (props) => {
   let navigate = useNavigate();
 
-  const { setUser} = useContext(MyContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { setUser } = useContext(MyContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const updateData = (event) => {
     switch (event.target.name) {
-      case 'email':
+      case "email":
         setEmail(event.target.value);
         break;
-      case 'password':
+      case "password":
         setPassword(event.target.value);
         break;
       default:
@@ -32,16 +33,16 @@ const LoginPage = (props) => {
     };
 
     const settings = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(loginData),
       headers: {
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      },
       /* credentials: 'include', */
     };
 
     const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + '/login',
+      process.env.REACT_APP_SERVER_URL + "/login",
       settings
     );
     const parsedRes = await response.json();
@@ -49,31 +50,31 @@ const LoginPage = (props) => {
     try {
       if (response.ok) {
         props.setIsLoggedIn(true);
-        setUser(parsedRes); 
-        navigate('/meals');
+        setUser(parsedRes);
+        navigate("/meals");
       } else {
         throw new Error(parsedRes.message);
       }
     } catch (err) {
       alert(err.message);
-      setEmail('');
-      setPassword('');
+      setEmail("");
+      setPassword("");
     }
   };
 
   return (
     <div className="loginPage">
-      <div className="loginDiv">
+      <div className="formWrapper">
         <h1>Login-In to your account</h1>
 
-        <form onSubmit={attemptLogin} className={'loginForm'}>
+        <form onSubmit={attemptLogin} className={"loginForm"}>
           <div className="loginFormInput">
             <div className="emailFormSection">
               <input
                 name="email"
                 onChange={updateData}
                 value={email}
-                placeholder={'Email'}
+                placeholder={"Email"}
                 className="loginFormEmailPassword"
               />
             </div>
@@ -82,23 +83,23 @@ const LoginPage = (props) => {
                 name="password"
                 onChange={updateData}
                 value={password}
-                placeholder={'Password'}
+                placeholder={"Password"}
                 className="loginFormEmailPassword"
                 type={password}
               />
             </div>
           </div>
-
-          <div /* className="buttonDiv" */>
-            <button>Log In</button>
-          </div>
+          <button>Log In</button>
         </form>
-      </div>
-      <p className="login paragraph">
-        " <b>Every Weekends We Update Our Meals</b>, So Please Kindly Don't
-        Forget To Visit <b>"Meals Page"</b> To Experience Different Cuisine From
-        All Around The World "
+
+        <p className="loginParagraph">
+        Every Weekend we update our menu! Don't forget to visit our
+        <span><NavLink to="/meals"> Meals Page</NavLink></span> to discover new dishes from all around the world.
       </p>
+
+      </div>
+
+     
     </div>
   );
 };
