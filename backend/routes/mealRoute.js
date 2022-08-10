@@ -1,9 +1,13 @@
 import express from "express";
 import { mealPost, mealGet } from "../controllers/mealsController.js";
+import requiredValues from "../controllers/requiredValues.js";
+import checkValidation from "../validators/checkValidation.js";
+import mealValidator from "../validators/mealValidator.js";
 
 const router = express.Router();
 
-router.post("/", mealPost);  //not using- only for employees
+router.post("/", requiredValues(["mealName", "category", "amount"]), mealValidator(), checkValidation, mealPost);
+
 router.get("/", mealGet);
 
 
