@@ -16,6 +16,7 @@ const userSchema = new Schema( {
     houseNo: Number,
     zipCode: Number,
     city: String,
+    // country: {type: String, require: true},
     meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
     orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
  
