@@ -1,0 +1,15 @@
+.deleteCartItems{
+   display: flex;
+   flex-flow: row nowrap; 
+   align-items: space-between;
+}
+.cartButtons{
+    margin: 0.5rem 1rem 0.5rem 1rem;
+    padding: 3px;
+}
+.cartButtonsDelete{
+color: red;
+margin-left: 1.5rem;
+padding:0px 15px;
+border-radius: 50%;
+}

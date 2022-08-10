@@ -1,5 +1,7 @@
+
 import React, { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../App";
+import './cartPage.scss';
 
 const CartPage = () => {
   const { cart, setCart, user, setUser, setOrders, orders } =
@@ -23,7 +25,7 @@ const CartPage = () => {
     console.log(item);
   };
 
-  const getAddress = (e) => {
+const getAddress = (e) => {
     e.preventDefault();
     let userAddress = {
       house: e.target.hn.value,
@@ -75,6 +77,38 @@ const CartPage = () => {
       alert("please select any item from our meal list");
     }
   };
+
+  const deleteItem = async event =>
+  {
+      const userId = event.target.parentElement.id;
+      const settings = {
+          method: "DELETE",
+          credentials:'include'
+      };
+
+      const response = await fetch( process.env.REACT_APP_SERVER_URL + `/users/${ setUser }/meals/${ userId }`, settings );
+      const parsedRes = await response.json();
+
+      try
+      {
+          if ( response.ok )
+          {
+              console.log( 'Delete This Item', parsedRes.meals );
+             /*  setMeals( parsedRes.meals ); */
+
+          } else
+          {
+              throw new Error(parsedRes.message);
+          }
+
+      } catch ( err )
+      {
+          alert( err.message );
+      }
+
+  };
+
+
   return (
     <div>
       {placedOrder ? (
@@ -84,17 +118,18 @@ const CartPage = () => {
           {cart.map((meal) => {
             return (
               <div key={meal._id}>
-                <img src={meal.thumbnail} width="100" alt="" />
-                <h2>{meal.title}</h2>
+                <img src={meal.img} width="100" alt="" />
+                <h2>{meal.meal}</h2>
                 <p>{meal.price}</p>
-                <h3>
-                  quantity :
+                <div className={"deleteCartItems"}> <h3>
+                  quantity :  {/* <button className={"cartButtons"}onClick={ deleteItem}>-</button> <span> </span> */}
                   <input
                     type="text"
                     defaultValue={meal.quantity}
                     onChange={(e) => changeQuantity(e, meal)}
-                  />{" "}
-                </h3>
+                  />{" "}{/* <button className={"cartButtons"} onClick={ deleteItem}>+</button> */}
+                </h3> <button className={"cartButtonsDelete"} onClick={ deleteItem}>X</button> </div>
+               
               </div>
             );
           })}
