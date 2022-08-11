@@ -1,10 +1,12 @@
 import express from "express";
-import { loginController } from "../controllers/loginController.js";
+import {registerController} from "../controllers/registerController.js";
 import requiredValues from "../controllers/requiredValues.js";
 import checkValidation from "../validators/checkValidation.js";
+import registerValidator from "../validators/registerValidator.js";
+
 
 const router = express.Router();
 
-router.post("/", requiredValues(["email, password"]), checkValidation, loginController);
+router.post("/", registerController);
 
 export default router;
