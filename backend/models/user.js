@@ -9,15 +9,11 @@ const userSchema = new Schema( {
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     confirmPassword: { type: String, required: true, },
-    year: Number,
-    month: Number,
-    day: Number,
     street: String,
     houseNo: Number,
     zipCode: Number,
     city: String,
-    // country: {type: String, require: true},
-    meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
+    //meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
     orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
  
 }, { timestamps: true } );
