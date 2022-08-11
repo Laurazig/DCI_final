@@ -26,7 +26,7 @@ mongoose.connection.on("error", () => console.error);
 app.use(morgan("tiny"));
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
-app.use("/meal", mealRouter);
+app.use("/meals", mealRouter);
 app.use("/order", orderRouter);
 //app.use("/payment", paymentRouter);
 
