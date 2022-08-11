@@ -9,19 +9,15 @@ const userSchema = new Schema( {
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     confirmPassword: { type: String, required: true, },
-    year: Number,
-    month: Number,
-    day: Number,
     street: String,
     houseNo: Number,
     zipCode: Number,
     city: String,
-    // country: {type: String, require: true},
-    meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
-    orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
+    // meals: [ { type: mongoose.Types.ObjectId, ref: "Meal" } ],
+    orders: [ { type: mongoose.Types.ObjectId, ref: "Order" } ]
  
 }, { timestamps: true } );
 
-const User = mongoose.model( "users", userSchema );
+const User = mongoose.model( "User", userSchema );
 
 export default User;
