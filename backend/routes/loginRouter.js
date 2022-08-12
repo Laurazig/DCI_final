@@ -5,6 +5,6 @@ import checkValidation from "../validators/checkValidation.js";
 
 const router = express.Router();
 
-router.post("/", requiredValues(["email, password"]), checkValidation, loginController);
+router.post("/",  requiredValues(["email", "password"]),checkValidation, loginController);
 
 export default router;

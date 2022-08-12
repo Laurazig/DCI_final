@@ -14,9 +14,7 @@ const Register = (props) => {
     email: "",
     password: "",
     confirmPassword: "",
-    year: "",
-    month: "",
-    day: "",
+    phone:"",
     street: "",
     houseNo: "",
     zipCode: "",
@@ -29,9 +27,7 @@ const Register = (props) => {
     email,
     password,
     confirmPassword,
-    year,
-    month,
-    day,
+    phone,
     street,
     houseNo,
     zipCode,
@@ -117,13 +113,14 @@ const Register = (props) => {
               onChange={updateData}
               value={email}
               placeholder={"Email address"}
+              type={"email"}
             />
             <input
               name="password"
               onChange={updateData}
               value={password}
               placeholder={"Create Password"}
-              type={password}
+              type={"password"}
             />
             {/* to check the match Create Password and Confirm password */}
             <input
@@ -131,7 +128,14 @@ const Register = (props) => {
               onChange={updateData}
               value={confirmPassword}
               placeholder={"Confirm Password"}
-              type={password}
+              type={"password"}
+            />
+            <input
+              name="phone"
+              onChange={updateData}
+              value={phone}
+              placeholder={"Phone Number"}
+              type={"tel"}
             />
           </div>
 
@@ -142,24 +146,30 @@ const Register = (props) => {
               onChange={updateData}
               value={street}
               placeholder={"Street"}
+              type={"text"}
             />
             <input
               name="houseNo"
               onChange={updateData}
               value={houseNo}
               placeholder={"House No."}
+            text={"text"}
             />
             <input
               name="zipCode"
               onChange={updateData}
               value={zipCode}
               placeholder={"Zip Code"}
+              type={"number"}
+
             />
             <input
               name="city"
               onChange={updateData}
               value={city}
               placeholder={"City"}
+              type={"text"}
+
             />
             <button className="Register feButton">Register</button>
           </div>

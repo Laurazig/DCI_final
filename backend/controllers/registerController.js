@@ -5,7 +5,7 @@ import User from "../models/user.js";
 
 export const registerController = async (req, res, next) => {
 
-    const {firstName, lastName, email, password, confirmPassword, year, month, day, street, houseNo, zipCode, city} = req.body;
+    const {firstName, lastName, email, password, confirmPassword, phone, street, houseNo, zipCode, city} = req.body;
 
     let foundCustomer;
     try{
@@ -24,9 +24,7 @@ export const registerController = async (req, res, next) => {
           email: email,
           password: password,
           confirmPassword: confirmPassword,
-          year: year,
-          month: month,
-          day: day,
+          phone:phone,
           street: street,
           houseNo: houseNo,
           zipCode: zipCode,

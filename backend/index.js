@@ -14,12 +14,12 @@ import ordersRouter from "./routes/ordersRoutes.js";
 import paymentRouter from "./routes/paymentRouter.js";
 
 const app = express();
-app.use(cors());
+app.use(cors({origin:"http://localhost:3000"}));
 app.use(express.json());
 
 dotenv.config();
 
-mongoose.connect(`mongodb+srv://Yohannes:Haftey100@cluster0.uvleeqn.mongodb.net/flys-project?retryWrites=true&w=majority`);
+mongoose.connect(`mongodb+srv://Sameer:Password@cluster0.uvleeqn.mongodb.net/flys-project?retryWrites=true&w=majority`);
 mongoose.connection.on("open", () => console.log("Database has started"));
 mongoose.connection.on("error", () => console.error);
 
