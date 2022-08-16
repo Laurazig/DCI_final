@@ -43,8 +43,8 @@ $tertiaryCol: black;
 }
 
 // ------- input flieds -------
-@mixin standardInput {
 
+@mixin standardInput {
     width: 470px;
     height: 35px;
     margin-bottom: 20px;
@@ -52,12 +52,20 @@ $tertiaryCol: black;
     border: 2px solid $mainCol;
     padding-left: 10px;
 
+    @media (min-width: 481px) and (max-width: 768px) {
+        background-color: aqua;
+        width: 300px;
+    }
+
 }
 
 
+
+
 //------- typography -------
+
 @mixin mainTitle {
-    font-size: 60px;
+    font-size: clamp(1rem, 10vw, 6rem); 
     font-weight: bold;
     color: $secondaryCol;
     text-transform: uppercase;
@@ -67,7 +75,6 @@ $tertiaryCol: black;
 
 @mixin mainTitleAccent {
     @include mainTitle;
-    font-size: 120px;
 }
 
 @mixin sectionTitle {
@@ -96,6 +103,7 @@ $tertiaryCol: black;
 
     font-weight: bold;
     color: $mainCol;
+
     a {
         color: $mainCol;
         text-decoration: none;
@@ -111,6 +119,13 @@ $tertiaryCol: black;
     flex-direction: column;
 }
 
+@mixin navBarFooterDisplay {
+  display: flex;
+  align-items: center;
+  color: $mainCol;
+  justify-content: space-between;
+
+}
 
 @mixin cardImg {
     width: 400px;
@@ -126,6 +141,11 @@ $tertiaryCol: black;
     padding-bottom: 60px;
     padding-top: 20px;
     background-color: none;
+
+    @media (min-width: 481px) and (max-width: 768px) {
+        background-color: aqua;
+        width: 90vw;
+    }
 }
 
 
@@ -145,4 +165,23 @@ $tertiaryCol: black;
 @mixin socialMediaIcons {
     font-size: 40px;
     margin: 0 10px;
+
+    @media (min-width: 481px) and (max-width: 768px) {
+        font-size: 30px;
+        margin: 0 5px;
+
+
+    }
+
 }
+
+// ---- lists
+
+@mixin liStyling {
+    margin: 0 15px;
+    list-style-type: none;
+    color: $mainCol;
+    font-size: clamp(12px, 10vw, 18px);
+
+}
+
