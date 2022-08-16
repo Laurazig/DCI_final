@@ -21,14 +21,14 @@ dotenv.config();
 
 
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/@${process.env.DB_NAME}/?retryWrites=true&w=majority`);
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`);
 mongoose.connection.on("open", () => console.log("Database connection established"));
 mongoose.connection.on("error", () => console.error);
 
 app.use(morgan("tiny"));
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
-app.use("/meal", mealRouter);
+app.use("/meals", mealRouter);
 app.use("/order", orderRouter);
 //app.use("/payment", paymentRouter);
 
