@@ -10,7 +10,7 @@ const requiredValues = ( props ) =>
             .notEmpty()
             .withMessage( `${ field } is required` ) );
     } );
-console.log(checks);
+
     return checks;
 };
 export default requiredValues;

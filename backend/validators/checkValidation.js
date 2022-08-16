@@ -2,7 +2,6 @@ import createError from "http-errors";
 import { validationResult } from "express-validator";
 
 const checkValidation = (req, res, next) => {
-    console.log(req.body);
   const errors = validationResult(req);
 console.log(errors);
   if (!errors.isEmpty()) {
