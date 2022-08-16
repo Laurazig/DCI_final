@@ -11,7 +11,7 @@ import loginRouter from "./routes/loginRouter.js";
 import usersRouter from "./routes/usersRoutes.js";
 import mealsRouter from "./routes/mealRoute.js";
 import ordersRouter from "./routes/ordersRoutes.js";
-import paymentRouter from "./routes/paymentRouter.js";
+// import paymentRouter from "./routes/paymentRouter.js";
 
 const app = express();
 app.use(cors());
