@@ -7,3 +7,4 @@ import paymentValidator from "../validators/paymentValidator.js";
 const router = express.Router();
 
 router.post("/", requiredValues(["creditNumber", "securityCode", "expirationMonth", "expirationYear"]), paymentValidator(), checkValidation, paymentPost);
+export default router;

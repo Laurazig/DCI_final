@@ -8,20 +8,16 @@ const userSchema = new Schema( {
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    confirmPassword: { type: String, required: true, },
-    year: Number,
-    month: Number,
-    day: Number,
-    street: String,
-    houseNo: Number,
-    zipCode: Number,
-    city: String,
-    // country: {type: String, require: true},
+    phone: { type: String, required: true },
+    street: { type: String, required: true },
+    houseNo: { type: Number, required: true },
+    zipCode: { type: Number, required: true },
+    city:{ type: String, required: true },
     meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
     orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
  
 }, { timestamps: true } );
 
-const User = mongoose.model( "users", userSchema );
+const User = mongoose.model( "User", userSchema );
 
 export default User;

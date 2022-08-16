@@ -3,48 +3,50 @@ import createError from "http-errors";
 import User from "../models/user.js";
 
 
-export const registerController = async (req, res, next) => {
+export const registerController = async ( req, res, next ) =>
+{
 
-    const {firstName, lastName, email, password, confirmPassword, year, month, day, street, houseNo, zipCode, city} = req.body;
+    const { firstName, lastName, email, password, confirmPassword, phone, street, houseNo, zipCode, city } = req.body;
 
-    let foundCustomer;
-    try{
-        foundCustomer = await User.findOne({email: email});
-        }catch {
-            return next(createError(500, "could not query database. please try again."));
-        }
+    let foundUser;
+    try
+    {
+        foundUser = await User.findOne( { email: email } );
+    } catch {
+        return next( createError( 500, "could not query database. please try again." ) );
+    }
 
     // If there is no customer in the collections with the username received from the frontend
-    if (!foundCustomer) {
+    if ( !foundUser )
+    {
         // Create a new user based on data received from req.body
-        const newCustomer = new User({
+        const newUser = new User( {
 
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-          confirmPassword: confirmPassword,
-          year: year,
-          month: month,
-          day: day,
-          street: street,
-          houseNo: houseNo,
-          zipCode: zipCode,
-          city: city
-          // meals:[],
-           /*  orders: [] */
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            phone: phone,
+            street: street,
+            houseNo: houseNo,
+            zipCode: zipCode,
+            city: city,
+            //   meals:[],
+            //   orders:[]
 
-        });
-console.log(newCustomer)
-       try {
-        await newCustomer.save();
-       } catch {
-        return next(createError(500, "couldn't create user. please try again!"));
-       } 
-        res.status(201).json(newCustomer/* ._id */);
-   
-    } else {
-        return next(createError(409, "Sorry, this username has been taken. Please choose another!"));
-    }    
-}
+        } );
+        // Save the new user to the database
+        try
+        {
+            await newUser.save();
+        } catch {
+            return next( createError( 500, "couldn't create user. please try again!" ) );
+        }
+        res.status( 201 ).json( { id: newUser._id } );
+
+    } else
+    {
+        return next( createError( 409, "Sorry, this username has been taken. Please choose another!" ) );
+    }
+};
 export default registerController;
