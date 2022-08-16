@@ -5,7 +5,7 @@ const mealValidator = () => {
         return [
             
             check("category")
-                .trim().escape().length({ min: 2, max: 30 })
+                .trim().escape().isLength({ min: 2, max: 30 })
                 .withMessage("Category must be between 2 and 30 characters"),
 
             check("amount")

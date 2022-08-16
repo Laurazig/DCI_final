@@ -8,12 +8,12 @@ const userSchema = new Schema( {
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    confirmPassword: { type: String, required: true, },
-    street: String,
-    houseNo: Number,
-    zipCode: Number,
-    city: String,
-    //meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
+    phone: { type: String, required: true },
+    street: { type: String, required: true },
+    houseNo: { type: Number, required: true },
+    zipCode: { type: Number, required: true },
+    city:{ type: String, required: true },
+    meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
     orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
  
 }, { timestamps: true } );

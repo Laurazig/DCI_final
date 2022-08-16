@@ -2,9 +2,8 @@ import createError from "http-errors";
 import { validationResult } from "express-validator";
 
 const checkValidation = (req, res, next) => {
-    
   const errors = validationResult(req);
-
+console.log(errors);
   if (!errors.isEmpty()) {
     const foundErrors = errors.array();
     let errorMessage = "";
@@ -17,7 +16,7 @@ const checkValidation = (req, res, next) => {
     });
 
     // Send error response to frontend via error handling middleware
-    return next(createError(401, errorString));
+    return next(createError(401, errorMessage));
   }
 
   next();

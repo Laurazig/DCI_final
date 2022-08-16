@@ -33,5 +33,4 @@ export const orderPost = async (req, res, next) => {
 
         res.json({id: newOrder._id});
    }
-
 };

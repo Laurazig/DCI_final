@@ -31,14 +31,14 @@ const LoginPage = (props) => {
       email: email,
       password: password,
     };
-
+console.log(loginData)
     const settings = {
       method: "POST",
       body: JSON.stringify(loginData),
       headers: {
         "Content-Type": "application/json",
       },
-      /* credentials: 'include', */
+    /*  credentials: 'include',  */
     };
 
     const response = await fetch(
