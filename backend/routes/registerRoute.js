@@ -7,6 +7,6 @@ import registerValidator from "../validators/registerValidator.js";
 
 const router = express.Router();
 
-router.post("/", registerController);
+router.post("/", requiredValues(["firstName", "lastName", "password", "phone", "street", "houseNo", "zipCode", "city"]), registerValidator(), checkValidation,registerController);
 
 export default router;

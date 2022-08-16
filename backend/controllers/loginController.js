@@ -1,15 +1,13 @@
-
-import createError from "http-errors";
 import User from "../models/user.js";
+import createError from "http-errors";
+import bcrypt from "bcryptjs";
 
 export const loginController = async  (req, res, next) => {
     // Take the username and password the user tried to log in with
     const { email, password } = req.body;
    let foundUser;
    try{
-    foundUser = await User.findOne({
-        email: email,
-        password: password})
+    foundUser = await User.findOne({email: email, password: password})
    } catch {
     return next(createError(500, "could not query database. Please try again!"));
     }
