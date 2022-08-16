@@ -10,6 +10,7 @@ import MealsPage from "./views/mealspage/MealsPage";
 import React, { useState, useEffect } from "react";
 import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
+import NavbarTest from "./components/globalComponents/navTest/NavbarTest";
 
 export const MyContext = React.createContext();
  console.log(`myContext= ${MyContext}`);
@@ -31,10 +32,16 @@ useEffect(()=>{
 
 
   return (
+//     <div>
+// <NavbarTest></NavbarTest>
+// <LandingPage></LandingPage>
+//     </div>
+
+
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>
       <div className='App'>
         <HashRouter>
-        <Navbar/>
+        <NavbarTest/>
 
           <Routes>
             <Route path="/" element={<LandingPage />} />
