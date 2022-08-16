@@ -19,9 +19,12 @@ const MealsPage = props => {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      { <div>
-        <h2>Welcome</h2>
-      </div> }
+
+      {/* <div>
+        <h2>Welcome {user.email}</h2>
+      </div> */}
+      <h2>Meals page</h2>
+
       {meals.map((meal) => {
         return (
           <div key={meal._id} style={{ width: '300px', padding: '20px' }}>
