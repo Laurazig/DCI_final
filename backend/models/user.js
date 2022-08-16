@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const { Schema } = mongoose;
 
@@ -11,12 +12,20 @@ const userSchema = new Schema( {
     phone: { type: String, required: true },
     street: { type: String, required: true },
     houseNo: { type: Number, required: true },
-    zipCode: { type: Number, required: true },
+    zipCode: { type: String, required: true },
     city:{ type: String, required: true },
     meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
     orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
  
 }, { timestamps: true } );
+
+userSchema.pre("save", async function(next) {
+    // Securing the password using salting round
+    const secureUserPassword = await bcrypt.hash(this.password, 12);
+    this.password = secureUserPassword;
+
+    next();
+});
 
 const User = mongoose.model( "User", userSchema );
 
