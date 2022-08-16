@@ -4,11 +4,11 @@ const registerValidator = () => {
 
     return [
         check("firstName")
-            .trim().escape().length({ min: 2, max: 10 })
+            .trim().escape().isLength({ min: 2, max: 10 })
             .withMessage("First name must be between 2 and 10 characters"),
 
         check("lastName")
-            .trim().escape().length({ min: 2, max: 10 })
+            .trim().escape().isLength({ min: 2, max: 10 })
             .withMessage("Last name must be between 2 and 10 characters"),
         
         check("email")
