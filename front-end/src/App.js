@@ -1,6 +1,6 @@
 import LandingPage from "./views/landingpage/LandingPage";
 import RegisterPage from './views/registerpage/RegisterPage';
-import Navbar from "./components/globalComponents/navbar/Navbar";
+//import Navbar from "./components/globalComponents/navbar/Navbar";
 import LoginPage from "./views/loginpage/LoginPage";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import HowItWorksPage from "./views/howitworks/HowItWorksPage";
@@ -13,7 +13,7 @@ import Footer from "./components/globalComponents/footer/Footer";
 import NavbarTest from "./components/globalComponents/navTest/NavbarTest";
 
 export const MyContext = React.createContext();
- console.log(`myContext= ${MyContext}`);
+ //console.log(`myContext= ${MyContext}`);
 
 
 function App() {
