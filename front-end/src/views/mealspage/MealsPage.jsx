@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { MyContext } from '../../App';
 import ReactStars from "react-rating-stars-component"
 
 
 const MealsPage = () => {
-  const { meals, cart, setCart, user, setUser } = useContext(MyContext);
+  const { meals, cart, setCart, user } = useContext(MyContext);
   
 
   const addToCart = (meal) => {
