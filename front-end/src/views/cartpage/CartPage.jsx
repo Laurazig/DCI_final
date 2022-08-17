@@ -1,4 +1,5 @@
 
+import { cardActionAreaClasses } from "@mui/material";
 import React, { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../App";
 import './cartPage.scss';
@@ -25,18 +26,26 @@ const CartPage = () => {
     console.log(item);
   };
 
-const getAddress = (e) => {
-    e.preventDefault();
-    let userAddress = {
-      house: e.target.hn.value,
-      street: e.target.stn.value,
-      postcode: e.target.pc.value,
-      city: e.target.city.value,
-      country: e.target.country.value,
-    };
-    console.log(userAddress);
-    e.target.reset();
-  };
+// const getAddress = (e) => {
+//     e.preventDefault();
+//     let userAddress = {
+//       house: e.target.hn.value,
+//       street: e.target.stn.value,
+//       postcode: e.target.pc.value,
+//       city: e.target.city.value,
+//       country: e.target.country.value,
+//     };
+//     console.log(userAddress);
+//     e.target.reset();
+//   };
+
+//user enters card number, date, 3dig - click confirm order
+//last 4 dig card is stored in database order
+//stripe sandbox to process payment
+// const payment = (e) => {
+//   e.preventDefault()
+//   setCardNum =cardNumber.slice(-4)
+// }
 
   const placeOrder = () => {
     if (!user) {
@@ -49,7 +58,7 @@ const getAddress = (e) => {
         },
         body: JSON.stringify({
           userId: user._id,
-          meals: cart.map((item) => item._id),
+          usersMeals: cart.map((item) => item._id),
         }),
       })
         .then((res) => res.json())
@@ -62,7 +71,7 @@ const getAddress = (e) => {
                 console.log(final);
                 if (final.success) {
                   console.log(final);
-                  setOrders([...orders, ...final.data.meals]);
+                  setOrders([...orders, ...final.data.usersMeals]);
                 }
               });
             setPlacedOrder(true);
@@ -93,7 +102,7 @@ const getAddress = (e) => {
       {
           if ( response.ok )
           {
-              console.log( 'Delete This Item', parsedRes.meals );
+              console.log( 'Delete This Item', parsedRes.usersMeals );
              /*  setMeals( parsedRes.meals ); */
 
           } else
@@ -115,12 +124,13 @@ const getAddress = (e) => {
         <h2>Thanks for placing order: </h2>
       ) : (
         <div>
+          <h3>Your choice this week: </h3>
           {cart.map((meal) => {
             return (
               <div key={meal._id}>
                 <img src={meal.img} width="100" alt="" />
-                <h2>{meal.meal}</h2>
-                <p>{meal.price}</p>
+                <h4>{meal.mealName}</h4>
+                <p>{meal.price}€</p>
                 <div className={"deleteCartItems"}> <h3>
                   quantity :  {/* <button className={"cartButtons"}onClick={ deleteItem}>-</button> <span> </span> */}
                   <input
@@ -138,12 +148,26 @@ const getAddress = (e) => {
 
       <div className="total">
         {" "}
-        {cart.length > 0 && <h2> Total :{total} </h2>}{" "}
+        {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
       </div>
-      <button onClick={placeOrder}>checkout</button>
+      
       <h3>{message}</h3>
       <h3>Address: </h3>
-      <form onSubmit={getAddress}>
+      <div>
+      {user.map((userData) => {
+            return (
+              <div key={userData._id}>
+                <p>{userData.firstName} {userData.lastName}</p>
+                <p>{userData.street} {userData.houseNo}</p>
+                <p>{userData.city}</p>
+                <p>{userData.zipCode}</p>
+                <p>{userData.phone}</p>
+                {/* </h3> <button  onClick={ addAddress}>Add Address</button> */}
+              </div>
+            );
+          })}
+      </div>
+      {/* <form onSubmit={getAddress}>
         <label>
           House No.
           <input type="number" name="hn" min={1} />
@@ -170,7 +194,26 @@ const getAddress = (e) => {
         </label>
         <br />
         <input type="submit" value="add" />
+      </form> */}
+      <h3>Payment: </h3>
+      {/* <form onSubmit={payment}> */}
+      <form >
+      <label>
+          card No.
+          <input type="number" name="hn" min={12} />
+        </label>
+        <label>
+          Month / year
+          <input type="number" name="stn" />
+        </label>
+        <label>
+          3 dig
+          <input type="number" name="stn" min={3}/>
+        </label>
       </form>
+      
+
+<button onClick={placeOrder}>checkout</button>
     </div>
   );
 };
