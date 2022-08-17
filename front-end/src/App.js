@@ -14,7 +14,6 @@ import NavbarTest from "./components/globalComponents/navTest/NavbarTest";
 export const MyContext = React.createContext();
 // console.log(`myContext= ${MyContext}`);
 
-
 function App() {
   const [meals, setMeals] = useState([]);
   const [cart, setCart] = useState([]);
@@ -30,15 +29,11 @@ function App() {
       })
   }, [])
 
-
   return (
-
-
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, isLoggedIn, setIsLoggedIn }}>
       <div className='App'>
         <HashRouter>
           <NavbarTest />
-
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/howitworks" element={<HowItWorksPage />} />
@@ -51,11 +46,9 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
           </Routes>
           <Footer />
-
         </HashRouter>
       </div>
     </MyContext.Provider>
   );
 }
-
 export default App;
