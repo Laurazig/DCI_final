@@ -1,5 +1,3 @@
-
-import { cardActionAreaClasses } from "@mui/material";
 import React, { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../App";
 import './cartPage.scss';
@@ -19,12 +17,12 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
-  const changeQuantity = (e, meal) => {
-    const item = cart.find((elem) => elem._id === meal._id);
-    item.quantity = Number(e.target.value);
-    setCart([...cart]);
-    console.log(item);
-  };
+  // const changeQuantity = (e, meal) => {
+  //   const item = cart.find((elem) => elem._id === meal._id);
+  //   item.quantity = Number(e.target.value);
+  //   setCart([...cart]);
+  //   console.log(item);
+  // };
 
 // const getAddress = (e) => {
 //     e.preventDefault();
@@ -44,12 +42,12 @@ const CartPage = () => {
 //stripe sandbox to process payment
 // const payment = (e) => {
 //   e.preventDefault()
-//   setCardNum =cardNumber.slice(-4)
+//   ??setCardNum =cardNumber.slice(-4)
 // }
 
   const placeOrder = () => {
     if (!user) {
-      setMessage("You need to login first");
+      setMessage("You need to login first"); //has to be logged in to see cart page
     } else if (cart.length !== 0) {
       fetch("http://localhost:3001/orders", {
         method: "POST",
@@ -59,6 +57,7 @@ const CartPage = () => {
         body: JSON.stringify({
           userId: user._id,
           usersMeals: cart.map((item) => item._id),
+          //CardNumLast4Dig:
         }),
       })
         .then((res) => res.json())
@@ -122,6 +121,13 @@ const CartPage = () => {
     <div>
       {placedOrder ? (
         <h2>Thanks for placing order: </h2>
+        // <h3>Your selection: {}</h3>
+        // <h3>Order address: {}</h3>
+        // <h3>Last 4 digits of card used to place order: *********{}</h3>
+        // <p>an confirmation email has been sent to {user.email}</p>
+        // <p>click here to see next weeks selcetion</p>
+        // <button>meals</button>
+
       ) : (
         <div>
           <h3>Your choice this week: </h3>
@@ -132,12 +138,14 @@ const CartPage = () => {
                 <h4>{meal.mealName}</h4>
                 <p>{meal.price}€</p>
                 <div className={"deleteCartItems"}> <h3>
-                  quantity :  {/* <button className={"cartButtons"}onClick={ deleteItem}>-</button> <span> </span> */}
-                  <input
+                  {/* quantity :   */}
+                  {/* <button className={"cartButtons"}onClick={ deleteItem}>-</button> <span> </span> */}
+                  {/* <input
                     type="text"
                     defaultValue={meal.quantity}
                     onChange={(e) => changeQuantity(e, meal)}
-                  />{" "}{/* <button className={"cartButtons"} onClick={ deleteItem}>+</button> */}
+                  />{" "} */}
+                  {/* <button className={"cartButtons"} onClick={ deleteItem}>+</button> */}
                 </h3> <button className={"cartButtonsDelete"} onClick={ deleteItem}>X</button> </div>
                
               </div>
