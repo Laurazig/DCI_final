@@ -11,17 +11,18 @@ import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
 import NavbarTest from "./components/globalComponents/navTest/NavbarTest";
 
-export const MyContext = React.createContext();
 // console.log(`myContext= ${MyContext}`);
+export const MyContext = React.createContext();
 
 function App() {
   const [meals, setMeals] = useState([]);
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
+    console.log("fetching meals");
     fetch(process.env.REACT_APP_SERVER_URL + "/meals")
       .then(res => res.json())
       .then(data => {
@@ -33,7 +34,7 @@ function App() {
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, isLoggedIn, setIsLoggedIn }}>
       <div className='App'>
         <HashRouter>
-          <NavbarTest />
+          <NavbarTest isLogged ={isLoggedIn} />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/howitworks" element={<HowItWorksPage />} />

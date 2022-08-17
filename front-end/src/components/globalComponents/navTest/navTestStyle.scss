@@ -32,46 +32,48 @@
 
   }
 
-  .nav-items.nav-items.false {
+  .nav-items.false {
     display: flex;
 
     .linkWrapper {
       display: flex;
-      width: 70%;
+      width: 60%;
       gap: 4%;
       justify-content: center;
 
-      @media(max-width: 800px){
-        width: 60%;
-
-      }    }
+    }
 
     a {
       color: $mainCol;
       font-size: clamp(12px, 10vw, 20px);
-    
-    }
-
-    .buttonWrapper{
-.logInButton{
-  @include buttonFilled;
-}
-.regButton{
-  @include buttonOutline;
-  margin: 0 3vw 0 1vw;
-}
 
     }
+
+    .buttonWrapper {
+      .logInButton {
+        @include buttonFilled;
+      }
+
+      .regButton {
+        @include buttonOutline;
+        margin: 0 3vw 0 1vw;
+      }
+
+    }
   }
 
-  
+  .showUserIcon {
+    display: flex;
+    height: auto;
+    margin-right: 40px;
+    align-items: center;
+    gap: 15px;
 
-  button {
-    @include buttonFilled;
+    svg {
+      color: $mainCol;
+    }
   }
-  .Navbar>.nav-toggle {
-    display: none;
-  }
+
 }
 
 
@@ -85,8 +87,9 @@
 
 @media (max-width: 700px) {
   .Navbar {
+
     .nav-items {
-      position: absolute;
+      position: fixed;
       top: 60px;
       display: flex;
       flex-direction: column;
@@ -103,9 +106,15 @@
 
     .nav-items.open {
       transform: translateX(0);
+      background-color: aqua;
     }
   }
 
+
+
+  .Navbar>.nav-toggle {
+    display: none;
+  }
 
 
   //this is the little x area on the top right
@@ -148,6 +157,7 @@
     transform: translateY(8px);
   }
 
+  // ------ animation
   .nav-toggle.open>.bar {
     transform: translateX(-40px);
     background: transparent;
@@ -173,4 +183,8 @@
   justify-content: space-between;
 
 
+}
+
+.hide {
+  display: none;
 }

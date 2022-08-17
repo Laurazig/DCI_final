@@ -1,13 +1,13 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import "./navTestStyle.scss";
 import { NavLink } from "react-router-dom";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const NavTest = () => {
+const NavTest = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="Navbar">
-
       {/* logo */}
       <span className="nav-logo">
         <div className="logoImg" />
@@ -24,14 +24,27 @@ const NavTest = () => {
           <NavLink to="/support">Support</NavLink>
           <NavLink to="/cart"> Cart</NavLink>
         </div>
-        
+
         {/* buttons */}
         <div className="buttonWrapper">
+
+        <div className={props.isLogged === true ? "showUserIcon" : "hide"} >
+          <p>Hello *name of user* </p>
+          <AccountCircleIcon style={{ fontSize: 50 }}/>
+          <img src="" alt="" />
+          </div>          
           <NavLink to="/login">
-            <button className="logInButton">Login</button>
+            <button
+              className={props.isLogged === true ? "hide" : "logInButton"}
+            >
+              Login
+            </button>
           </NavLink>
-          <NavLink className="button" to="/register">
-            <button className="regButton">Register</button>
+          <NavLink to="/register">
+            <button className={props.isLogged === true ? "hide" : "regButton"}>
+              {" "}
+              Register
+            </button>
           </NavLink>
         </div>
       </div>
