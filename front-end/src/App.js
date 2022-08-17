@@ -1,6 +1,5 @@
 import LandingPage from "./views/landingpage/LandingPage";
 import RegisterPage from './views/registerpage/RegisterPage';
-import Navbar from "./components/globalComponents/navbar/Navbar";
 import LoginPage from "./views/loginpage/LoginPage";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import HowItWorksPage from "./views/howitworks/HowItWorksPage";
@@ -13,7 +12,7 @@ import Footer from "./components/globalComponents/footer/Footer";
 import NavbarTest from "./components/globalComponents/navTest/NavbarTest";
 
 export const MyContext = React.createContext();
- console.log(`myContext= ${MyContext}`);
+// console.log(`myContext= ${MyContext}`);
 
 
 function App() {
@@ -22,26 +21,23 @@ function App() {
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-useEffect(()=>{
-  fetch(process.env.REACT_APP_SERVER_URL + "/meals")
-  .then(res=>res.json())
-.then(data=>{
- setMeals(data)
-})
-},[])
+
+  useEffect(() => {
+    fetch(process.env.REACT_APP_SERVER_URL + "/meals")
+      .then(res => res.json())
+      .then(data => {
+        setMeals(data)
+      })
+  }, [])
 
 
   return (
-//     <div>
-// <NavbarTest></NavbarTest>
-// <LandingPage></LandingPage>
-//     </div>
 
 
-    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>
+    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, isLoggedIn, setIsLoggedIn }}>
       <div className='App'>
         <HashRouter>
-        <NavbarTest/>
+          <NavbarTest />
 
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -51,10 +47,10 @@ useEffect(()=>{
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
             {/* <Route path="/login" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
-          <Route path="/register" element={isLoggedIn ? (<Navigate replace to="/meals" />): (<RegisterPage setIsLoggedIn={setIsLoggedIn} />) }/>
-          <Route path="/cart" element={<CartPage />} />
+            <Route path="/register" element={isLoggedIn ? (<Navigate replace to="/meals" />) : (<RegisterPage setIsLoggedIn={setIsLoggedIn} />)} />
+            <Route path="/cart" element={<CartPage />} />
           </Routes>
-          <Footer/>
+          <Footer />
 
         </HashRouter>
       </div>

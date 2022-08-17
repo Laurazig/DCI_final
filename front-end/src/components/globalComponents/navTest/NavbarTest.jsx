@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import "./navTestStyle.scss";
 import { NavLink } from "react-router-dom";
-import Logo from "../../../assets/logo.jpg";
 
 const NavTest = () => {
   const [isOpen, setIsOpen] = useState(false);
