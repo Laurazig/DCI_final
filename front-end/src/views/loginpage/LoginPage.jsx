@@ -4,10 +4,10 @@ import { MyContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   let navigate = useNavigate();
 
-  const { setUser } = useContext(MyContext);
+  const { setUser, isLoggedIn, setIsLoggedIn } = useContext(MyContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -49,7 +49,8 @@ console.log(loginData)
 
     try {
       if (response.ok) {
-        props.setIsLoggedIn(true);
+        setIsLoggedIn(true);
+        console.log(parsedRes)
         setUser(parsedRes);
         navigate("/meals");
       } else {
