@@ -6,8 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
   let navigate = useNavigate();
-
-  const { setUser, token, setIsLoggedIn } = useContext(MyContext);
+  const { setUser, token, isLoggedIn, setIsLoggedIn } = useContext(MyContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -56,6 +55,7 @@ const LoginPage = () => {
         
         setIsLoggedIn(true);
         setUser(parsedRes.token, parsedRes.id)
+
         navigate("/meals");
       } else {
         throw new Error(parsedRes.message);

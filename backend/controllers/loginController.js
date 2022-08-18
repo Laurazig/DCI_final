@@ -18,6 +18,7 @@ export const loginController = async  (req, res, next) => {
         return next(createError(401, "Invalid username"));
     };
 
+
     if (foundUser) {
         // Check if the password the user entered matches the one in the database
         let isPasswordCorrect;
@@ -42,9 +43,9 @@ export const loginController = async  (req, res, next) => {
         }
 
         // If the password is correct and the token is valid, return the user id and the user's token
-        return res.json({id: foundUser._id, token: newToken});
-
-    } else {
-        return next(createError(401, "You could not be logged in. Please try again"));
+        
+        return res.json({id: foundUser._id, firstName: foundUser.firstName, token: newToken});
+  
     }
+
 };

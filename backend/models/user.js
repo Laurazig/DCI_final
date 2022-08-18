@@ -15,7 +15,7 @@ const userSchema = new Schema( {
     houseNo: { type: Number, required: true },
     zipCode: { type: String, required: true },
     city:{ type: String, required: true },
-    meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
+    //usersMeals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
     orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
  
 }, { timestamps: true } );
