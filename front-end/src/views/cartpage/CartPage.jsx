@@ -125,6 +125,10 @@ const CartPage = () => {
     <div>
       {placedOrder ? (
         <h2>Thanks for placing order: </h2>
+        // <h3>This is your choice of meals:</h3>
+        // <h3>order address:</h3>
+        // <h3>last 3 dogits of card used for order:</h3>
+        // <button>click here to return to meals</button>
       ) : (
         <div>
           <h3>Your choice this week: </h3>
