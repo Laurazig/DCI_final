@@ -21,6 +21,20 @@ function App() {
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [token, setToken] = useState(false);
+  const [userId, setUserId] = useState(""); // Added by Yohannes
+
+useEffect(() => {
+  const data = JSON.parse(localStorage.getItem("data"));
+  if (data) {
+    setIsLoggedIn(true);
+    setToken(data.token);
+    setUserId(data.id);
+  }
+} , [])
+
+
+
 useEffect(()=>{
   fetch(process.env.REACT_APP_SERVER_URL + "/meals")
   .then(res=>res.json())
@@ -31,7 +45,7 @@ useEffect(()=>{
 
 
   return (
-    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser }}>
+    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn }}>
       <div className='App'>
         <HashRouter>
         <Navbar/>
@@ -42,10 +56,11 @@ useEffect(()=>{
             <Route path="/support" element={<SupportPage />} />
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
-            <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/login" element={<LoginPage  />} />
             {/* <Route path="/login" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
-          <Route path="/register" element={isLoggedIn ? (<Navigate replace to="/meals" />): (<RegisterPage setIsLoggedIn={setIsLoggedIn} />) }/>
-          <Route path="/cart" element={<CartPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          {/*<Route path="/register" element={isLoggedIn ? (<Navigate replace to="/meals" />): (<RegisterPage setIsLoggedIn={setIsLoggedIn} />) }/>*/}
+          <Route path="/cart" element={<CartPage />} /> 
           </Routes>
           <Footer/>
 

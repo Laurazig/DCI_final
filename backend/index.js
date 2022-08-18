@@ -18,8 +18,6 @@ app.use(cors({origin:"http://localhost:3000"}));
 app.use(express.json());
 
 dotenv.config();
-console.log("This is the result:",mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`));
-
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`);
 
 mongoose.connection.on("open", () => console.log("Database connection established"));
