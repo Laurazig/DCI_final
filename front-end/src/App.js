@@ -20,7 +20,7 @@ function App() {
   const [cart, setCart] = useState(cartItems);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(""); 
 
@@ -51,7 +51,6 @@ useEffect(()=>{
  */
 
   return (
-
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn }}>
       <div className='App'>
         <HashRouter>
@@ -67,11 +66,9 @@ useEffect(()=>{
             <Route path="/cart" element={<CartPage />} />
           </Routes>
           <Footer/>
-
         </HashRouter>
       </div>
     </MyContext.Provider>
   );
 }
-
 export default App;
