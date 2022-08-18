@@ -5,6 +5,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const NavTest = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [logoutIsShown, setLogoutIsShown] = useState(false);
+  const handleClick = (event) => {
+    setLogoutIsShown((current) => !current);
+  };
 
   return (
     <div className="Navbar">
@@ -35,7 +39,7 @@ const NavTest = (props) => {
             </button>
           </NavLink>
           <NavLink to="/register">
-            <button className={props.isLogged === true ? "hide" : "regButton" }>
+            <button className={props.isLogged === true ? "hide" : "regButton"}>
               {" "}
               Register
             </button>
@@ -49,10 +53,17 @@ const NavTest = (props) => {
       >
         <div className="bar"></div>
       </div>
-      <div className={props.isLogged === true ?  "showUserIcon" : "hide" }>
-            <p>Hello *name of user* </p>
-            <AccountCircleIcon style={{ fontSize: 50 }} />
+
+      {/* user icon + logout button */}
+      <div className={props.isLogged === true ? "showUserIcon" : "hide"}>
+        <p className="userName">Hello *name of user* </p>
+        <AccountCircleIcon onClick={handleClick} style={{ fontSize: 50 }} />
+        {logoutIsShown && (
+          <div className="logoutButtonWrapper">
+            <button  className="logoutButton">Logout</button>
           </div>
+        )}
+      </div>
     </div>
   );
 };
