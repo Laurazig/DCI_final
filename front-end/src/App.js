@@ -16,17 +16,18 @@ export const MyContext = React.createContext();
 
 function App() {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  const userData = JSON.parse(localStorage.getItem("data")) || null; 
   const [meals, setMeals] = useState([]);
   const [cart, setCart] = useState(cartItems);
   const [orders, setOrders] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(userData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(""); 
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data"));
-    if (data) {
+    if (data.id) {
       setIsLoggedIn(true);
       setToken(data.token);
       setUserId(data.id);
@@ -34,10 +35,15 @@ function App() {
   }, [])
 
   useEffect(()=>{
+    localStorage.setItem("data", JSON.stringify(user))
+   },[user])
+
+  useEffect(()=>{
    localStorage.setItem("cart", JSON.stringify(cart))
   },[cart])
 
 useEffect(()=>{
+  console.log(`user: ${user}`)
   fetch(process.env.REACT_APP_SERVER_URL + "/meals")
   .then(res=>res.json())
 .then(data=>{

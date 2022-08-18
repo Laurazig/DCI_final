@@ -20,6 +20,7 @@ const CartPage = () => {
   }, [cart]);
 
   useEffect(() => {
+    console.log(`userData: ${userData}`)
     fetch(process.env.REACT_APP_SERVER_URL + `/user/${user.id}`)
       .then(res => res.json())
       .then(data => {
