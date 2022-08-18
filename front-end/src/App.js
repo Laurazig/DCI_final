@@ -11,7 +11,6 @@ import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
 import NavbarTest from "./components/globalComponents/navTest/NavbarTest";
 
-// console.log(`myContext= ${MyContext}`);
 export const MyContext = React.createContext();
 
 function App() {
@@ -23,40 +22,37 @@ function App() {
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(""); // Added by Yohannes
 
-useEffect(() => {
-  const data = JSON.parse(localStorage.getItem("data"));
-  if (data) {
-    setIsLoggedIn(true);
-    setToken(data.token);
-    setUserId(data.id);
-  }
-} , [])
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("data"));
+    if (data) {
+      setIsLoggedIn(true);
+      setToken(data.token);
+      setUserId(data.id);
+    }
+  }, [])
 
-
-
-useEffect(()=>{
-  fetch(process.env.REACT_APP_SERVER_URL + "/meals")
-  .then(res=>res.json())
-.then(data=>{
- setMeals(data)
-})
-},[]);
+  useEffect(() => {
+    fetch(process.env.REACT_APP_SERVER_URL + "/meals")
+      .then(res => res.json())
+      .then(data => {
+        setMeals(data)
+      })
+  }, []);
 
   return (
 
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn }}>
       <div className='App'>
         <HashRouter>
-          <NavbarTest isLogged ={isLoggedIn} />
+          <NavbarTest isLogged={isLoggedIn} />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/howitworks" element={<HowItWorksPage />} />
             <Route path="/support" element={<SupportPage />} />
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
-            <Route path="/login" element={<LoginPage  />} />
-            {/* <Route path="/login" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
-            <Route path="/register" element={<RegisterPage />} 
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<CartPage />} />
           </Routes>
           <Footer />
