@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./navTestStyle.scss";
 import { NavLink } from "react-router-dom";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const NavTest = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,11 +28,7 @@ const NavTest = (props) => {
         {/* buttons */}
         <div className="buttonWrapper">
 
-        <div className={props.isLogged === true ? "showUserIcon" : "hide"} >
-          <p>Hello *name of user* </p>
-          <AccountCircleIcon style={{ fontSize: 50 }}/>
-          <img src="" alt="" />
-          </div>          
+          
           <NavLink to="/login">
             <button
               className={props.isLogged === true ? "hide" : "logInButton"}
@@ -41,7 +37,7 @@ const NavTest = (props) => {
             </button>
           </NavLink>
           <NavLink to="/register">
-            <button className={props.isLogged === true ? "hide" : "regButton"}>
+            <button className={props.isLogged === true ? "hide" : "regButton" }>
               {" "}
               Register
             </button>
@@ -56,6 +52,13 @@ const NavTest = (props) => {
       >
         <div className="bar"></div>
       </div>
+
+      <div className={props.isLogged === true ?  "showUserIcon" : "hide" }>
+            <p>Hello *name of user* </p>
+            <AccountCircleIcon style={{ fontSize: 50 }} />
+          </div>
+
+
     </div>
   );
 };

@@ -19,7 +19,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(""); // Added by Yohannes
 
@@ -56,7 +56,7 @@ useEffect(()=>{
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/login" element={<LoginPage  />} />
             {/* <Route path="/login" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
-            <Route path="/register" element={<RegisterPage />} 
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<CartPage />} />
           </Routes>
           <Footer />
