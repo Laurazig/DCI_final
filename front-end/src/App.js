@@ -19,19 +19,32 @@ function App() {
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [token, setToken] = useState(false);
+  const [userId, setUserId] = useState(""); // Added by Yohannes
 
-  useEffect(() => {
-    console.log("fetching meals");
-    fetch(process.env.REACT_APP_SERVER_URL + "/meals")
-      .then(res => res.json())
-      .then(data => {
-        setMeals(data)
-      })
-  }, [])
+useEffect(() => {
+  const data = JSON.parse(localStorage.getItem("data"));
+  if (data) {
+    setIsLoggedIn(true);
+    setToken(data.token);
+    setUserId(data.id);
+  }
+} , [])
+
+
+
+useEffect(()=>{
+  fetch(process.env.REACT_APP_SERVER_URL + "/meals")
+  .then(res=>res.json())
+.then(data=>{
+ setMeals(data)
+})
+},[]);
 
   return (
-    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, isLoggedIn, setIsLoggedIn }}>
+
+    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn }}>
       <div className='App'>
         <HashRouter>
           <NavbarTest isLogged ={isLoggedIn} />
@@ -41,9 +54,9 @@ function App() {
             <Route path="/support" element={<SupportPage />} />
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
-            <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/login" element={<LoginPage  />} />
             {/* <Route path="/login" element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}/> */}
-            <Route path="/register" element={isLoggedIn ? (<Navigate replace to="/meals" />) : (<RegisterPage setIsLoggedIn={setIsLoggedIn} />)} />
+            <Route path="/register" element={<RegisterPage />} 
             <Route path="/cart" element={<CartPage />} />
           </Routes>
           <Footer />

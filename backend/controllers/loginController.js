@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import createError from "http-errors";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const loginController = async  (req, res, next) => {
     // Take the username and password the user tried to log in with
@@ -8,25 +9,43 @@ export const loginController = async  (req, res, next) => {
    let foundUser;
    try{
     foundUser = await User.findOne({email: email})
-    //bcrypt.compare()  entered password with database
    } catch {
     return next(createError(500, "could not query database. Please try again!"));
     }
 
-    console.log(foundUser);
+    // If no user was found, return an error
+    if(!foundUser) {
+        return next(createError(401, "Invalid username"));
+    };
 
-    if (foundUser ===null) {
-        return next(createError(401, "You could not be logged in. User with that email does not exist"));
-        //return res.status(400).json({message:"No user found"});
 
+    if (foundUser) {
+        // Check if the password the user entered matches the one in the database
+        let isPasswordCorrect;
+        try {
+            isPasswordCorrect = await bcrypt.compare(password, foundUser.password);
+        } catch {
+            return next(createError(500, "could not compare passwords. Please try again!"));
+        }
+
+        // If the password is not correct, return an error
+        if (!isPasswordCorrect) {
+            return next(createError(401, "The password you entered is incorrect"));
+        };
+
+        // Generate a token for the user that is valid for 1 hour.
+        let newToken;
+        try{
+            newToken = jwt.sign({ id: foundUser._id }, process.env.SECRET_KEY, { expiresIn: "1h" } )
+
+        }catch{
+            return next(createError(500, "could not generate token. Please try again!"));
+        }
+
+        // If the password is correct and the token is valid, return the user id and the user's token
         
+        return res.json({id: foundUser._id, firstName: foundUser.firstName, token: newToken});
+  
     }
 
-    const checkPassword = await bcrypt.compare(password, foundUser.password);
-
-    if(checkPassword){
-        return res.json({id: foundUser._id, firstName: foundUser.firstName, lastName: foundUser.lastName});
-     } else {
-        return next(createError(401, "You could not be logged in. Inccorrect password"));
-     }
 };

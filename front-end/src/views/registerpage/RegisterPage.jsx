@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./registerPage.scss";
 
 const Register = (props) => {
-  const { setUser } = useContext(MyContext);
+  const { setUser, token } = useContext(MyContext);
   let navigate = useNavigate();
 
   const [userData, setUserdata] = useState({
@@ -41,26 +41,12 @@ const Register = (props) => {
   const registerUser = async (event) => {
     event.preventDefault();
 
-    /*  const newUser = {
-       firstName: firstName,
-       lastName: lastName,
-       email: email,
-       password: password,
-       confirmPassword: confirmPassword,
-       year: year,
-       month: month,
-       day: day,
-       street: street,
-       houseNo: houseNo,
-       zipCode: zipCode,
-       city: city,
-     }; */
-
     const settings = {
       method: "POST",
       body: JSON.stringify(userData),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,
       },
     };
     console.log(process.env.REACT_APP_SERVER_URL);
@@ -71,8 +57,12 @@ const Register = (props) => {
     const parsedRes = await response.json();
     try {
       if (response.ok) {
-        props.setIsLoggedIn(true);
-        setUser(parsedRes);
+        // Dealing with token expiry 
+        const now = new Date();
+        const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60); 
+        localStorage.setItem("data", JSON.stringify({token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString()}));
+        // if the response is okay, send data to backend
+        setUser(parsedRes.token, parsedRes.id)
         navigate("/login");
       } else {
         throw new Error(parsedRes.message);
