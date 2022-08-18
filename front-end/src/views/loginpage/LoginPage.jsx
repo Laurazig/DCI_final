@@ -52,10 +52,10 @@ const LoginPage = () => {
       if (response.ok) {
         const now = new Date();
         const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60); 
-        localStorage.setItem("data", JSON.stringify({token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString()}));
+        // localStorage.setItem("data", JSON.stringify({token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString()}));
         
         setIsLoggedIn(true);
-        setUser(parsedRes.token, parsedRes.id)
+        setUser({token: parsedRes.token, id: parsedRes.id, firstName: parsedRes.firstName, expiry: tokenExpiry.toISOString()})
 
         navigate("/meals");
       } else {
