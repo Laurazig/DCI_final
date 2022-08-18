@@ -3,9 +3,9 @@ import { MyContext } from '../../App';
 import ReactStars from "react-rating-stars-component"
 
 
-const MealsPage = props => {
-  const { meals, cart, setCart } = useContext(MyContext);
-  // console.log(`console.log MealsPage user: ${props.user.firstName}`);
+const MealsPage = () => {
+  const { meals, cart, setCart, user } = useContext(MyContext);
+  
 
   const addToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
@@ -23,12 +23,13 @@ const MealsPage = props => {
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+    <div >
 
-      {/* <div>
-        <h2>Welcome {user.email}</h2>
-      </div> */}
+      <div>
+        <h2>Welcome {user.firstName}</h2>
+      </div>
       <h2>Meals page</h2>
+<div style={{ display: 'flex', flexWrap: 'wrap' }}>
 
       {meals.map((meal) => {
         return (
@@ -52,6 +53,7 @@ const MealsPage = props => {
           </div>
         );
       })}
+</div>
     </div>
   );
 };

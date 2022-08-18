@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const { Schema } = mongoose;
 
@@ -14,13 +15,13 @@ const userSchema = new Schema( {
     houseNo: { type: Number, required: true },
     zipCode: { type: String, required: true },
     city:{ type: String, required: true },
-    meals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
+    //usersMeals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
     orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
  
 }, { timestamps: true } );
 
 userSchema.pre("save", async function(next) {
-    // Securing the password using salting round
+    // Securing the password using salting round. The salt rounds are the number of times the password is hashed. The higher the salt rounds, the more secure the password is, however, it takes longer time to hash the password.
     const secureUserPassword = await bcrypt.hash(this.password, 12);
     this.password = secureUserPassword;
 

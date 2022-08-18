@@ -4,10 +4,9 @@ import { MyContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   let navigate = useNavigate();
-
-  const { setUser,token,setIsLoggedIn} = useContext(MyContext);
+  const { setUser, token, isLoggedIn, setIsLoggedIn } = useContext(MyContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
@@ -51,14 +50,13 @@ const LoginPage = (props) => {
 
     try {
       if (response.ok) {
-        // Dealing with token expiry
         const now = new Date();
-        const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60);
-        // to remain where you logged in
+        const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60); 
         localStorage.setItem("data", JSON.stringify({token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString()}));
         
         setIsLoggedIn(true);
-        setUser(parsedRes.id, parsedRes.token);
+        setUser(parsedRes.token, parsedRes.id)
+
         navigate("/meals");
       } else {
         throw new Error(parsedRes.message);

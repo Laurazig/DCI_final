@@ -9,6 +9,7 @@ const CartPage = () => {
   const [message, setMessage] = useState("");
   const [placedOrder, setPlacedOrder] = useState(false);
   const [total, setTotal] = useState(0);
+  const [userData, SetUserData] = useState(null);
 
   useEffect(() => {
     const sum = cart.reduce((acc, item) => {
@@ -18,51 +19,68 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
-  const changeQuantity = (e, meal) => {
-    const item = cart.find((elem) => elem._id === meal._id);
-    item.quantity = Number(e.target.value);
-    setCart([...cart]);
-    console.log(item);
-  };
+  useEffect(() => {
+    fetch(process.env.REACT_APP_SERVER_URL + `/user/${user.id}`)
+      .then(res => res.json())
+      .then(data => {
+        SetUserData(data)
+      })
+  }, []);
 
-const getAddress = (e) => {
-    e.preventDefault();
-    let userAddress = {
-      house: e.target.hn.value,
-      street: e.target.stn.value,
-      postcode: e.target.pc.value,
-      city: e.target.city.value,
-      country: e.target.country.value,
-    };
-    console.log(userAddress);
-    e.target.reset();
-  };
+  // const changeQuantity = (e, meal) => {
+  //   const item = cart.find((elem) => elem._id === meal._id);
+  //   item.quantity = Number(e.target.value);
+  //   setCart([...cart]);
+  //   console.log(item);
+  // };
+
+  // const getAddress = (e) => {
+  //     e.preventDefault();
+  //     let userAddress = {
+  //       house: e.target.hn.value,
+  //       street: e.target.stn.value,
+  //       postcode: e.target.pc.value,
+  //       city: e.target.city.value,
+  //       country: e.target.country.value,
+  //     };
+  //     console.log(userAddress);
+  //     e.target.reset();
+  //   };
+
+  //user enters card number, date, 3dig - click confirm order
+  //last 4 dig card is stored in database order
+  //stripe sandbox to process payment
+  // const payment = (e) => {
+  //   e.preventDefault()
+  //   ??setCardNum =cardNumber.slice(-4)
+  // }
 
   const placeOrder = () => {
     if (!user) {
       setMessage("You need to login first");
     } else if (cart.length !== 0) {
-      fetch("http://localhost:3001/orders", {
+      fetch("http://localhost:3001/order", {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          userId: user._id,
-          meals: cart.map((item) => item._id),
+          userId: user.id,
+          usersMeals: cart.map((item) => item._id),
+          //CardNumLast4Dig:
         }),
       })
         .then((res) => res.json())
         .then((result) => {
           if (result.success) {
             console.log(result);
-            fetch(`http://localhost:3001/orders/${result.data._id}`)
+            fetch(`http://localhost:3001/order/${result.data._id}`)
               .then((res) => res.json())
               .then((final) => {
                 console.log(final);
                 if (final.success) {
                   console.log(final);
-                  setOrders([...orders, ...final.data.meals]);
+                  setOrders([...orders, ...final.data.usersMeals]);
                 }
               });
             setPlacedOrder(true);
@@ -78,29 +96,29 @@ const getAddress = (e) => {
     }
   };
 
-  const deleteItem = async event =>
-  {
-      const userId = event.target.parentElement.id;
-      const settings = {
-          method: "DELETE",
-          credentials:'include'
-      };
-      const response = await fetch( process.env.REACT_APP_SERVER_URL + `/users/${ setUser }/meals/${ userId }`, settings );
-      const parsedRes = await response.json();
-      try
-      {
-          if ( response.ok )
-          {
-              console.log( 'Delete This Item', parsedRes.meals );
-             /*  setMeals( parsedRes.meals ); */
-          } else
-          {
-              throw new Error(parsedRes.message);
-          }
-      } catch ( err )
-      {
-          alert( err.message );
+  const deleteItem = async event => {
+    const userId = event.target.parentElement.id;
+    const settings = {
+      method: "DELETE",
+      credentials: 'include'
+    };
+
+    const response = await fetch(process.env.REACT_APP_SERVER_URL + `/users/${setUser}/meals/${userId}`, settings);
+    const parsedRes = await response.json();
+
+    try {
+      if (response.ok) {
+        console.log('Delete This Item', parsedRes.usersMeals);
+        /*  setMeals( parsedRes.meals ); */
+
+      } else {
+        throw new Error(parsedRes.message);
       }
+
+    } catch (err) {
+      alert(err.message);
+    }
+
   };
 
   return (
@@ -109,21 +127,24 @@ const getAddress = (e) => {
         <h2>Thanks for placing order: </h2>
       ) : (
         <div>
+          <h3>Your choice this week: </h3>
           {cart.map((meal) => {
             return (
               <div key={meal._id}>
                 <img src={meal.img} width="100" alt="" />
-                <h2>{meal.meal}</h2>
-                <p>{meal.price}</p>
+                <h4>{meal.mealName}</h4>
+                <p>{meal.price}€</p>
                 <div className={"deleteCartItems"}> <h3>
-                  quantity :  {/* <button className={"cartButtons"}onClick={ deleteItem}>-</button> <span> </span> */}
-                  <input
+                  {/* quantity :   */}
+                  {/* <button className={"cartButtons"}onClick={ deleteItem}>-</button> <span> </span> */}
+                  {/* <input
                     type="text"
                     defaultValue={meal.quantity}
                     onChange={(e) => changeQuantity(e, meal)}
-                  />{" "}{/* <button className={"cartButtons"} onClick={ deleteItem}>+</button> */}
-                </h3> <button className={"cartButtonsDelete"} onClick={ deleteItem}>X</button> </div>
-               
+                  />{" "} */}
+                  {/* <button className={"cartButtons"} onClick={ deleteItem}>+</button> */}
+                </h3> <button className={"cartButtonsDelete"} onClick={deleteItem}>X</button> </div>
+
               </div>
             );
           })}
@@ -132,12 +153,27 @@ const getAddress = (e) => {
 
       <div className="total">
         {" "}
-        {cart.length > 0 && <h2> Total :{total} </h2>}{" "}
+        {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
       </div>
-      <button onClick={placeOrder}>checkout</button>
+      
       <h3>{message}</h3>
       <h3>Address: </h3>
-      <form onSubmit={getAddress}>
+      <div>
+        {
+          userData &&
+          (
+            <div key={userData._id}>
+              <p>{userData.firstName} {userData.lastName}</p>
+              <p>{userData.street} {userData.houseNo}</p>
+              <p>{userData.city}</p>
+              <p>{userData.zipCode}</p>
+              <p>{userData.phone}</p>
+              {/* </h3> <button  onClick={ addAddress}>Add Address</button> */}
+            </div>
+          )
+             }
+      </div>
+      {/* <form onSubmit={getAddress}>
         <label>
           House No.
           <input type="number" name="hn" min={1} />
@@ -164,7 +200,27 @@ const getAddress = (e) => {
         </label>
         <br />
         <input type="submit" value="add" />
+      </form> */}
+      <h3>Payment: </h3>
+      {/* <form onSubmit={payment}> */}
+      <form >
+        <label>
+          card No.
+          <input type="number" name="hn" min={12} />
+        </label>
+        <label>
+          Month / year
+          <input type="number" name="stn" />
+        </label>
+        <label>
+          3 dig
+          <input type="number" name="stn" min={3} />
+        </label>
       </form>
+
+
+      <button onClick={placeOrder}>checkout</button>
+
     </div>
   );
 };
