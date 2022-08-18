@@ -2,8 +2,6 @@ import User from "../models/user.js";
 import createError from "http-errors";
 import jwt from "jsonwebtoken";
 
-
-
 export const registerController = async ( req, res, next ) =>
 {
 
@@ -37,7 +35,6 @@ export const registerController = async ( req, res, next ) =>
             houseNo: houseNo,
             zipCode: zipCode,
             city: city,
-            // meals:[],
             // orders:[]
 
         } );
