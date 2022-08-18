@@ -20,7 +20,7 @@ function App() {
   const [user, setUser] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(""); // Added by Yohannes
+  const [userId, setUserId] = useState(""); 
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data"));
