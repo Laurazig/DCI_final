@@ -1,3 +1,4 @@
+
 import React, { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../App";
 import './cartPage.scss';
@@ -56,7 +57,7 @@ const CartPage = () => {
 
   const placeOrder = () => {
     if (!user) {
-      setMessage("You need to login first"); //has to be logged in to see cart page
+      setMessage("You need to login first");
     } else if (cart.length !== 0) {
       fetch("http://localhost:3001/order", {
         method: "POST",
@@ -120,18 +121,10 @@ const CartPage = () => {
 
   };
 
-
   return (
     <div>
       {placedOrder ? (
         <h2>Thanks for placing order: </h2>
-        // <h3>Your selection: {}</h3>
-        // <h3>Order address: {}</h3>
-        // <h3>Last 4 digits of card used to place order: *********{}</h3>
-        // <p>an confirmation email has been sent to {user.email}</p>
-        // <p>click here to see next weeks selcetion</p>
-        // <button>meals</button>
-
       ) : (
         <div>
           <h3>Your choice this week: </h3>
@@ -162,7 +155,7 @@ const CartPage = () => {
         {" "}
         {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
       </div>
-
+      
       <h3>{message}</h3>
       <h3>Address: </h3>
       <div>
@@ -227,6 +220,7 @@ const CartPage = () => {
 
 
       <button onClick={placeOrder}>checkout</button>
+
     </div>
   );
 };

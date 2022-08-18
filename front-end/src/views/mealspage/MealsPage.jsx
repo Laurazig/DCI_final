@@ -9,10 +9,15 @@ const MealsPage = () => {
 
   const addToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
+    
     if (item) {
       item.quantity += 1;
-      setCart(cart);
-    } else {
+      setCart([...cart]);
+    } else {if ((cart.length +1) > 3 ){
+      alert('Reached Maximum Quantity of Meals')
+      console.log('Minimum and  Maximum meals')
+      return 
+    }
       setCart([...cart, { ...meal, quantity: 1 }]);
     }
   };

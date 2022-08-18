@@ -13,7 +13,7 @@ $tertiaryCol: black;
 
 //------- Buttons -------
 @mixin buttonStyle {
-    width: clamp(0px, 10vw, 130px);
+    width: 130px;
     height: 35px;
     border-radius: 7px;
 }

@@ -46,7 +46,8 @@ const Register = (props) => {
       body: JSON.stringify(userData),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer " + token
+
       },
     };
     console.log(process.env.REACT_APP_SERVER_URL);
