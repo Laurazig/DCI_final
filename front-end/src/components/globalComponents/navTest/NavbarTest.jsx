@@ -27,8 +27,6 @@ const NavTest = (props) => {
 
         {/* buttons */}
         <div className="buttonWrapper">
-
-          
           <NavLink to="/login">
             <button
               className={props.isLogged === true ? "hide" : "logInButton"}
@@ -44,7 +42,6 @@ const NavTest = (props) => {
           </NavLink>
         </div>
       </div>
-
       {/* toggle area */}
       <div
         className={`nav-toggle ${isOpen && "open"}`}
@@ -52,13 +49,10 @@ const NavTest = (props) => {
       >
         <div className="bar"></div>
       </div>
-
       <div className={props.isLogged === true ?  "showUserIcon" : "hide" }>
             <p>Hello *name of user* </p>
             <AccountCircleIcon style={{ fontSize: 50 }} />
           </div>
-
-
     </div>
   );
 };

@@ -9,6 +9,7 @@ const LoginPage = () => {
   const { setUser, token, isLoggedIn, setIsLoggedIn } = useContext(MyContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
   const updateData = (event) => {
     switch (event.target.name) {

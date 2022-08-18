@@ -1,5 +1,6 @@
 import "./navbar.scss";
 import React from "react";
+import Logo from "../../../assets/logo.jpg";
 import { NavLink } from "react-router-dom";
 // RFC
 
