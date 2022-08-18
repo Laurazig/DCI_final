@@ -7,9 +7,10 @@ import { NavLink } from "react-router-dom";
 const LoginPage = (props) => {
   let navigate = useNavigate();
 
-  const { setUser } = useContext(MyContext);
+  const { setUser,token,setIsLoggedIn} = useContext(MyContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
   const updateData = (event) => {
     switch (event.target.name) {
@@ -31,12 +32,13 @@ const LoginPage = (props) => {
       email: email,
       password: password,
     };
-console.log(loginData)
+
     const settings = {
       method: "POST",
       body: JSON.stringify(loginData),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
       },
     /*  credentials: 'include',  */
     };
@@ -49,8 +51,14 @@ console.log(loginData)
 
     try {
       if (response.ok) {
-        props.setIsLoggedIn(true);
-        setUser(parsedRes);
+        // Dealing with token expiry
+        const now = new Date();
+        const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60);
+        // to remain where you logged in
+        localStorage.setItem("data", JSON.stringify({token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString()}));
+        
+        setIsLoggedIn(true);
+        setUser(parsedRes.id, parsedRes.token);
         navigate("/meals");
       } else {
         throw new Error(parsedRes.message);
