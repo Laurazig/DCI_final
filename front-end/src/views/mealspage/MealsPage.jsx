@@ -26,7 +26,7 @@ const MealsPage = () => {
     <div >
 
       <div>
-        <h2>Welcome {user.firstName}</h2>
+        <h2>Welcome {user && user.firstName}</h2>
       </div>
       <h2>Meals page</h2>
 <div style={{ display: 'flex', flexWrap: 'wrap' }}>

@@ -1,5 +1,5 @@
 import express from "express";
-import {  getUserById, updatedOrder } from "../controllers/usersController.js";
+import {  getUserById, updatedOrder,verifyUser } from "../controllers/usersController.js";
 
 const router = express.Router();
 
@@ -14,6 +14,8 @@ router.patch("/:id/orders", updatedOrder);
 // router.delete("/:id/meals/:mealId", deleteSingleMeal); 
 
 // router.delete("/:id", deleteAccount);
+
+router.post("/verifytoken", verifyUser)
 
 
 

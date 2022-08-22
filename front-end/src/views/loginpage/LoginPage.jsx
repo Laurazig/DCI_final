@@ -56,7 +56,6 @@ const LoginPage = () => {
         
         setIsLoggedIn(true);
         setUser({token: parsedRes.token, id: parsedRes.id, firstName: parsedRes.firstName, expiry: tokenExpiry.toISOString()})
-
         navigate("/meals");
       } else {
         throw new Error(parsedRes.message);

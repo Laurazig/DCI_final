@@ -2,9 +2,24 @@ import React, { useState, useContext } from "react";
 import "./navTestStyle.scss";
 import { NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { MyContext } from "../../../App";
+import { useNavigate } from "react-router-dom";
+
 
 const NavTest = (props) => {
+  let navigate = useNavigate();
+  const{user,setUser,setIsLoggedIn,setToken,setCart}=useContext(MyContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [ logOutButton, setLogOutButton ]=useState(false)
+
+const logOut=()=>{
+  localStorage.clear()
+  setUser(null)
+  setIsLoggedIn(false)
+  setToken(null)
+  setCart([])
+  navigate("/")
+}
 
   return (
     <div className="Navbar">
@@ -49,9 +64,14 @@ const NavTest = (props) => {
       >
         <div className="bar"></div>
       </div>
+
       <div className={props.isLogged === true ?  "showUserIcon" : "hide" }>
-            <p>Hello *name of user* </p>
-            <AccountCircleIcon style={{ fontSize: 50 }} />
+            <p>Hello {user && user.firstName} </p>
+           
+            <div >
+            <AccountCircleIcon onClick={()=>{setLogOutButton(!logOutButton)}}style={{ fontSize: 50, cursor:"pointer" }} />
+              <p onClick={logOut} style={{position:"absolute", right:"50px", width:"120px", padding:"5px", color:"white", backgroundColor:"gray",textAlign:"center", display:logOutButton ?"block" : "none", cursor:"pointer"}}>Log-Out</p>
+            </div>
           </div>
     </div>
   );

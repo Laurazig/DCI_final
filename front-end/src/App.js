@@ -10,68 +10,128 @@ import MealsPage from "./views/mealspage/MealsPage";
 import React, { useState, useEffect } from "react";
 import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
-import './App.css'
+import './App.css';
 
 export const MyContext = React.createContext();
 
-function App() {
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  const userData = JSON.parse(localStorage.getItem("data")) || null; 
-  const [meals, setMeals] = useState([]);
-  const [cart, setCart] = useState(cartItems);
-  const [orders, setOrders] = useState([]);
-  const [user, setUser] = useState(userData);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(""); 
+function App ()
+{
+  const cartItems = JSON.parse( localStorage.getItem( "cart" ) ) || [];
+  const userData = JSON.parse( localStorage.getItem( "data" ) ) || null;
+  const [ meals, setMeals ] = useState( [] );
+  const [ cart, setCart ] = useState( cartItems );
+  const [ orders, setOrders ] = useState( [] );
+  const [ user, setUser ] = useState( userData );
+  const [ isLoggedIn, setIsLoggedIn ] = useState( false );
+  const [ token, setToken ] = useState( false );
+  const [ userId, setUserId ] = useState( "" );
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("data"));
-    if (data.id) {
-      setIsLoggedIn(true);
-      setToken(data.token);
-      setUserId(data.id);
+  useEffect( () =>
+  {
+    const data = JSON.parse( localStorage.getItem( "data" ) );
+    console.log(data);
+    if ( data )
+    {
+      console.log(data.token)
+      /* fetch(process.env.REACT_APP_SERVER_URL + `/user/${data.id}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+       setUser(data)
+      }) */
+      fetch( process.env.REACT_APP_SERVER_URL + "/user/verifytoken", {
+        method: "POST",
+        headers: {
+          "token": data.token
+        }
+      } ).then( ( res ) =>
+      {
+        return res.json();
+      } ).then( ( result ) =>
+      {
+        console.log( result );
+        if ( result.success )
+        {   const now = new Date();
+          const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60);
+          setIsLoggedIn(true);
+          setUser({token: data.token, id:data.id, firstName: data.firstName, expiry: tokenExpiry.toISOString()})
+          setToken( data.token );
+          setUserId( data.id );
+        } else
+        {
+         console.log( result.message );
+        }
+      });
     }
-  }, [])
+    fetch( process.env.REACT_APP_SERVER_URL + "/meals" )
+    .then( res => res.json() )
+    .then( data =>
+    {
+      setMeals( data );
+    } );
+  }, [] );
 
-  useEffect(()=>{
-    localStorage.setItem("data", JSON.stringify(user))
-   },[user])
+  useEffect( () =>
+  {
+    localStorage.setItem( "data", JSON.stringify( user ) );localStorage.setItem( "cart", JSON.stringify( cart ) );
+  }, [ user,cart ] );
 
-  useEffect(()=>{
-   localStorage.setItem("cart", JSON.stringify(cart))
-  },[cart])
 
-useEffect(()=>{
-  console.log(`user: ${user}`)
-  fetch(process.env.REACT_APP_SERVER_URL + "/meals")
-  .then(res=>res.json())
-.then(data=>{
- setMeals(data)
-})
-},[])
-
-/* const logOut = ()=>{
-  setUser("")
-}
- */
+  /*  const logOut = () =>
+      {
+          localStorage.removeItem( 'data' );/
+          setToken( false );
+          setUserId( "" );
+          setIsLoggedIn( false );
+      };
+  
+      const deregister = async event =>
+      {
+          const settings = {
+              method: "DELETE",
+              headers: {
+                  "Authorization": "Bearer " + token
+              }
+          };
+          const response = await fetch( process.env.REACT_APP_SERVER_URL + `/users/${ userId }`, settings );
+          //await fetch( `http://localhost:3001/users/ettings );
+        const parsedRes = await response.json();
+          try
+          {
+              // If the request was successful...
+              if ( response.ok )
+              {
+                  alert( parsedRes.message );
+                  setIsLoggedIn( false );
+                  setUserId( "" );
+              } else
+              {
+                  throw new Error( parsedRes.message );
+              }
+          } catch ( err )
+          {
+              alert( err.message );
+          }
+      };
+  }
+   */
 
   return (
-    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn }}>
+    <MyContext.Provider value={ { meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn, /* {logOut}, {deregister}  */ } }>
       <div className='App'>
         <HashRouter>
-          <NavbarTest isLogged={isLoggedIn} />
+          <NavbarTest isLogged={ isLoggedIn } />
           <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/howitworks" element={<HowItWorksPage />} />
-            <Route path="/support" element={<SupportPage />} />
-            <Route path="/meals" element={<MealsPage />} />
-            <Route path="/community" element={<CommunityPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/cart" element={<CartPage />} />
+            <Route path="/" element={ <LandingPage /> } />
+            <Route path="/howitworks" element={ <HowItWorksPage /> } />
+            <Route path="/support" element={ <SupportPage /> } />
+            <Route path="/meals" element={ <MealsPage /> } />
+            <Route path="/community" element={ <CommunityPage /> } />
+            <Route path="/login" element={ <LoginPage /> } />
+            <Route path="/register" element={ <RegisterPage /> } />
+            <Route path="/cart" element={ <CartPage /> } />
           </Routes>
-          <Footer/>
+          <Footer />
         </HashRouter>
       </div>
     </MyContext.Provider>

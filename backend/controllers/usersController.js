@@ -1,5 +1,6 @@
 import User from "../models/user.js";
 import createError from "http-errors";
+import jwt from "jsonwebtoken"
 
 //=============================================================
 // GET user by ID
@@ -68,6 +69,22 @@ export const updatedOrder = async (req, res, next) => {
 
     } else {
         next(createError(409, "The customer order could not be submitted. Please try again!"))
+    }
+}
+/* =======20Aug */
+export const verifyUser=async(req,res,next)=>{
+    try{
+        const token =req.headers.token;
+  const decode = jwt.verify(token,process.env.SECRET_KEY)
+  console.log(decode);
+  if(decode){
+let user = await User.findById(decode.id);
+res.send({
+    success:true,
+     data:user})
+  }
+    }catch(err){
+res.send({success:false, message:err.message})
     }
 }
 
