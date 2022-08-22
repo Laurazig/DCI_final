@@ -2,11 +2,9 @@ import React, { useContext } from 'react';
 import { MyContext } from '../../App';
 import ReactStars from "react-rating-stars-component"
 
-
 const MealsPage = () => {
   const { meals, cart, setCart, user } = useContext(MyContext);
   
-
   const addToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
     
@@ -18,10 +16,10 @@ const MealsPage = () => {
       console.log('Minimum and  Maximum meals')
       return 
     }
-      setCart([...cart, { ...meal, quantity: 1 }]);
+    setCart([...cart, { ...meal, quantity: 1 }]); 
     }
   };
-
+//cart[0]._id, cart[1]._id, cart[2]._id
   return (
     <div >
 

@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import orderSchema from "./order";
 
 const { Schema } = mongoose;
 
 const userSchema = new Schema( {
-
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -15,8 +15,7 @@ const userSchema = new Schema( {
     houseNo: { type: Number, required: true },
     zipCode: { type: String, required: true },
     city:{ type: String, required: true },
-    //usersMeals: [ { type: mongoose.Schema.Types.ObjectId, ref: "meals" } ],
-    orders: [ { type: mongoose.Schema.Types.ObjectId, ref: "orders" } ]
+    orders: [ {type: orderSchema}  ]
  
 }, { timestamps: true } );
 
