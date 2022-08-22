@@ -25,6 +25,8 @@ app.use(express.json());
 
 dotenv.config();
 
+const portNumber = process.env.PORT || 3001;
+
 // mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`);
 // mongoose.connection.on("open", () => console.log("Database connection established"));
 // mongoose.connection.on("error", () => console.error);
@@ -49,6 +51,6 @@ app.get("*", (req, res) => {
 // Global error handler
 app.use(globalErrorHandler);
 
-app.listen(3001, () => {
-    console.log("The server has started on part 3001")
+app.listen(portNumber, () => {
+    console.log(`The server has started on port ${portNumber}`)
 });
