@@ -36,7 +36,7 @@ const logOut=()=>{
         <div className="linkWrapper">
           <NavLink to="howitworks">How it works</NavLink>
           <NavLink to="/meals"> Meals</NavLink>
-          <NavLink to="/support">Support</NavLink>
+          <NavLink to="/support">Sustainability</NavLink>
           <NavLink to="/cart"> Cart</NavLink>
         </div>
 
