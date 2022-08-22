@@ -12,6 +12,11 @@ import loginRouter from "./routes/loginRoute.js";
 import mealRouter from "./routes/mealRoute.js";
 import orderRouter from "./routes/ordersRoute.js";
 import usersRoutes from "./routes/usersRoutes.js"
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 //import paymentRouter from "./routes/paymentRoute.js";
 
 const app = express();
@@ -34,6 +39,12 @@ app.use("/user", usersRoutes);
 
 // http://localhost:3001/Meal1_HummusBowl.jpg
 app.use(express.static("assets"));
+
+// Serve frontend client/build folder
+app.use(express.static(path.join(__dirname, "front-end/build")));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/front-end/build/index.html"));
+});
 
 // Global error handler
 app.use(globalErrorHandler);
