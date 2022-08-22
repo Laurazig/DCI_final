@@ -25,9 +25,9 @@ app.use(express.json());
 
 dotenv.config();
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`);
-mongoose.connection.on("open", () => console.log("Database connection established"));
-mongoose.connection.on("error", () => console.error);
+// mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`);
+// mongoose.connection.on("open", () => console.log("Database connection established"));
+// mongoose.connection.on("error", () => console.error);
 
 app.use(morgan("tiny"));
 app.use("/register", registerRouter);
@@ -40,7 +40,7 @@ app.use("/user", usersRoutes);
 // http://localhost:3001/Meal1_HummusBowl.jpg
 app.use(express.static("assets"));
 
-// Serve frontend client/build folder
+// Serve production code front-end/build folder
 app.use(express.static(path.join(__dirname, "front-end/build")));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname + "/front-end/build/index.html"));
