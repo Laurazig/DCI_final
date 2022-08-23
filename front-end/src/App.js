@@ -18,10 +18,10 @@ function App ()
 {
   const cartItems = JSON.parse( localStorage.getItem( "cart" ) ) || [];
   const userData = JSON.parse( localStorage.getItem( "data" ) ) || null;
-  const [ meals, setMeals ] = useState( [] );
-  const [ cart, setCart ] = useState( cartItems );
-  const [ orders, setOrders ] = useState( [] );
   const [ user, setUser ] = useState( userData );
+  const [ cart, setCart ] = useState( cartItems );
+  const [ meals, setMeals ] = useState( [] );
+  const [ orders, setOrders ] = useState( [] );
   const [ isLoggedIn, setIsLoggedIn ] = useState( false );
   const [ token, setToken ] = useState( false );
   const [ userId, setUserId ] = useState( "" );

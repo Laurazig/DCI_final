@@ -7,7 +7,7 @@ import './cartPage.scss';
 const CartPage = () => {
   const { cart, setCart, user, setOrders, orders, meals } =
     useContext(MyContext);
-    const navigate = useNavigate;
+  const navigate = useNavigate;
   const [message, setMessage] = useState("");
   const [placedOrder, setPlacedOrder] = useState(false);
   const [total, setTotal] = useState(0);
@@ -26,78 +26,84 @@ const CartPage = () => {
 
   }, []);
 
-  // const changeQuantity = (e, meal) => {
-  //   const item = cart.find((elem) => elem._id === meal._id);
-  //   item.quantity = Number(e.target.value);
-  //   setCart([...cart]);
-  //   console.log(item);
-  // };
+  /*
+  const changeQuantity = (e, meal) => {
+    const item = cart.find((elem) => elem._id === meal._id);
+    item.quantity = Number(e.target.value);
+    setCart([...cart]);
+    console.log(item);
+  };
 
-  // const getAddress = (e) => {
-  //     e.preventDefault();
-  //     let userAddress = {
-  //       house: e.target.hn.value,
-  //       street: e.target.stn.value,
-  //       postcode: e.target.pc.value,
-  //       city: e.target.city.value,
-  //       country: e.target.country.value,
-  //     };
-  //     console.log(userAddress);
-  //     e.target.reset();
-  //   };
+  const getAddress = (e) => {
+      e.preventDefault();
+      let userAddress = {
+        house: e.target.hn.value,
+        street: e.target.stn.value,
+        postcode: e.target.pc.value,
+        city: e.target.city.value,
+        country: e.target.country.value,
+      };
+      console.log(userAddress);
+      e.target.reset();
+    };
 
-  //user enters card number, date, 3dig - click confirm order
-  //last 4 dig card is stored in database order
-  //stripe sandbox to process payment
-  // const payment = (e) => {
-  //   e.preventDefault()
-  //   ??setCardNum =cardNumber.slice(-4)
-  // }
+  user enters card number, date, 3dig - click confirm order
+  last 4 dig card is stored in database order
+  stripe sandbox to process payment
+  const payment = (e) => {
+    e.preventDefault()
+    ??setCardNum =cardNumber.slice(-4)
+  }
 
-  // const placeOrder = () => {
-  //   if (!user) {
-  //     navigate("/register");
-  //   } else if (cart.length !== 0) {
+  const placeOrder = () => {
+    if (!user) {
+      navigate("/register");
+    } else if (cart.length !== 0) {
 
-  //     fetch(`http://localhost:3001/users/${user.id}/order`, {
-  //       method: "POST",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         userId: user.id,
-  //         usersMeals: cart.map((item) => item._id),
-  //         //CardNumLast4Dig:
-  //       }),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((result) => {
-  //         if (result.success) {
-  //           console.log(result);
-  //           fetch(`http://localhost:3001/order/${result.data._id}`)
-  //             .then((res) => res.json())
-  //             .then((final) => {
-  //               console.log(final);
-  //               if (final.success) {
-  //                 console.log(final);
-  //                 setOrders([...orders, ...final.data.usersMeals]);
-  //               }
-  //             });
-  //           setPlacedOrder(true);
-  //           setUser(result.data.userId);
-  //           setCart([]);
-  //         } else {
-  //           alert(result.message);
-  //         }
-  //       })
-  //       .catch((err) => console.log(err.message));
-  //   } else {
-  //     alert("please select any item from our meal list");
-  //   }
-  // };
+      fetch(`http://localhost:3001/users/${user.id}/order`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          usersMeals: cart.map((item) => item._id),
+          //CardNumLast4Dig:
+        }),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.success) {
+            console.log(result);
+            fetch(`http://localhost:3001/order/${result.data._id}`)
+              .then((res) => res.json())
+              .then((final) => {
+                console.log(final);
+                if (final.success) {
+                  console.log(final);
+                  setOrders([...orders, ...final.data.usersMeals]);
+                }
+              });
+            setPlacedOrder(true);
+            setUser(result.data.userId);
+            setCart([]);
+          } else {
+            alert(result.message);
+          }
+        })
+        .catch((err) => console.log(err.message));
+    } else {
+      alert("please select any item from our meal list");
+    }
+  };
 
-  // ! Yohannes and Sameer modify the placeOrder function 
+  */
+
+  // * Yohannes and Sameer modify the placeOrder function 
  
+  // ===========================================================================
+  // The customer placing an order in the front end and post it in the back end
+  //============================================================================
   const placeOrder = async () => {
     if(!user){
       navigate("/register");
@@ -105,10 +111,8 @@ const CartPage = () => {
     } else if(cart.length !== 0) {
 
       const newOrder = {
-        body: JSON.stringify({
-          userOrder: cart.map((item) => item._id),
-          //userId: user.id
-          }), //! needs to be checked
+        userId: user.id,
+        userOrder: cart.map((item) => item._id)
       }
 
       const settings = {
