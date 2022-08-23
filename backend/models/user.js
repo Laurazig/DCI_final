@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 //import jwt from "jsonwebtoken";
+
 import orderSchema from "./order.js";
+
 
 const { Schema } = mongoose;
 
@@ -16,6 +18,8 @@ const userSchema = new Schema( {
     zipCode: { type: String, required: true },
     city:{ type: String, required: true },
     orders: [ { type: orderSchema } ]
+ 
+
 }, { timestamps: true } );
 
 userSchema.pre("save", async function(next) {
