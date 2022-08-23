@@ -77,9 +77,9 @@ function App ()
   }, [ user,cart ] );
 
 
-  /*  const logOut = () =>
+  const logOut = () =>
       {
-          localStorage.removeItem( 'data' );/
+          localStorage.removeItem( 'data' );
           setToken( false );
           setUserId( "" );
           setIsLoggedIn( false );
@@ -113,11 +113,11 @@ function App ()
               alert( err.message );
           }
       };
-  }
-   */
+  
+
 
   return (
-    <MyContext.Provider value={ { meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn, /* {logOut}, {deregister}  */ } }>
+    <MyContext.Provider value={ { meals, setMeals, cart, setCart, orders, setOrders, user, setUser, userId, token, setToken, isLoggedIn, setIsLoggedIn, /* {logOut}, {deregister}  */ } }>
       <div className='App'>
         <HashRouter>
           <NavbarTest isLogged={ isLoggedIn } />
