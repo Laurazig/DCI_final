@@ -72,13 +72,14 @@ export const updatedOrder = async (req, res, next) => {
     }
 }
 /* =======20Aug */
+
 export const verifyUser=async(req,res,next)=>{
     try{
         const token =req.headers.token;
   const decode = jwt.verify(token,process.env.SECRET_KEY)
   console.log(decode);
   if(decode){
-let user = await User.findById(decode.id);
+let user = await User.findById(decode.id).populate({path: "orders", populate: {path: "meals", model: "meals"}})
 res.send({
     success:true,
      data:user})

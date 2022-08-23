@@ -4,13 +4,13 @@ const { Schema } = mongoose;
 
 const orderSchema = new Schema(
   {
-    meals: [{ type: mongoose.Types.ObjectId, ref: "Meal" }],
-    totalPrice: { type: Number, required: true },
-    CreditCardNumber: { type: Number, required: true },
+    meals: [{ type: mongoose.Types.ObjectId, ref: "meals" }],
+    totalPrice: { type: Number, required: true }
   },
   { timestamps: true }
 );
 
-const Order = mongoose.model("Order", orderSchema);
+const Order = mongoose.model("orders", orderSchema);
 
 export default Order;
+

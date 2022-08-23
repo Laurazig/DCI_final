@@ -20,6 +20,7 @@ export const loginController = async ( req, res, next ) =>
         let isPasswordCorrect;
         try
         {
+            console.log(password, foundUser.password)
             isPasswordCorrect = await bcrypt.compare( password, foundUser.password );
         } catch {
             return next( createError( 500, "could not compare passwords. Please try again!" ) );

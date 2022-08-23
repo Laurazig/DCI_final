@@ -28,7 +28,7 @@ app.use(morgan("tiny"));
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/meals", mealRouter);
-app.use("/order", orderRouter);
+app.use("/orders", orderRouter);
 app.use("/users", usersRoutes);
 //app.use("/payment", paymentRouter);
 
