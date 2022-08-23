@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
   let navigate = useNavigate();
-  const { setUser, token, isLoggedIn, setIsLoggedIn } = useContext(MyContext);
+  const { setUser, token, setIsLoggedIn } = useContext(MyContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   

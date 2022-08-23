@@ -1,29 +1,36 @@
-import Order from "../models/order.js";
+import User from "../models/user.js";
 import Meal from "../models/meal.js";
 import createError from "http-errors";
 
 export const orderPost = async (req, res, next) => {
+  const userId = req.params.id;
   const mealId = req.params.id;
-  let foundOrder;
+
+  let foundUser;
   try {
-    foundOrder = await Meal.find(mealId);
+    foundUser = await User.find(userId);
   } catch {
     return next(
       createError(500, "Could not query database. Please try again!")
     );
   }
 
-  if (foundOrder) {
-    const newOrder = new Order({
-      meals: [],
-    });
-
+  if (foundUser) {
+    let foundMeal;
     try {
-      await newOrder.save();
+      foundMeal = await Meal.find(mealId);
     } catch {
       return next(
-        createError(500, "Database could not create an order. Please try again")
+        createError(500, "Database could not find meals. Please try again")
       );
+    }
+
+    if (foundMeal) {
+      const newOrder = new User({
+        orders: [mealId],
+      });
+
+      await newOrder.save();
     }
   }
 

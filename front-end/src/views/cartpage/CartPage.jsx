@@ -5,7 +5,7 @@ import { MyContext } from "../../App";
 import './cartPage.scss';
 
 const CartPage = () => {
-  const { cart, setCart, user, setUser, setOrders, orders, userId } =
+  const { cart, setCart, user, setOrders, orders, meals } =
     useContext(MyContext);
     const navigate = useNavigate;
   const [message, setMessage] = useState("");
@@ -96,8 +96,44 @@ const CartPage = () => {
   //   }
   // };
 
-  // ! Yohannes modify the placeOrder functin 
-  
+  // ! Yohannes and Sameer modify the placeOrder function 
+ 
+  const placeOrder = async () => {
+    if(!user){
+      navigate("/register");
+
+    } else if(cart.length !== 0) {
+
+      const newOrder = {
+        body: JSON.stringify({
+          userOrder: cart.map((item) => item._id),
+          //userId: user.id
+          }), //! needs to be checked
+      }
+
+      const settings = {
+        method: "POST",
+        body: JSON.stringify(newOrder),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+
+      const response = await fetch(`http://localhost:3001/users/${user.id}/order`, settings)
+      const data = await response.json()
+
+      try{
+        if(response.ok){
+          setOrders([...orders, data.id]); //! needs to be checked 
+        } else {
+          throw new Error(data.message)
+        }
+      }catch(err){
+        alert(err.message)
+      }
+    }
+  }
+
 
   const deleteItem = async event => {
     const userId = event.target.parentElement.id;
