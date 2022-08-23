@@ -1,11 +1,13 @@
 
 import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../App";
 import './cartPage.scss';
 
 const CartPage = () => {
-  const { cart, setCart, user, setUser, setOrders, orders } =
+  const { cart, setCart, user, setUser, setOrders, orders, userId } =
     useContext(MyContext);
+    const navigate = useNavigate;
   const [message, setMessage] = useState("");
   const [placedOrder, setPlacedOrder] = useState(false);
   const [total, setTotal] = useState(0);
@@ -52,46 +54,50 @@ const CartPage = () => {
   //   ??setCardNum =cardNumber.slice(-4)
   // }
 
-  const placeOrder = () => {
-    if (!user) {
-      setMessage("You need to login first");
-    } else if (cart.length !== 0) {
-      fetch("http://localhost:3001/order", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          usersMeals: cart.map((item) => item._id),
-          //CardNumLast4Dig:
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result.success) {
-            console.log(result);
-            fetch(`http://localhost:3001/order/${result.data._id}`)
-              .then((res) => res.json())
-              .then((final) => {
-                console.log(final);
-                if (final.success) {
-                  console.log(final);
-                  setOrders([...orders, ...final.data.usersMeals]);
-                }
-              });
-            setPlacedOrder(true);
-            setUser(result.data.userId);
-            setCart([]);
-          } else {
-            alert(result.message);
-          }
-        })
-        .catch((err) => console.log(err.message));
-    } else {
-      alert("please select any item from our meal list");
-    }
-  };
+  // const placeOrder = () => {
+  //   if (!user) {
+  //     navigate("/register");
+  //   } else if (cart.length !== 0) {
+
+  //     fetch(`http://localhost:3001/users/${user.id}/order`, {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         userId: user.id,
+  //         usersMeals: cart.map((item) => item._id),
+  //         //CardNumLast4Dig:
+  //       }),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((result) => {
+  //         if (result.success) {
+  //           console.log(result);
+  //           fetch(`http://localhost:3001/order/${result.data._id}`)
+  //             .then((res) => res.json())
+  //             .then((final) => {
+  //               console.log(final);
+  //               if (final.success) {
+  //                 console.log(final);
+  //                 setOrders([...orders, ...final.data.usersMeals]);
+  //               }
+  //             });
+  //           setPlacedOrder(true);
+  //           setUser(result.data.userId);
+  //           setCart([]);
+  //         } else {
+  //           alert(result.message);
+  //         }
+  //       })
+  //       .catch((err) => console.log(err.message));
+  //   } else {
+  //     alert("please select any item from our meal list");
+  //   }
+  // };
+
+  // ! Yohannes modify the placeOrder functin 
+  
 
   const deleteItem = async event => {
     const userId = event.target.parentElement.id;
@@ -100,7 +106,7 @@ const CartPage = () => {
       credentials: 'include'
     };
 
-    const response = await fetch(process.env.REACT_APP_SERVER_URL + `/users/${setUser}/meals/${userId}`, settings);
+    const response = await fetch(process.env.REACT_APP_SERVER_URL + `/users/${userId}/meals`, settings);
     const parsedRes = await response.json();
 
     try {
