@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 //import jwt from "jsonwebtoken";
+//import orderSchema from "./order";
 
 const { Schema } = mongoose;
 
@@ -15,7 +16,7 @@ const userSchema = new Schema( {
     houseNo: { type: Number, required: true },
     zipCode: { type: String, required: true },
     city:{ type: String, required: true },
-    orders: [ { type: orderSchema } ]
+    //orders: [ { type: orderSchema } ]
  
 }, { timestamps: true } );
 
