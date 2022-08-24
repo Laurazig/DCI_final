@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../App";
 import './cartPage.scss';
 
+//React Stripe.js youtube 
+import { CardElement } from '@stripe/react-stripe-js';
+
 const CartPage = () => {
   const { cart, setCart, user, setOrders, orders, meals } =
     useContext(MyContext);
@@ -21,7 +24,16 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
- 
+//   const CardElementContainer = styled.div`
+//   height: 40px;
+//   display: flex;
+//   align-items: center;
+//   & .StripeElement {
+//     width: 100%;
+//     padding: 15px;
+//   }
+// `;
+
   /*
   const changeQuantity = (e, meal) => {
     const item = cart.find((elem) => elem._id === meal._id);
@@ -43,19 +55,10 @@ const CartPage = () => {
       e.target.reset();
     };
 
-  user enters card number, date, 3dig - click confirm order
-  last 4 dig card is stored in database order
-  stripe sandbox to process payment
-  const payment = (e) => {
-    e.preventDefault()
-    ??setCardNum =cardNumber.slice(-4)
-  }
-
   const placeOrder = () => {
     if (!user) {
       navigate("/register");
     } else if (cart.length !== 0) {
-
       fetch(`http://localhost:3001/users/${user.id}/order`, {
         method: "POST",
         headers: {
@@ -64,7 +67,6 @@ const CartPage = () => {
         body: JSON.stringify({
           userId: user.id,
           usersMeals: cart.map((item) => item._id),
-          //CardNumLast4Dig:
         }),
       })
         .then((res) => res.json())
@@ -103,17 +105,13 @@ const CartPage = () => {
   const placeOrder = async () => {
     if(!user){
       navigate("/register");
-
     } else if(cart.length !== 0) {
-
       const newOrder = {
         meals: cart.map((item) => item._id),
         total: total,
         userId: user.id
       }
-
       console.log(user)
-
       const settings = {
         method: "POST",
         body: JSON.stringify(newOrder),
@@ -121,14 +119,20 @@ const CartPage = () => {
           "Content-Type": "application/json"
         }
       }
-
       const response = await fetch(`http://localhost:3001/orders`, settings)
+      //STRIPE taken from Youtube tutorial:
+      // const response = await fetch(`http://localhost:3001/create-checkout-session`, settings)
+      //____________________
       const result = await response.json()
 
       try{
         if(response.ok){
-          setOrders([...orders, result.data._id]);
+          //STRIPE - taken from Youtube tutorial
+          // .then(({ url }) => {   console.log(url) })
+          // .then(({ url }) => {   window.location = url })
+          setOrders([...orders, result.data._id]);  //only go to database once payment is processed
           setCart([])
+          //show payment button
         } else {
           throw new Error(result.message)
         }
@@ -137,7 +141,6 @@ const CartPage = () => {
       }
     }
   }
-
 
   const deleteItem = async event => {
     const userId = event.target.parentElement.id;
@@ -157,21 +160,18 @@ const CartPage = () => {
       } else {
         throw new Error(parsedRes.message);
       }
-
     } catch (err) {
       alert(err.message);
     }
-
   };
 
   return (
     <div>
       {placedOrder ? (
-        <h2>Thanks for placing order: </h2>
+        <h2>Order  Summary: </h2>
         // <h3>This is your choice of meals:</h3>
         // <h3>order address:</h3>
-        // <h3>last 3 dogits of card used for order:</h3>
-        // <button>click here to return to meals</button>
+        // <button>Click to pay</button>
       ) : (
         <div>
           <h3>Your choice this week: </h3>
@@ -191,7 +191,6 @@ const CartPage = () => {
                   />{" "} */}
                   {/* <button className={"cartButtons"} onClick={ deleteItem}>+</button> */}
                 </h3> <button className={"cartButtonsDelete"} onClick={deleteItem}>X</button> </div>
-
               </div>
             );
           })}
@@ -248,7 +247,7 @@ const CartPage = () => {
         <br />
         <input type="submit" value="add" />
       </form> */}
-      <h3>Payment: </h3>
+            <h3>Payment: </h3>
       {/* <form onSubmit={payment}> */}
       <form >
         <label>
@@ -264,10 +263,11 @@ const CartPage = () => {
           <input type="number" name="stn" min={3} />
         </label>
       </form>
-
-
+      {/* <CardElementContainer>
+        <CardElement />
+      </CardElementContainer> */}
+      
       <button onClick={placeOrder}>checkout</button>
-
     </div>
   );
 };

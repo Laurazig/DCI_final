@@ -1,3 +1,5 @@
+//not needed with stripe
+
 import { check } from "express-validator";
 
 const paymentValidator = () => {
