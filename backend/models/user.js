@@ -14,8 +14,8 @@ const userSchema = new Schema( {
     houseNo: { type: Number, required: true },
     zipCode: { type: String, required: true },
     city:{ type: String, required: true },
-    orders: [ { type: mongoose.Types.ObjectId, ref: "orders" } ],
- 
+    orders: [ { type: mongoose.Types.ObjectId, ref: "orders" } ]
+    
 }, { timestamps: true } );
 
 userSchema.pre("save", async function(next) {

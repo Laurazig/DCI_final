@@ -29,6 +29,7 @@ const MealsPage = () => {
         <h2>Welcome {user && user.firstName}</h2>
       </div>
       <h2>Meals page</h2>
+      <p>Select 3 meals and then go to cart page to process your order. </p>
 <div style={{ display: 'flex', flexWrap: 'wrap' }}>
 
       {meals.map((meal) => {
