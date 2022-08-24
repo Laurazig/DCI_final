@@ -17,3 +17,17 @@ margin-left: 1.5rem;
 padding:0px 15px;
 border-radius: 50%;
 }
+
+.deleteOrderedMeal{
+    cursor: pointer;
+}
+
+.ordered-meals {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.ordered-meals-container {
+    width: 90%;
+    margin: auto;
+}
