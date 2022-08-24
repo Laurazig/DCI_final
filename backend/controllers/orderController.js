@@ -36,23 +36,17 @@ export const orderPost = async (req, res, next) => {
 // Delete a single meal ordered by the customer
 //===========================================================
 export const deleteSingleOrderedMeal = async (req, res, next) => {
+  const orderId = req.params.orderId;
   const selectedMealId = req.params.id;
 
   console.log("The ID of the meal:", selectedMealId)
 
   let foundOrderedMeal;
   try{
-      foundOrderedMeal = await Order.findByIdAndRemove(selectedMealId); 
+      foundOrderedMeal = await Order.findByIdAndUpdate(orderId, {$pull:{meals:{_id: selectedMealId}}},{new:true, runValidators: true}); 
      
   }catch{
       return next(createError(500, "Database could not be queried. Please try again"))
   }
-
-  let updateOrderedMeal;
-  try{
-      updateOrderedMeal = await Order.find({})
-  }catch{
-      return next(createError(403, "Selected meal could not be deleted. please try again!"))
-  }
-  res.status(201).json({meals: updateOrderedMeal})
+  res.status(201).json({meals: foundOrderedMeal})
 }

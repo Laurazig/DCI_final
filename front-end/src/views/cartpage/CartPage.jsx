@@ -148,8 +148,10 @@ const CartPage = () => {
   //============================================================================
 
   const deleteSingleOrderedMeal = async event => {
+        
     const selectedMealId = event.target.parentElement.id;
-
+    const cartItem = cart.filter((cartItem) => cartItem._id != selectedMealId)
+    setCart(cartItem)
     const settings = {
         method: "DELETE"
       };

@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post("/", orderPost);
 
-router.delete("/:id", deleteSingleOrderedMeal);
+router.delete("/:orderId/meals/:id", deleteSingleOrderedMeal);
 
 export default router;
