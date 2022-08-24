@@ -11,15 +11,8 @@ import React, { useState, useEffect } from "react";
 import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
 import './App.css';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js'
 
 export const MyContext = React.createContext();
-
-//?React Stripe.js youtube - is this in app.js or cart page?
-const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
-
-//JSX- wrap children in <Elements stripe={stripePromise} />
 
 function App() {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -76,7 +69,6 @@ function App() {
     localStorage.setItem("data", JSON.stringify(user)); localStorage.setItem("cart", JSON.stringify(cart));
   }, [user, cart]);
 
-
   const logOut = () => {
     localStorage.removeItem('data');
     setToken(false);
@@ -107,14 +99,10 @@ function App() {
       alert(err.message);
     }
   };
-
-
-
   return (
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, userId, token, setToken, isLoggedIn, setIsLoggedIn, /* {logOut}, {deregister}  */ }}>
       <div className='App'>
         <HashRouter>
-          <Elements stripe={stripePromise} >
             <NavbarTest isLogged={isLoggedIn} />
             <Routes>
               <Route path="/" element={<LandingPage />} />
@@ -127,7 +115,6 @@ function App() {
               <Route path="/cart" element={<CartPage />} />
             </Routes>
             <Footer />
-          </Elements>
         </HashRouter>
       </div>
     </MyContext.Provider>

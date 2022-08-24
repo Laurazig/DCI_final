@@ -4,9 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../App";
 import './cartPage.scss';
 
-//React Stripe.js youtube 
-import { CardElement } from '@stripe/react-stripe-js';
-
 const CartPage = () => {
   const { cart, setCart, user, setOrders, orders, meals } =
     useContext(MyContext);
@@ -24,15 +21,6 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
-//   const CardElementContainer = styled.div`
-//   height: 40px;
-//   display: flex;
-//   align-items: center;
-//   & .StripeElement {
-//     width: 100%;
-//     padding: 15px;
-//   }
-// `;
 
   /*
   const changeQuantity = (e, meal) => {
@@ -121,7 +109,7 @@ const CartPage = () => {
       }
       const response = await fetch(`http://localhost:3001/orders`, settings)
       //STRIPE taken from Youtube tutorial:
-      // const response = await fetch(`http://localhost:3001/create-checkout-session`, settings)
+      // const response = await fetch(`http://localhost:3001/payment`, settings)
       //____________________
       const result = await response.json()
 
@@ -263,10 +251,6 @@ const CartPage = () => {
           <input type="number" name="stn" min={3} />
         </label>
       </form>
-      {/* <CardElementContainer>
-        <CardElement />
-      </CardElementContainer> */}
-      
       <button onClick={placeOrder}>checkout</button>
     </div>
   );
