@@ -104,64 +104,70 @@ const CartPage = () => {
     if(!user){
       navigate("/register");
 
-    } else if(cart.length !== 0) {
+    } else if(cart.length < 3) {
+      alert("Minimum order is three meals")
 
-      const newOrder = {
-        meals: cart.map((item) => item._id),
-        total: total,
-        userId: user.id
+      
+  } else {
+    const newOrder = {
+      meals: cart.map((item) => item._id),
+      total: total,
+      userId: user.id
+    }
+
+    console.log(user)
+
+    const settings = {
+      method: "POST",
+      body: JSON.stringify(newOrder),
+      headers: {
+        "Content-Type": "application/json"
       }
+    }
 
-      console.log(user)
+    const response = await fetch(`http://localhost:3001/orders`, settings)
+    const result = await response.json()
 
-      const settings = {
-        method: "POST",
-        body: JSON.stringify(newOrder),
-        headers: {
-          "Content-Type": "application/json"
-        }
+    try{
+      if(response.ok){
+        setOrders([...orders, result.data._id]);
+        setCart([])
+      } else {
+        throw new Error(result.message)
       }
+    }catch(err){
+      alert(err.message)
+    }
+  }
+  }
 
-      const response = await fetch(`http://localhost:3001/orders`, settings)
-      const result = await response.json()
+  // * Yohannes and Sameer modify the placeOrder function 
+ 
+  // ===========================================================================
+  // Deleting a single ordered meal by the customer
+  //============================================================================
+
+  const deleteSingleOrderedMeal = async event => {
+    const selectedMealId = event.target.parentElement.id;
+
+    const settings = {
+        method: "DELETE"
+      };
+
+      console.log(selectedMealId)
+
+      const response = await fetch(`http://localhost:3001/orders/${selectedMealId}`, settings);
+      const result = await response.json();
 
       try{
         if(response.ok){
-          setOrders([...orders, result.data._id]);
-          setCart([])
-        } else {
+          setOrders(result.meals)
+        } else{
           throw new Error(result.message)
         }
       }catch(err){
         alert(err.message)
       }
-    }
-  }
-
-
-  const deleteItem = async event => {
-    const userId = event.target.parentElement.id;
-    const settings = {
-      method: "DELETE",
-      credentials: 'include'
-    };
-
-    const response = await fetch(process.env.REACT_APP_SERVER_URL + `/users/${userId}/meals`, settings);
-    const parsedRes = await response.json();
-
-    try {
-      if (response.ok) {
-        console.log('Delete This Item', parsedRes.usersMeals);
-        /*  setMeals( parsedRes.meals ); */
-
-      } else {
-        throw new Error(parsedRes.message);
-      }
-
-    } catch (err) {
-      alert(err.message);
-    }
-
   };
 
   return (
@@ -173,25 +179,15 @@ const CartPage = () => {
         // <h3>last 3 dogits of card used for order:</h3>
         // <button>click here to return to meals</button>
       ) : (
-        <div>
+        <div className="ordered-meals-container">
           <h3>Your choice this week: </h3>
           {cart.map((meal) => {
             return (
-              <div key={meal._id}>
-                <img src={meal.img} width="100" alt="" />
+              <div key={meal.id} onClick={deleteSingleOrderedMeal} className="ordered-meals">
+                <div> <img src={meal.img} width="100" alt="" /> </div>
                 <h4>{meal.mealName}</h4>
                 <p>{meal.price}€</p>
-                <div className={"deleteCartItems"}> <h3>
-                  {/* quantity :   */}
-                  {/* <button className={"cartButtons"}onClick={ deleteItem}>-</button> <span> </span> */}
-                  {/* <input
-                    type="text"
-                    defaultValue={meal.quantity}
-                    onChange={(e) => changeQuantity(e, meal)}
-                  />{" "} */}
-                  {/* <button className={"cartButtons"} onClick={ deleteItem}>+</button> */}
-                </h3> <button className={"cartButtonsDelete"} onClick={deleteItem}>X</button> </div>
-
+                <div id={meal._id} className="deleteOrderedMeal" > <span>X</span></div>
               </div>
             );
           })}

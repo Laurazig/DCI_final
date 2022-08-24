@@ -15,7 +15,6 @@ const MealsPage = () => {
       setCart([...cart]);
     } else {if ((cart.length +1) > 3 ){
       alert('Reached Maximum Quantity of Meals')
-      console.log('Minimum and  Maximum meals')
       return 
     }
       setCart([...cart, { ...meal, quantity: 1 }]);
