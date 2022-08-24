@@ -29,7 +29,7 @@ function App ()
   useEffect( () =>
   {
     const data = JSON.parse( localStorage.getItem( "data" ) );
-    console.log(data);
+    // console.log(data);
     if ( data )
     {
       console.log(data.token)
@@ -39,7 +39,7 @@ function App ()
         console.log(data);
        setUser(data)
       }) */
-      fetch( process.env.REACT_APP_SERVER_URL + "/user/verifytoken", {
+      fetch( process.env.REACT_APP_SERVER_URL + "/users/verifytoken", {
         method: "POST",
         headers: {
           "token": data.token
@@ -54,7 +54,7 @@ function App ()
         {   const now = new Date();
           const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60);
           setIsLoggedIn(true);
-          setUser({token: data.token, id:data.id, firstName: data.firstName, expiry: tokenExpiry.toISOString()})
+          setUser({token: data.token, id:data.id, firstName: data.firstName, expiry: tokenExpiry.toISOString(), orders: data.orders})
           setToken( data.token );
           setUserId( data.id );
         } else
@@ -77,9 +77,9 @@ function App ()
   }, [ user,cart ] );
 
 
-  /*  const logOut = () =>
+  const logOut = () =>
       {
-          localStorage.removeItem( 'data' );/
+          localStorage.removeItem( 'data' );
           setToken( false );
           setUserId( "" );
           setIsLoggedIn( false );
@@ -113,11 +113,11 @@ function App ()
               alert( err.message );
           }
       };
-  }
-   */
+  
+
 
   return (
-    <MyContext.Provider value={ { meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn, /* {logOut}, {deregister}  */ } }>
+    <MyContext.Provider value={ { meals, setMeals, cart, setCart, orders, setOrders, user, setUser, userId, token, setToken, isLoggedIn, setIsLoggedIn, /* {logOut}, {deregister}  */ } }>
       <div className='App'>
         <HashRouter>
           <NavbarTest isLogged={ isLoggedIn } />
