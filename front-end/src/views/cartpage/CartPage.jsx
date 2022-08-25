@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../App";
@@ -21,79 +20,13 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
-
-  /*
-  const changeQuantity = (e, meal) => {
-    const item = cart.find((elem) => elem._id === meal._id);
-    item.quantity = Number(e.target.value);
-    setCart([...cart]);
-    console.log(item);
-  };
-
-  const getAddress = (e) => {
-      e.preventDefault();
-      let userAddress = {
-        house: e.target.hn.value,
-        street: e.target.stn.value,
-        postcode: e.target.pc.value,
-        city: e.target.city.value,
-        country: e.target.country.value,
-      };
-      console.log(userAddress);
-      e.target.reset();
-    };
-
-  const placeOrder = () => {
-    if (!user) {
-      navigate("/register");
-    } else if (cart.length !== 0) {
-      fetch(`http://localhost:3001/users/${user.id}/order`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          usersMeals: cart.map((item) => item._id),
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result.success) {
-            console.log(result);
-            fetch(`http://localhost:3001/order/${result.data._id}`)
-              .then((res) => res.json())
-              .then((final) => {
-                console.log(final);
-                if (final.success) {
-                  console.log(final);
-                  setOrders([...orders, ...final.data.usersMeals]);
-                }
-              });
-            setPlacedOrder(true);
-            setUser(result.data.userId);
-            setCart([]);
-          } else {
-            alert(result.message);
-          }
-        })
-        .catch((err) => console.log(err.message));
-    } else {
-      alert("please select any item from our meal list");
-    }
-  };
-
-  */
-
-  // * Yohannes and Sameer modify the placeOrder function 
- 
   // ===========================================================================
   // The customer placing an order in the front end and post it in the back end
   //============================================================================
   const placeOrder = async () => {
-    if(!user){
+    if (!user) {
       navigate("/register");
-    } else if(cart.length !== 0) {
+    } else if (cart.length !== 0) {
       const newOrder = {
         meals: cart.map((item) => item._id),
         total: total,
@@ -108,43 +41,35 @@ const CartPage = () => {
         }
       }
       const response = await fetch(`http://localhost:3001/orders`, settings)
-      //STRIPE taken from Youtube tutorial:
-      // const response = await fetch(`http://localhost:3001/payment`, settings)
-      //____________________
       const result = await response.json()
 
-      try{
-        if(response.ok){
-          //STRIPE - taken from Youtube tutorial
-          // .then(({ url }) => {   console.log(url) })
-          // .then(({ url }) => {   window.location = url })
-          setOrders([...orders, result.data._id]);  //only go to database once payment is processed
+      try {
+        if (response.ok) {
+          setOrders([...orders, result.data._id]);
           setCart([])
-          //show payment button
+          //show success page with payment button
         } else {
           throw new Error(result.message)
         }
-      }catch(err){
+      } catch (err) {
         alert(err.message)
       }
     }
   }
-
+  // ===========================================================================
+  // Customer can delete individual item from cart page
+  //============================================================================
   const deleteItem = async event => {
     const userId = event.target.parentElement.id;
     const settings = {
       method: "DELETE",
       credentials: 'include'
     };
-
     const response = await fetch(process.env.REACT_APP_SERVER_URL + `/users/${userId}/meals`, settings);
     const parsedRes = await response.json();
-
     try {
       if (response.ok) {
         console.log('Delete This Item', parsedRes.usersMeals);
-        /*  setMeals( parsedRes.meals ); */
-
       } else {
         throw new Error(parsedRes.message);
       }
@@ -152,14 +77,44 @@ const CartPage = () => {
       alert(err.message);
     }
   };
-
+  // ===========================================================================
+  // Customer clicks pay on success page to load stripe payment (order already in database)
+  //============================================================================
+  const stripe = async () => {
+    const pay = {
+      total: total
+    }
+    console.log(pay)
+    const settings = {
+      method: "POST",
+      body: JSON.stringify(pay),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    const response = await fetch(`http://localhost:3001/payment`, settings)
+    const result = await response.json()
+    try {
+      if (response.ok) {
+        //STRIPE - taken from Youtube tutorial
+        // .then(({ url }) => {   console.log(url) })
+        // .then(({ url }) => {   window.location = url })
+      } else {
+        throw new Error(result.message)
+      }
+    } catch (err) {
+      alert(err.message)
+    }
+  }
   return (
     <div>
       {placedOrder ? (
-        <h2>Order  Summary: </h2>
-        // <h3>This is your choice of meals:</h3>
-        // <h3>order address:</h3>
-        // <button>Click to pay</button>
+        <>
+          <h2>Order  Summary: </h2>
+          <h3>This is your choice of meals:</h3>
+          <h3>order address:</h3>
+          <button onClick={stripe}>checkout</button>
+        </>
       ) : (
         <div>
           <h3>Your choice this week: </h3>
@@ -170,26 +125,16 @@ const CartPage = () => {
                 <h4>{meal.mealName}</h4>
                 <p>{meal.price}€</p>
                 <div className={"deleteCartItems"}> <h3>
-                  {/* quantity :   */}
-                  {/* <button className={"cartButtons"}onClick={ deleteItem}>-</button> <span> </span> */}
-                  {/* <input
-                    type="text"
-                    defaultValue={meal.quantity}
-                    onChange={(e) => changeQuantity(e, meal)}
-                  />{" "} */}
-                  {/* <button className={"cartButtons"} onClick={ deleteItem}>+</button> */}
                 </h3> <button className={"cartButtonsDelete"} onClick={deleteItem}>X</button> </div>
               </div>
             );
           })}
         </div>
       )}
-
       <div className="total">
         {" "}
         {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
       </div>
-      
       <h3>{message}</h3>
       <h3>Address: </h3>
       <div>
@@ -202,55 +147,10 @@ const CartPage = () => {
               <p>{userData.city}</p>
               <p>{userData.zipCode}</p>
               <p>{userData.phone}</p>
-              {/* </h3> <button  onClick={ addAddress}>Add Address</button> */}
             </div>
           )
-             }
+        }
       </div>
-      {/* <form onSubmit={getAddress}>
-        <label>
-          House No.
-          <input type="number" name="hn" min={1} />
-        </label>
-        <br />
-        <label>
-          Street No.
-          <input type="number" name="stn" />
-        </label>
-        <br />
-        <label>
-          City.
-          <input type="text" name="city" />
-        </label>
-        <br />
-        <label>
-          Postal Code.
-          <input type="number" name="pc" />
-        </label>
-        <br />
-        <label>
-          Country
-          <input type="text" name="country" />
-        </label>
-        <br />
-        <input type="submit" value="add" />
-      </form> */}
-            <h3>Payment: </h3>
-      {/* <form onSubmit={payment}> */}
-      <form >
-        <label>
-          card No.
-          <input type="number" name="hn" min={12} />
-        </label>
-        <label>
-          Month / year
-          <input type="number" name="stn" />
-        </label>
-        <label>
-          3 dig
-          <input type="number" name="stn" min={3} />
-        </label>
-      </form>
       <button onClick={placeOrder}>checkout</button>
     </div>
   );
