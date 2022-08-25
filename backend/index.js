@@ -12,7 +12,7 @@ import loginRouter from "./routes/loginRoute.js";
 import mealRouter from "./routes/mealRoute.js";
 import orderRouter from "./routes/ordersRoute.js";
 import usersRoutes from "./routes/usersRoutes.js"
-//import paymentRouter from "./routes/paymentRoute.js";
+import paymentRouter from "./routes/paymentRoute.js";
 
 const app = express();
 app.use(cors({origin:"http://localhost:3000"}));
@@ -30,7 +30,7 @@ app.use("/login", loginRouter);
 app.use("/meals", mealRouter);
 app.use("/orders", orderRouter);
 app.use("/users", usersRoutes);
-//app.use("/payment", paymentRouter);
+app.use("/payment", paymentRouter);
 
 // http://localhost:3001/Meal1_HummusBowl.jpg
 app.use(express.static("assets"));
