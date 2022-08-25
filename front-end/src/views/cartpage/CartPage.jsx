@@ -218,7 +218,7 @@ const CartPage = () => {
           )
              }
       </div>
-      <form onSubmit={getAddress}>
+       <form onSubmit={getAddress}>
         <label>
           House No.
           <input type="number" name="hn" min={1} />
