@@ -48,6 +48,7 @@ const CartPage = () => {
           setOrders([...orders, result.data._id]);
           setCart([])
           //show success page with payment button
+          setPlacedOrder(true)
         } else {
           throw new Error(result.message)
         }
@@ -113,7 +114,7 @@ const CartPage = () => {
           <h2>Order  Summary: </h2>
           <h3>This is your choice of meals:</h3>
           <h3>order address:</h3>
-          <button onClick={stripe}>checkout</button>
+          <button onClick={stripe}>pay</button>
         </>
       ) : (
         <div>
@@ -129,8 +130,7 @@ const CartPage = () => {
               </div>
             );
           })}
-        </div>
-      )}
+        
       <div className="total">
         {" "}
         {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
@@ -152,7 +152,10 @@ const CartPage = () => {
         }
       </div>
       <button onClick={placeOrder}>checkout</button>
+      </div>
+      )}
     </div>
+
   );
 };
 
