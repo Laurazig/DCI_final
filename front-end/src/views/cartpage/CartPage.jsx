@@ -239,11 +239,6 @@ const CartPage = () => {
           <input type="number" name="pc" />
         </label>
         <br />
-        <label>
-          Country
-          <input type="text" name="country" />
-        </label>
-        <br />
         <input type="submit" value="add" />
       </form> 
       <h3>Payment: </h3>

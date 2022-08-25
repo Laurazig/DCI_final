@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+* a {
+  text-decoration: none;
+}
+
+.premiumSection {
+  display: flex;
+  width: 1450px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+  padding-top: 20px;
+  background-color: none;
+  flex-direction: column;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .premiumSection {
+    background-color: aqua;
+    width: 90vw;
+  }
+}
+.premiumSection h2 {
+  font-size: 48px;
+  color: black;
+  font-weight: 250;
+  padding: 40px 0;
+}
+.premiumSection .horizontalCardContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.premiumSection .premiumVisual {
+  width: 870px;
+  height: 440px;
+  background-image: url(../../../assets/premiumVisual.jpeg);
+  background-size: cover;
+  background-position: 0 -200px;
+}
+.premiumSection .titleAndParagraph {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.premiumSection .titleAndParagraph h3 {
+  font-size: 22px;
+  color: black;
+  font-weight: 500;
+  padding: 20px 0 10px 0;
+  padding-top: 0px;
+}
+.premiumSection .titleAndParagraph p {
+  font-size: 17px;
+  color: black;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+.premiumSection .titleAndParagraph span {
+  font-weight: bold;
+  color: #91c88a;
+}
+.premiumSection .titleAndParagraph span a {
+  color: #91c88a;
+  text-decoration: none;
+}
+.premiumSection .titleAndParagraph ul {
+  padding-left: 20px;
+}
+.premiumSection .titleAndParagraph button {
+  width: 130px;
+  height: 35px;
+  border-radius: 7px;
+  background-color: #91c88a;
+  border: none;
+  color: white;
+  margin-top: 20px;
+}
+.premiumSection .titleAndParagraph button a {
+  color: white;
+  text-decoration: none;
+}/*# sourceMappingURL=premiumSection.css.map */
