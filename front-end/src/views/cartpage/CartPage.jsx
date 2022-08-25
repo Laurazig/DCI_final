@@ -262,25 +262,24 @@ const CartPage = () => {
             {" "}
             {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
           </div>
-
           <h3>{message}</h3>
           {/* address not showing */}
           <h3>Address: </h3>
-          <div>
-            {
-              userData &&
-              (
-                <div key={userData._id}>
-                  <p>{userData.firstName} {userData.lastName}</p>
-                  <p>{userData.street} {userData.houseNo}</p>
-                  <p>{userData.city}</p>
-                  <p>{userData.zipCode}</p>
-                  <p>{userData.phone}</p>
-                  {/* </h3> <button  onClick={ addAddress}>Add Address</button> */}
-                </div>
-              )
-            }
-          </div>
+            <div>
+        {
+          userData &&
+          (
+            <div key={userData._id}>
+              <p>{userData.firstName} {userData.lastName}</p>
+              <p>{userData.street} {userData.houseNo}</p>
+              <p>{userData.city}</p>
+              <p>{userData.zipCode}</p>
+              <p>{userData.phone}</p>
+              {/* </h3> <button  onClick={ addAddress}>Add Address</button> */}
+            </div>
+          )
+             }
+      </div>
           {/* 
           <form onSubmit={getAddress}>
             <label>

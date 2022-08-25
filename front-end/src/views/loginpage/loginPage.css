@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+* a {
+  text-decoration: none;
+}
+
+.loginPage {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  margin: 100px 0;
+}
+.loginPage .formWrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  border: 2px solid #91c88a;
+  box-shadow: 12px 12px 44px rgba(219, 219, 219, 0.0862745098);
+  padding: 50px;
+}
+.loginPage .formWrapper h1 {
+  font-size: 22px;
+  color: black;
+  font-weight: 500;
+  padding: 20px 0 10px 0;
+  color: #91c88a;
+}
+.loginPage .formWrapper form .loginFormInput .emailFormSection,
+.loginPage .formWrapper form .loginFormInput .passwordlFormSection {
+  display: flex;
+  flex-direction: column;
+}
+.loginPage .formWrapper form .loginFormInput .emailFormSection input,
+.loginPage .formWrapper form .loginFormInput .passwordlFormSection input {
+  width: 470px;
+  height: 35px;
+  margin-bottom: 20px;
+  border-radius: 7px;
+  border: 2px solid #91c88a;
+  padding-left: 10px;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .loginPage .formWrapper form .loginFormInput .emailFormSection input,
+.loginPage .formWrapper form .loginFormInput .passwordlFormSection input {
+    background-color: aqua;
+    width: 300px;
+  }
+}
+.loginPage .formWrapper button {
+  width: 130px;
+  height: 35px;
+  border-radius: 7px;
+  background-color: #91c88a;
+  border: none;
+  color: white;
+}
+.loginPage .formWrapper button a {
+  color: white;
+  text-decoration: none;
+}
+.loginPage .loginParagraph {
+  font-size: 17px;
+  color: black;
+  text-align: justify;
+  margin-bottom: 20px;
+  margin: 50px 10px;
+}
+.loginPage .loginParagraph span {
+  font-weight: bold;
+  color: #91c88a;
+}
+.loginPage .loginParagraph span a {
+  color: #91c88a;
+  text-decoration: none;
+}/*# sourceMappingURL=loginPage.css.map */
