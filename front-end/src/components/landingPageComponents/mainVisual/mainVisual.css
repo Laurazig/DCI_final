@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+* a {
+  text-decoration: none;
+}
+
+.mainVisual {
+  display: flex;
+  flex-direction: column;
+  background-image: url(../../../assets/mainVisual.jpg);
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  padding-top: 300px;
+  padding-bottom: 100px;
+  z-index: -1;
+}
+.mainVisual h1, .mainVisual h2 {
+  opacity: 90%;
+}
+.mainVisual h1 {
+  font-size: clamp(1rem, 10vw, 6rem);
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 0.9;
+}
+.mainVisual h2 {
+  font-size: clamp(1rem, 10vw, 6rem);
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 0.9;
+  margin-bottom: 40px;
+}
+.mainVisual button {
+  width: 130px;
+  height: 35px;
+  border-radius: 7px;
+  background-color: #91c88a;
+  border: none;
+  color: white;
+}
+.mainVisual button a {
+  color: white;
+  text-decoration: none;
+}/*# sourceMappingURL=mainVisual.css.map */

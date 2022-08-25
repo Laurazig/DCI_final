@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+* a {
+  text-decoration: none;
+}
+
+.registerPage {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0px;
+}
+.registerPage .formContainer {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: flex-start;
+}
+.registerPage .formContainer h1 {
+  font-size: 48px;
+  color: black;
+  font-weight: 250;
+  padding: 40px 0;
+  padding: 0;
+  padding-left: 30px;
+}
+.registerPage .formContainer h2 {
+  font-size: 22px;
+  color: black;
+  font-weight: 500;
+  padding: 20px 0 10px 0;
+  padding: 0;
+  padding-left: 30px;
+}
+.registerPage .formContainer form {
+  display: flex;
+}
+.registerPage .formContainer form .inputLeft {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.registerPage .formContainer form .inputRight {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.registerPage .formContainer form input {
+  width: 470px;
+  height: 35px;
+  margin-bottom: 20px;
+  border-radius: 7px;
+  border: 2px solid #91c88a;
+  padding-left: 10px;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .registerPage .formContainer form input {
+    background-color: aqua;
+    width: 300px;
+  }
+}
+.registerPage .formContainer form label {
+  margin-bottom: 10px;
+}
+.registerPage .formContainer form button {
+  width: 130px;
+  height: 35px;
+  border-radius: 7px;
+  background-color: #91c88a;
+  border: none;
+  color: white;
+}
+.registerPage .formContainer form button a {
+  color: white;
+  text-decoration: none;
+}/*# sourceMappingURL=registerPage.css.map */
