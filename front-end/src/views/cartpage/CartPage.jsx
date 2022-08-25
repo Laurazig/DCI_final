@@ -107,13 +107,42 @@ const CartPage = () => {
       alert(err.message)
     }
   }
+  //ternary oporator: 1 placed order===true - show success /2 placed order===false - show delete meals option
   return (
     <div>
       {placedOrder ? (
         <>
-          <h2>Order  Summary: </h2>
+          <h2>Order  Summary</h2>
           <h3>This is your choice of meals:</h3>
+          {cart.map((meal) => {
+            return (
+              <div key={meal._id}>
+                <img src={meal.img} width="100" alt="" />
+                <h4>{meal.mealName}</h4>
+                <p>{meal.price}€</p>
+              </div>
+            );
+          })}
           <h3>order address:</h3>
+          <div>
+            {
+              userData &&
+              (
+                <div key={userData._id}>
+                  <p>{userData.firstName} {userData.lastName}</p>
+                  <p>{userData.street} {userData.houseNo}</p>
+                  <p>{userData.city}</p>
+                  <p>{userData.zipCode}</p>
+                  <p>{userData.phone}</p>
+                </div>
+              )
+            }
+          </div>
+          <h3>Total to pay:</h3>
+          <div className="total">
+            {" "}
+            {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
+          </div>
           <button onClick={stripe}>pay</button>
         </>
       ) : (
@@ -125,34 +154,36 @@ const CartPage = () => {
                 <img src={meal.img} width="100" alt="" />
                 <h4>{meal.mealName}</h4>
                 <p>{meal.price}€</p>
-                <div className={"deleteCartItems"}> <h3>
-                </h3> <button className={"cartButtonsDelete"} onClick={deleteItem}>X</button> </div>
+                <div className={"deleteCartItems"}> 
+                <h3>
+                </h3> 
+                <button className={"cartButtonsDelete"} onClick={deleteItem}>X</button> </div>
               </div>
             );
           })}
-        
-      <div className="total">
-        {" "}
-        {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
-      </div>
-      <h3>{message}</h3>
-      <h3>Address: </h3>
-      <div>
-        {
-          userData &&
-          (
-            <div key={userData._id}>
-              <p>{userData.firstName} {userData.lastName}</p>
-              <p>{userData.street} {userData.houseNo}</p>
-              <p>{userData.city}</p>
-              <p>{userData.zipCode}</p>
-              <p>{userData.phone}</p>
-            </div>
-          )
-        }
-      </div>
-      <button onClick={placeOrder}>checkout</button>
-      </div>
+
+          <div className="total">
+            {" "}
+            {cart.length > 0 && <h2> Total : {total}€  </h2>}{" "}
+          </div>
+          <h3>{message}</h3>
+          <h3>Address: </h3>
+          <div>
+            {
+              userData &&
+              (
+                <div key={userData._id}>
+                  <p>{userData.firstName} {userData.lastName}</p>
+                  <p>{userData.street} {userData.houseNo}</p>
+                  <p>{userData.city}</p>
+                  <p>{userData.zipCode}</p>
+                  <p>{userData.phone}</p>
+                </div>
+              )
+            }
+          </div>
+          <button onClick={placeOrder}>checkout</button>
+        </div>
       )}
     </div>
 
