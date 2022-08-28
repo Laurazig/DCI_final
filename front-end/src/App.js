@@ -4,7 +4,7 @@ import Navigation from "./components/globalComponents/navbar/Navigation";
 import LoginPage from "./views/loginpage/LoginPage";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import HowItWorksPage from "./views/howitworks/HowItWorksPage";
-import SupportPage from "./views/support/SupportPage";
+import SupportPage from "./views/sustainability/Sustainability";
 import CommunityPage from "./views/community/CommunityPage";
 import MealsPage from "./views/mealspage/MealsPage";
 import React, { useState, useEffect } from "react";

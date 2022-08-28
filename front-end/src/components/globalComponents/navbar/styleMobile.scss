@@ -63,8 +63,8 @@ align-items: center;
         top: 0;
         padding: 40px 50px;
         background-color: $mainCol;
-        width: 24vw;
-        height: 90vh;
+        width: 26vw;
+        height: 88vh;
         z-index: 2;
         
 
@@ -100,7 +100,12 @@ align-items: center;
         color: $secondaryCol;
         font-size: clamp(12px, 10vw, 20px);
 
+   
+        
     }
+
+    a:hover{
+text-decoration: underline;      } 
 
     .hide{
         display: none;
@@ -117,4 +122,24 @@ align-items: center;
         backdrop-filter: blur(2px);        
         z-index: 1;   
     }
+.nav-logo{
+    position: absolute;
+    right: 30px;
+    top:0;
+    z-index: 11;
+
+}
+
+.userName{
+    position: absolute;
+    right: 30px;
+    color:$mainCol;
+    z-index: 11;
+}
+
+.logoutButton{
+    margin-left: 25px;
+
+}
+
 }

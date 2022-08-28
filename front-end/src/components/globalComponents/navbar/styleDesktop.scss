@@ -1,16 +1,16 @@
 @import '../../../scss-styling/styleVariables.scss';
 
-.desktopNav{
+.desktopNav {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  background: $secondaryCol;
+  color: $mainCol;
+  width: 100vw;
+  padding: 0 30px;
+  justify-content: space-between;
 
-display: flex;
-align-items: center;
-background: $secondaryCol;
-color: $mainCol;
-width: 100vw;
-padding: 0 30px;
-justify-content: space-between;
-
-.linkWrapper {
+  .linkWrapper {
     display: flex;
     gap: 4%;
     justify-content: center;
@@ -21,12 +21,14 @@ justify-content: space-between;
   a {
     color: $mainCol;
     font-size: clamp(12px, 10vw, 20px);
-
   }
 
-span {
-  display: flex;
-  gap:12px;
+  a:hover{
+text-decoration: underline;  } 
+
+  span {
+    display: flex;
+    gap: 12px;
 
     .logInButton {
       @include buttonFilled;
@@ -34,32 +36,33 @@ span {
 
     .regButton {
       @include buttonOutline;
-      
+
     }
 
   }
 
 
-  .showUserIcon{
+  .showUserIcon {
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
     cursor: pointer;
 
-    p{
-     @include paragraphAccentStyle;
+    p {
+      @include paragraphAccentStyle;
     }
 
-   button{
-    @include buttonOutline;
-    cursor: pointer;
+    .logoutButton {
+      @include buttonOutline;
+      cursor: pointer;
 
-   }
+    }
 
   }
 
-  .hide{
-display: none;  }
+  .hide {
+    display: none;
+  }
 
 
 }

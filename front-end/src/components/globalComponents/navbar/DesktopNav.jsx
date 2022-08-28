@@ -41,10 +41,11 @@ const [logOutButton, setLogOutButton] = useState(false);
 
       {/* Links */}
       <div className="linkWrapper">
+        
         <NavLink to="howitworks">How it works</NavLink>
         <NavLink to="/meals"> Meals</NavLink>
-        <NavLink to="/support">Support</NavLink>
-        <NavLink className={props.isLoggedIn === true ? "hide" : "cartPage"} to="/cart">
+        <NavLink to="/sustainability">Sustainability</NavLink>
+        <NavLink className={props.isLoggedIn === false ? "hide" : "cartPage"} to="/cart">
           Cart
         </NavLink>
       </div>
@@ -68,16 +69,20 @@ const [logOutButton, setLogOutButton] = useState(false);
       <div className={props.isLoggedIn === true ? "showUserIcon" : "hide"}>
         {/* display name of user */}
         <p>Hello {user && user.firstName} </p>
-
+        <button onClick={logOut} className="logoutButton">
+            Logout
+          </button>
+          
         {/* display user icon & logout button*/}
-        <AccountCircleIcon onClick={handleClick} style={{ fontSize: 50 }} />
+        {/* <AccountCircleIcon onClick={handleClick} style={{ fontSize: 50 }} /> */}
 
         {/* display log-out button */}
-        {logOutButton && (
+        {/* ------ this is one way how to render a component based on the state variable */}
+        {/* {logOutButton && (
           <button onClick={logOut} className="logoutButton">
             Logout
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );

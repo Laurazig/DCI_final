@@ -43,37 +43,26 @@ export default function MobileNav(props) {
 
   return (
     <div className="mobileNav">
+      <p className={hideSidemenu === true ? "hide" : "userName"}> Hello {user && user.firstName} </p>
       {/* Burger Icon */}
       <MenuIcon
         onClick={handleClickBurger}
         className={hideSidemenu === false ? "hide" : "menuIcon"}
         style={{ fontSize: 35 }}
       />
-{/* -------------------------------- */}
-      {/* user Icon */}
+      {/* -------------------------------- */}
+
       {/* display name of user & user Icon */}
       <div className={props.isLoggedIn === true ? "showUserIcon" : "hide"}>
         <span className={hideSidemenu === true ? "hide" : "userIconWrapper"}>
-          {/* display user icon & logout button*/}
-          <AccountCircleIcon onClick={handleClick} 
-          className = {hideSidemenu === true ? "hide" : "userIcon"}
-          style={{ fontSize: 50 }} />
-
-          {/* display name of user */}
-          <p
-          className = {hideSidemenu === true ? "hide" : "userNameText"}>
-            Hello {user && user.firstName} 
-          </p>
-          </span>
-          {/* display log-out button */}
-          {logOutButton && (
-            <button onClick={logOut} 
-            className = {hideSidemenu === true ? "hide" : "logoutButton"}
-            >
-              Logout
-            </button>
-          )}
-        </div>
+          <button
+            onClick={logOut}
+            className={hideSidemenu === true ? "hide" : "logoutButton"}
+          >
+            Logout
+          </button>
+        </span>
+      </div>
 
       {/* Green area with content */}
       <div className={hideSidemenu === true ? "hide" : "sectionWrapper"}>
@@ -81,6 +70,7 @@ export default function MobileNav(props) {
           onClick={handleClickBurger}
           className={hideSidemenu === false ? "closeIcon" : "hide"}
         />
+
         {/* Login and register button */}
         <span>
           <NavLink to="/login">
@@ -105,27 +95,32 @@ export default function MobileNav(props) {
 
         {/* ------------- links ------------- */}
         <div className="linkWrapper">
-        <NavLink to="howitworks" onClick={handleClickBurger}>
-          How it works
-        </NavLink>
+          <NavLink to="/" onClick={handleClickBurger}>
+            Home
+          </NavLink>
 
-        <NavLink to="/meals" onClick={handleClickBurger}>
-          {" "}
-          Meals
-        </NavLink>
-        <NavLink to="/support" onClick={handleClickBurger}>
-          Support
-        </NavLink>
+          <NavLink to="howitworks" onClick={handleClickBurger}>
+            How it works
+          </NavLink>
 
-        <NavLink
-          className={props.isLoggedIn === true ? "hide" : "cartPage"}
-          to="/cart"
-          onClick={handleClickBurger}
-        >
-          Cart
-        </NavLink>
+          <NavLink to="/meals" onClick={handleClickBurger}>
+            {" "}
+            Meals
+          </NavLink>
+          <NavLink to="/sustainability" onClick={handleClickBurger}>
+            Sustainability
+          </NavLink>
+
+          <NavLink
+            className={props.isLoggedIn === false ? "hide" : "cartPage"}
+            to="/cart"
+            onClick={handleClickBurger}
+          >
+            Cart
+          </NavLink>
         </div>
       </div>
+
       {/* This is the background filter */}
       <div className={hideSidemenu === true ? "hide" : "filter"} />
     </div>
