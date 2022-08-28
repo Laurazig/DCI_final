@@ -6,10 +6,9 @@ import { MyContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
-import '../navbar/styleNavigation.scss'
+import "../navbar/styleNavigation.scss";
 
 export default function Navigation(props) {
-
   const { user, setUser, setIsLoggedIn, isLoggedIn, setToken, setCart } =
     useContext(MyContext);
 
@@ -54,16 +53,18 @@ export default function Navigation(props) {
   return (
     <div className="navBar">
       {/* logo */}
-      <span className="nav-logo">
-        <div className="logoImg"/>
-        <NavLink to="/">
+      <NavLink to="/">
+        <span className="nav-logo">
+          <div className="logoImg" />
           <h1>BioBites</h1>
-        </NavLink>
         </span>
+      </NavLink>
 
-        {showMobileNavMenu === true ? <MobileNav isLoggedIn = {props.isLoggedIn} /> : <DesktopNav isLoggedIn = {props.isLoggedIn} />}
-      
-    
+      {showMobileNavMenu === true ? (
+        <MobileNav isLoggedIn={props.isLoggedIn} />
+      ) : (
+        <DesktopNav isLoggedIn={props.isLoggedIn} />
+      )}
     </div>
   );
 }
