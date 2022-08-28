@@ -1,0 +1,64 @@
+@import '../../../scss-styling/styleVariables.scss';
+
+.desktopNav{
+
+display: flex;
+align-items: center;
+background: $secondaryCol;
+color: $mainCol;
+width: 90vw;
+justify-content: space-between;
+
+.linkWrapper {
+    display: flex;
+    gap: 4%;
+    justify-content: center;
+    width: 79%;
+
+  }
+
+  a {
+    color: $mainCol;
+    font-size: clamp(12px, 10vw, 20px);
+
+  }
+
+span {
+  display: flex;
+  gap:12px;
+
+    .logInButton {
+      @include buttonFilled;
+    }
+
+    .regButton {
+      @include buttonOutline;
+      
+    }
+
+  }
+
+
+  .showUserIcon{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    cursor: pointer;
+
+    p{
+     @include paragraphAccentStyle;
+    }
+
+   button{
+    @include buttonOutline;
+    cursor: pointer;
+
+   }
+
+  }
+
+  .hide{
+display: none;  }
+
+
+}

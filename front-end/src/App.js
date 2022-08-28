@@ -1,6 +1,6 @@
 import LandingPage from "./views/landingpage/LandingPage";
 import RegisterPage from './views/registerpage/RegisterPage';
-import NavbarTest from "./components/globalComponents/navTest/NavbarTest";
+import Navigation from "./components/globalComponents/navbar/Navigation";
 import LoginPage from "./views/loginpage/LoginPage";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import HowItWorksPage from "./views/howitworks/HowItWorksPage";
@@ -10,7 +10,7 @@ import MealsPage from "./views/mealspage/MealsPage";
 import React, { useState, useEffect } from "react";
 import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
-import './App.css';
+import './App.scss';
 
 export const MyContext = React.createContext();
 
@@ -120,7 +120,7 @@ function App ()
     <MyContext.Provider value={ { meals, setMeals, cart, setCart, orders, setOrders, user, setUser, userId, token, setToken, isLoggedIn, setIsLoggedIn, /* {logOut}, {deregister}  */ } }>
       <div className='App'>
         <HashRouter>
-          <NavbarTest isLogged={ isLoggedIn } />
+        <Navigation isLoggedIn={isLoggedIn} />
           <Routes>
             <Route path="/" element={ <LandingPage /> } />
             <Route path="/howitworks" element={ <HowItWorksPage /> } />
