@@ -94,10 +94,11 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
 
 
 @mixin sectionTitle {
-    font-size: 48px;
+    font-size: clamp(4px, 10vw, 60px);
     color: $tertiaryCol;
     font-weight: 250;
     padding: 40px 0;
+    text-align: center;
 }
 
 @mixin sectionSubTitle {
@@ -130,9 +131,9 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
 //------- Layout & Cards -------
 
 @mixin cardInnerLayout {
-    width: 400px;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 @mixin navBarFooterDisplay {
@@ -144,8 +145,9 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
 }
 
 @mixin cardImg {
-    width: 400px;
-    height: 280px;
+    aspect-ratio: 16 /10;
+    max-width: 400px;
+    max-height: 280px;
     background-size: cover;
     background-position: center;
 }
