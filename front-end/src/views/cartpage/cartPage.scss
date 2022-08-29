@@ -24,10 +24,29 @@ border-radius: 50%;
 
 .ordered-meals {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .ordered-meals-container {
     width: 90%;
     margin: auto;
+}
+
+.add-reduce-quantity-container {
+    display: flex;
+    height: 2rem;
+
+    & input {
+        padding: 0.4rem;
+        width: 4rem;
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    & button {
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        background-color: greenyellow;
+        cursor: pointer;
+    }
 }

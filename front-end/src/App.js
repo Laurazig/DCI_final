@@ -26,92 +26,155 @@ function App() {
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState("");
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("data"));
-    // console.log(data);
-    if (data) {
+  //======================================================================
+  // UseEffect used to handle user and meal data functions 
+  //======================================================================
+
+  useEffect( () => {
+    //======================================================================
+    // Function to fetch user data
+    //======================================================================
+    const fetchUserData = async () => {
+      const data = JSON.parse( localStorage.getItem( "data" ) );
+    if ( data ) {
       console.log(data.token)
-      //to be commented
-     /*   fetch(process.env.REACT_APP_SERVER_URL + `/user/${data.id}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-       setUser(data)
 
-      }) */
-      fetch(process.env.REACT_APP_SERVER_URL + "/users/verifytoken", {
-
+      const settings = {
         method: "POST",
         headers: {
           "token": data.token
         }
-      }).then((res) => {
-        return res.json();
+      }
 
-      } ).then( ( result ) =>
-      {
-        console.log( result );
-        if ( result.success )
-        {  const now = new Date();
+      const response = await fetch( process.env.REACT_APP_SERVER_URL + "/users/verifytoken", settings);
+
+      const result = await response.json();
+
+      try{
+        if(response.ok) {
+          const now = new Date();
           const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60);
           setIsLoggedIn(true);
           setUser({id:result.data._id, info:result.data, expiry: tokenExpiry.toISOString(), token:result.token  })
           setToken( data.token );
           setUserId( data.id );
-        } else
-        {
-         console.log( result.message );
-
+        } else {
+          throw new Error(result.message)
         }
-      });
+      }catch(err){
+        alert(err.message)
+      }
+
     }
-    fetch(process.env.REACT_APP_SERVER_URL + "/meals")
-      .then(res => res.json())
-      .then(data => {
-        setMeals(data);
-      });
-  }, []);
+    }
+    fetchUserData();
+    
+    //======================================================================
+    // Function to fetch meals data
+    //======================================================================
+    const fetchMealsData = async () => {
 
-  useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(user)); localStorage.setItem("cart", JSON.stringify(cart));
-  }, [user, cart]);
+      const response = await fetch(process.env.REACT_APP_SERVER_URL + "/meals");
+
+      const result = await response.json();
+
+      try{
+        if(response.ok) {
+          setMeals(result)
+        } else {
+          throw new Error(result.message)
+        }
+      }catch(err){
+        alert(err.message)
+      }
+    }
+   fetchMealsData()
+  }, [] );
+
+  //======================================================================
+  // UseEffect used to store user data and cart data in the local storage
+  //======================================================================
+
+  useEffect( () =>  {
+    localStorage.setItem( "data", JSON.stringify( user ) );
+    localStorage.setItem( "cart", JSON.stringify( cart ) );
+  }, [ user,cart ] );
 
 
-  const logOut = () => {
-    localStorage.removeItem('data');
-    setToken(false);
-    setUserId("");
-    setIsLoggedIn(false);
+  
+  // =======================================================================
+  // Function to Add to the Cart
+  //========================================================================
+
+ const addToCart = (meal) => {
+    let item = cart.find((elem) => elem._id === meal._id);
+    
+    if (item) {
+      item.quantity += 1;
+      setCart([...cart]);
+    } else {if ((cart.length +1) > 3 ){
+      alert('Reached Maximum Quantity of Meals')
+      return 
+    }
+      setCart([...cart, { ...meal, quantity: 1 }]);
+    }
   };
 
-  const deregister = async event => {
+  // =======================================================================
+  // Function to Remove from the Cart Item/s 
+  //========================================================================
+  
+  const removeFromCart = (meal) => {
+    let item = cart.find((elem) => elem._id === meal._id);
+    
+    if (item) {
+      item.quantity -= 1;
+      setCart([...cart]);
+    } 
+  };
+
+  // =======================================================================
+  // Function to Change Quantity
+  //========================================================================
+
+  const changeQuantity = (e, meal) => {
+    const item = cart.find((elem) => elem._id === meal._id);
+    item.quantity = Number(e.target.value);
+    setCart([...cart]);
+  };
+
+ // =======================================================================
+  // Function to delete user account
+  //========================================================================
+ 
+  
+  const deletUserAccount = async event => {
     const settings = {
       method: "DELETE",
       headers: {
-        "Authorization": "Bearer " + token
+          "Authorization": "Bearer " + token
       }
     };
-    const response = await fetch(process.env.REACT_APP_SERVER_URL + `/users/${userId}`, settings);
-    //await fetch( `http://localhost:3001/users/settings );
-    const parsedRes = await response.json();
-    try {
-      // If the request was successful...
-      if (response.ok) {
-        alert(parsedRes.message);
-        setIsLoggedIn(false);
-        setUserId("");
+    const response = await fetch( process.env.REACT_APP_SERVER_URL + `/users/${ userId }`, settings );
+    const result = await response.json();
+
+    try{
+      if(response.od) {
+        alert(result.message)
+        setIsLoggedIn(false)
+        setUserId("")
       } else {
-        throw new Error(parsedRes.message);
+        throw new Error(result.message)
       }
-    } catch (err) {
-      alert(err.message);
+    }catch(err){
+      alert(err.message)
     }
   };
-
+  
 
 
   return (
-    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, userId, token, setToken, isLoggedIn, setIsLoggedIn, /* {logOut}, {deregister}  */ }}>
+    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, userId, token, setToken, isLoggedIn, setIsLoggedIn, addToCart, removeFromCart, changeQuantity }}>
       <div className='App'>
         <HashRouter>
           <Navigation isLoggedIn={isLoggedIn} />
