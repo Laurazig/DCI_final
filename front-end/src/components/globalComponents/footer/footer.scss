@@ -1,7 +1,8 @@
 @import '../../../scss-styling/styleVariables.scss';
 
 .footer {
-    @include pageSectionSizeAndDisplay;
+  width: 100vw;
+  display: flex;
     align-items: center;
     color: $mainCol;
     justify-content: space-between;

@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
 import MealsPage from '../mealspage/MealsPage';
-
 import './cartPage.scss';
 
 const CartPage = () => {
@@ -125,7 +124,7 @@ const CartPage = () => {
   };
 
   const changeAddress = (e) => {
-setSameAddress(e.target.checked)
+    setSameAddress(e.target.checked);
   };
   // * Yohannes and Sameer modify the placeOrder function
 
@@ -138,16 +137,17 @@ setSameAddress(e.target.checked)
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     /* const selectedMealId = event.target.parentElement.id;
+
     const cartItem = cart.filter((cartItem) => cartItem._id != selectedMealId)
     setCart(cartItem)
     const settings = {
-        method: "DELETE"
-      };
+      method: "DELETE"
+    };
 
-      console.log(selectedMealId)
+    console.log(selectedMealId)
 
-      const response = await fetch(`http://localhost:3001/orders/${selectedMealId}`, settings);
-      const result = await response.json();
+    const response = await fetch(`http://localhost:3001/orders/${selectedMealId}`, settings);
+    const result = await response.json();
 
       try{
         if(response.ok){
@@ -161,21 +161,48 @@ setSameAddress(e.target.checked)
   };
   console.log(cart);
 
+  // ===========================================================================
+  // Customer clicks pay on success page to load stripe payment (order already in database)
+  //============================================================================
+  const stripe = async () => {
+    const pay = {
+      total: total,
+    };
+    console.log(pay);
+    const settings = {
+      method: 'POST',
+      body: JSON.stringify(pay),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await fetch(`http://localhost:3001/payment`, settings);
+    const result = await response.json();
+    try {
+      if (response.ok) {
+        //STRIPE - taken from Youtube tutorial
+        // .then(({ url }) => {   console.log(url) })
+        // .then(({ url }) => {   window.location = url })
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+  //ternary operator: 1. placed order===true - show success page | 2. placed order===false - show delete meals option
   return (
     <div>
       {placedOrder ? (
         <h2>Thanks for placing order: </h2>
       ) : (
-        // <h3>This is your choice of meals:</h3>
-        // <h3>order address:</h3>
-        // <h3>last 3 dogits of card used for order:</h3>
-        // <button>click here to return to meals</button>
         <div className="ordered-meals-container">
-          {(cart.length === 3) ? null : 
-          <h3 style={{color:"Red"}}>
-            Please Select 3 Separate Meals From Our Meal's Selection page to
-            proceed to Payment page{' '}
-          </h3>}
+          {cart.length === 3 ? null : (
+            <h3 style={{ color: 'Red' }}>
+              Please Select 3 Separate Meals From Our Meal's Selection page to
+              proceed to Payment page{' '}
+            </h3>
+          )}
           <h3>Your choices this week: </h3>
           {cart.map((meal) => {
             return (
