@@ -22,6 +22,10 @@ background-size: cover;
             @include mainTitle;
             margin: 10px 0;
 
+            @media (max-width: 600px)  {
+                font-size: 35px;
+            }
+
             
         }
 
@@ -41,6 +45,8 @@ background-size: cover;
                 font-size:clamp(10px, 10vw, 12px);
                 border-radius: 6px;
                 box-shadow: 5px 5px 43px 1px rgba(0,0,0,0.63);
+                margin: 0;
+
 
                 
 
