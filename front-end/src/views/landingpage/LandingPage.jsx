@@ -5,14 +5,13 @@ import MostPopularDishesSection from '../../components/landingPageComponents/mos
 import "./landingPage.scss"
 import PremiumSection from '../../components/landingPageComponents/premiumSection/PremiumSection'
 
-
 export default function LandingPage () {
   return (
     <div className='LandingPage'>
         <MainVisual/>
-        <TrademarkSection/>
+         <TrademarkSection/>
         <MostPopularDishesSection/>
-        <PremiumSection/>
+        {/*<PremiumSection/> */}
     </div>
   )
 }

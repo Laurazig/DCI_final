@@ -1,6 +1,9 @@
 $mainCol: #91c88a;
+$mainColLighter: #91c88a73;
+
 $secondaryCol: white;
 $tertiaryCol: black;
+$secondaryColTransparency: rgba(255, 255, 255, 0.38);
 
 * {
     margin: 0;
@@ -13,7 +16,7 @@ $tertiaryCol: black;
 
 //------- Buttons -------
 @mixin buttonStyle {
-    width: 130px;
+    width: clamp(12px, 10vw, 95px);
     height: 35px;
     border-radius: 7px;
 }
@@ -42,6 +45,19 @@ $tertiaryCol: black;
     }
 }
 
+@mixin buttonFilleSecondCol {
+    height: 35px;
+    border-radius: 7px;
+    background-color: $secondaryCol;
+    border: none;
+    color: $mainCol;
+
+    a {
+        color: $secondaryCol;
+        text-decoration: none;
+    }
+}
+
 // ------- input flieds -------
 
 @mixin standardInput {
@@ -65,17 +81,17 @@ $tertiaryCol: black;
 //------- typography -------
 
 @mixin mainTitle {
-    font-size: clamp(1rem, 10vw, 6rem); 
-    font-weight: bold;
+    font-size: clamp(1rem, 10vw, 6rem);
     color: $secondaryCol;
     text-transform: uppercase;
     text-align: center;
-    line-height: 0.9;
+    line-height: 0.91;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.742);
+    opacity: 90%;
+    font-weight: 900;
 }
 
-@mixin mainTitleAccent {
-    @include mainTitle;
-}
+
 
 @mixin sectionTitle {
     font-size: 48px;
@@ -120,10 +136,10 @@ $tertiaryCol: black;
 }
 
 @mixin navBarFooterDisplay {
-  display: flex;
-  align-items: center;
-  color: $mainCol;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    color: $mainCol;
+    justify-content: space-between;
 
 }
 
@@ -184,4 +200,3 @@ $tertiaryCol: black;
     font-size: clamp(12px, 10vw, 18px);
 
 }
-

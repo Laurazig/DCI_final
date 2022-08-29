@@ -1,33 +1,43 @@
 @import '../../../scss-styling/styleVariables.scss';
 
+.mainVisual {
 
-
-.mainVisual{
-display: flex;
-flex-direction: column; 
-background-image:url(../../../assets/mainVisual.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 25 / 9;
+    background-image: url(../../../assets/mainVisualAlternative.jpg);
 background-size: cover;
-justify-content: center;
-align-items: center;
-padding-top: 300px;
-padding-bottom: 100px;
-z-index: -1;
+
+ 
+    .titleAndButton {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+
+        h1 {
+            
+            @include mainTitle;
+            margin: 10px 0;
+
+            
+        }
 
 
-h1,h2{
-opacity: 90%;
-}
+        button {
+            @include buttonFilled;
+            font-weight: bold;
+            margin: 10px 0;
+            width: clamp(110px, 10vw, 160px);
+            height: 50px;
+            font-size:clamp(10px, 10vw, 16px);
+            box-shadow: 5px 5px 43px 21px rgba(0,0,0,0.63);
+        }
+    }
 
-h1{
-    @include mainTitle;
-}
-h2{
-    @include mainTitleAccent;
-    margin-bottom: 40px
-}
 
-button{
-    @include buttonFilled;
-}
+
 
 }
