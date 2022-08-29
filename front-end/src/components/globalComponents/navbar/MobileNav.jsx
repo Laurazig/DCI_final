@@ -40,10 +40,10 @@ export default function MobileNav(props) {
   const handleClickBurger = (event) => {
     setHideSideMenu((current) => !current);
   };
-
+  
   return (
     <div className="mobileNav">
-      <div className="userNameWrapper">
+      <div className={props.isLoggedIn === true ? "userNameWrapper" : "hide"}>
       <p className={hideSidemenu === true ? "hide" : "userName"}> Hello {user && user.firstName} </p>
       </div>
       {/* Burger Icon */}
