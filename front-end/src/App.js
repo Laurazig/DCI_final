@@ -33,12 +33,14 @@ function App ()
     if ( data )
     {
       console.log(data.token)
-      /* fetch(process.env.REACT_APP_SERVER_URL + `/user/${data.id}`)
+      //to be commented
+     /*   fetch(process.env.REACT_APP_SERVER_URL + `/user/${data.id}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
        setUser(data)
-      }) */
+      })  */
+      //to be commented
       fetch( process.env.REACT_APP_SERVER_URL + "/users/verifytoken", {
         method: "POST",
         headers: {
@@ -51,10 +53,10 @@ function App ()
       {
         console.log( result );
         if ( result.success )
-        {   const now = new Date();
+        {  const now = new Date();
           const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60);
           setIsLoggedIn(true);
-          setUser({token: data.token, id:data.id, firstName: data.firstName, expiry: tokenExpiry.toISOString(), orders: data.orders})
+          setUser({id:result.data._id, info:result.data, expiry: tokenExpiry.toISOString(), token:result.token  })
           setToken( data.token );
           setUserId( data.id );
         } else

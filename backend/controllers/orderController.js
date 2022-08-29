@@ -15,7 +15,8 @@ export const orderPost = async (req, res, next) => {
     if(user) {
       const order = new Order({
         meals: req.body.meals,
-        totalPrice: req.body.total
+        totalPrice: req.body.total,
+        deliveryAddress:req.body.deliveryAddress
       })
     
       await order.save()

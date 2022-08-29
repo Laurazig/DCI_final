@@ -42,7 +42,9 @@ export const verifyUser=async(req,res,next)=>{
 let user = await User.findById(decode.id)
 res.send({
     success:true,
-     data:user})
+     data:user,
+     token:token
+    })
   }
     }catch(err){
 res.send({success:false, message:err.message})

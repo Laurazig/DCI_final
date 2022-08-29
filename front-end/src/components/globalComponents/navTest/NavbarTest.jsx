@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const NavTest = (props) => {
   let navigate = useNavigate();
-  const{user,setUser,setIsLoggedIn,setToken,setCart}=useContext(MyContext);
+  const{user,setUser,setIsLoggedIn,setToken,setCart,isLoggedIn}=useContext(MyContext);
   const [isOpen, setIsOpen] = useState(false);
   const [ logOutButton, setLogOutButton ]=useState(false)
 
@@ -44,13 +44,13 @@ const logOut=()=>{
         <div className="buttonWrapper">
           <NavLink to="/login">
             <button
-              className={props.isLogged === true ? "hide" : "logInButton"}
+              className={isLoggedIn === true ? "hide" : "logInButton"}
             >
               Login
             </button>
           </NavLink>
           <NavLink to="/register">
-            <button className={props.isLogged === true ? "hide" : "regButton" }>
+            <button className={isLoggedIn === true ? "hide" : "regButton" }>
               {" "}
               Register
             </button>
