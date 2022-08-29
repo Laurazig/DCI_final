@@ -5,7 +5,7 @@ import MealsPage from '../mealspage/MealsPage';
 import './cartPage.scss';
 
 const CartPage = () => {
-  const { cart, setCart, user, setOrders, orders, meals } =
+  const { cart, setCart, user, setOrders, orders, addToCart, removeFromCart, changeQuantity } =
     useContext(MyContext);
 
   const navigate = useNavigate();
@@ -23,25 +23,7 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
-  const changeQuantity = (e, meal) => {
-    const item = cart.find((elem) => elem._id === meal._id);
-    item.quantity = Number(e.target.value);
-    setCart([...cart]);
-    console.log(item);
-  };
-  const addToCart = (meal) => {
-    let item = cart.find((elem) => elem._id === meal._id);
-    if (item) {
-      item.quantity += 1;
-      setCart([...cart]);
-    } else {
-      if (cart.length + 1 > 3) {
-        alert('Reached Maximum Quantity of Meals');
-        return;
-      }
-      setCart([...cart, { ...meal, quantity: 1 }]);
-    }
-  };
+  
   /*   const reduceToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
     if (item) {
@@ -78,7 +60,7 @@ const CartPage = () => {
   // ===========================================================================
   // The customer placing an order in the front end and post it in the back end
   //============================================================================
-  const placeOrder = async (e) => {
+  const submitOrder = async (e) => {
     e.preventDefault();
     if (!user) {
       navigate('/register');
@@ -212,14 +194,18 @@ const CartPage = () => {
                   <img src={meal.img} width="100" alt="" />{' '}
                 </div>
                 <h4>{meal.mealName}</h4>
-                <p>{meal.price}€</p>
-                <div>
+                <div className="add-reduce-quantity-container">
+                <div><button onClick={() => addToCart(meal)}>+</button></div>
+                <div className="value-input-container">
                   <input
                     type="text"
-                    defaultValue={meal.quantity}
+                    value={meal.quantity}
                     onChange={(e) => changeQuantity(e, meal)}
                   />
                 </div>
+                <div><button onClick={() => removeFromCart(meal)}>-</button></div>
+              </div>
+                <p>{meal.price}€</p>
                 <div
                   id={meal._id}
                   onClick={() => deleteSingleOrderedMeal(meal)}
@@ -264,7 +250,7 @@ const CartPage = () => {
       </label>
       <br></br>
       {!sameAddress && (
-        <form onSubmit={placeOrder}>
+        <form onSubmit={submitOrder}>
           <h3>New Delivery Address: </h3>
           <label>
             House No.
@@ -305,7 +291,7 @@ const CartPage = () => {
         </form>
       )}
       {sameAddress && (
-        <button onClick={placeOrder} disabled={cart.length < 3}>
+        <button onClick={submitOrder} disabled={cart.length < 3}>
           Confirm Your Selections And Proceed To Payment Page
         </button>
       )}
