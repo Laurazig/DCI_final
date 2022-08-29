@@ -199,7 +199,7 @@ const CartPage = () => {
           <h2>Order summary: </h2>
           <h3>Meals:</h3>
           <h3>Total:</h3>
-          <button>pay</button>
+          <button onClick={stripe}>pay</button>
           {cart.map((meal) => {
             return (
               <div key={meal._id} className="ordered-meals">
