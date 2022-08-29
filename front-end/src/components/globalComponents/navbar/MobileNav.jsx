@@ -43,7 +43,9 @@ export default function MobileNav(props) {
 
   return (
     <div className="mobileNav">
+      <div className="userNameWrapper">
       <p className={hideSidemenu === true ? "hide" : "userName"}> Hello {user && user.firstName} </p>
+      </div>
       {/* Burger Icon */}
       <MenuIcon
         onClick={handleClickBurger}

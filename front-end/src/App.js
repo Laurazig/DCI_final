@@ -12,6 +12,7 @@ import CartPage from "./views/cartpage/CartPage";
 import Footer from "./components/globalComponents/footer/Footer";
 import './App.scss';
 
+
 export const MyContext = React.createContext();
 
 function App ()
