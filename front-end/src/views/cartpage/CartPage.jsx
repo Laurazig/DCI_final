@@ -196,10 +196,8 @@ const CartPage = () => {
     <div>
       {placedOrder ? (
         <div>
-          <h2>Order summary: </h2>
+          <h2>Order summary</h2>
           <h3>Meals:</h3>
-          <h3>Total:</h3>
-          <button onClick={stripe}>pay</button>
           {cart.map((meal) => {
             return (
               <div key={meal._id} className="ordered-meals">
@@ -214,12 +212,27 @@ const CartPage = () => {
                     type="text"
                     defaultValue={meal.quantity}
                     onChange={(e) => changeQuantity(e, meal)}
-                  />
+                    />
                 </div>
               </div>
             );
           })}
 
+          <h3>Address:</h3>
+          <p>{user.info.houseNo}</p>
+          <p>{user.info.street}</p>
+          <p>{user.info.city}</p>
+          <p>{user.info.zipcode}</p>
+          <p>{user.info.phone}</p>
+          <h3>Total:</h3>
+          <div className="total">
+            {' '}
+            {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
+          </div>
+          if(){
+             <button onClick={stripe}>pay</button>
+          }
+         
         </div>
       ) : (
         <div className="ordered-meals-container">
