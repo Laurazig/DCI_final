@@ -31,30 +31,37 @@ function App() {
     // console.log(data);
     if (data) {
       console.log(data.token)
-      /* fetch(process.env.REACT_APP_SERVER_URL + `/user/${data.id}`)
+      //to be commented
+     /*   fetch(process.env.REACT_APP_SERVER_URL + `/user/${data.id}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
        setUser(data)
+
       }) */
       fetch(process.env.REACT_APP_SERVER_URL + "/users/verifytoken", {
+
         method: "POST",
         headers: {
           "token": data.token
         }
       }).then((res) => {
         return res.json();
-      }).then((result) => {
-        console.log(result);
-        if (result.success) {
-          const now = new Date();
+
+      } ).then( ( result ) =>
+      {
+        console.log( result );
+        if ( result.success )
+        {  const now = new Date();
           const tokenExpiry = new Date(now.getTime() + 1000 * 60 * 60);
           setIsLoggedIn(true);
-          setUser({ token: data.token, id: data.id, firstName: data.firstName, expiry: tokenExpiry.toISOString(), orders: data.orders })
-          setToken(data.token);
-          setUserId(data.id);
-        } else {
-          console.log(result.message);
+          setUser({id:result.data._id, info:result.data, expiry: tokenExpiry.toISOString(), token:result.token  })
+          setToken( data.token );
+          setUserId( data.id );
+        } else
+        {
+         console.log( result.message );
+
         }
       });
     }

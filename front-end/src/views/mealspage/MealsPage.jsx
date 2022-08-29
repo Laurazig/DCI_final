@@ -25,7 +25,7 @@ const MealsPage = () => {
     <div >
 
       <div>
-        <h2>Welcome {user && user.firstName}</h2>
+        <h2>Welcome {user && user.info.firstName}</h2>
       </div>
       <h2>Meals page</h2>
       <p>Select 3 meals and then go to cart page to process your order. </p>
