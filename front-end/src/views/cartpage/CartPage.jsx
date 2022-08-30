@@ -244,7 +244,6 @@ const CartPage = () => {
           </div>
 
           <h3>{message}</h3>
-
           <label>
             <b>Delivery Address Is Same as Registered Address :</b>{' '}
             <input
@@ -286,7 +285,6 @@ const CartPage = () => {
                 <input defaultValue={user.info.street} type="text" name="stn" />
               </label>
               <br></br>
-
               <label>
                 City.
                 <input defaultValue={user.info.city} type="text" name="city" />
