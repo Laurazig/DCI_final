@@ -94,8 +94,9 @@ const CartPage = () => {
       try {
         if (response.ok) {
           setOrders([...orders, result.data._id]);
-          setCart([]);
-          navigate('/payment');
+          //setCart([]);
+          setPlacedOrder([true])
+          // navigate('/payment');
         } else {
           throw new Error(result.message);
         }
@@ -176,7 +177,45 @@ const CartPage = () => {
   return (
     <div>
       {placedOrder ? (
-        <h2>Thanks for placing order: </h2>
+        <div>
+          <h2>Order summary</h2>
+          <h3>Meals:</h3>
+          {cart.map((meal) => {
+            return (
+              <div key={meal._id} className="ordered-meals">
+                <div>
+                  {' '}
+                  <img src={meal.img} width="100" alt="" />{' '}
+                </div>
+                <h4>{meal.mealName}</h4>
+                <p>{meal.price}€</p>
+                <div>
+                  <input
+                    type="text"
+                    defaultValue={meal.quantity}
+                    onChange={(e) => changeQuantity(e, meal)}
+                    />
+                </div>
+              </div>
+            );
+          })}
+
+          <h3>Address:</h3>
+          <p>{user.info.houseNo}</p>
+          <p>{user.info.street}</p>
+          <p>{user.info.city}</p>
+          <p>{user.info.zipcode}</p>
+          <p>{user.info.phone}</p>
+          <h3>Total:</h3>
+          <div className="total">
+            {' '}
+            {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
+          </div>
+          if(){
+             <button onClick={stripe}>pay</button>
+          }
+         
+        </div>
       ) : (
         <div className="ordered-meals-container">
           {cart.length === 3 ? null : (
@@ -217,15 +256,13 @@ const CartPage = () => {
               </div>
             );
           })}
-        </div>
-      )}
 
-      <div className="total">
-        {' '}
-        {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
-      </div>
+          <div className="total">
+            {' '}
+            {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
+          </div>
 
-      <h3>{message}</h3>
+          <h3>{message}</h3>
 
       <label>
         <b>Delivery Address Is Same as Registered Address :</b>{' '}
@@ -252,50 +289,76 @@ const CartPage = () => {
       {!sameAddress && (
         <form onSubmit={submitOrder}>
           <h3>New Delivery Address: </h3>
+
           <label>
-            House No.
+            <b>Delivery Address Is Same as Registered Address :</b>{' '}
             <input
-              defaultValue={user.info.houseNo}
-              type="number"
-              name="hn"
-              min={1}
+              style={{
+                width: '50px',
+                height: '25px',
+                cursor: 'pointer',
+                border: '3px solid black',
+              }}
+              type={'checkbox'}
+              defaultChecked
+              onChange={changeAddress} /* name="check" */
             />
+            <br></br>{' '}
+            <p style={{ color: 'red' }}>
+              PLEASE NOTE : If your delivery address is Different than your
+              REGISTERED Address than please UNCHECK the Box Above and Fill New
+              Delivery Address:
+            </p>
+            <br></br>
           </label>
           <br></br>
+          {!sameAddress && (
+            <form onSubmit={placeOrder}>
+              <h3>New Delivery Address: </h3>
+              <label>
+                House No.
+                <input
+                  defaultValue={user.info.houseNo}
+                  type="number"
+                  name="hn"
+                  min={1}
+                />
+              </label>
+              <br></br>
 
-          <label>
-            Street No.
-            <input defaultValue={user.info.street} type="text" name="stn" />
-          </label>
-          <br></br>
+              <label>
+                Street No.
+                <input defaultValue={user.info.street} type="text" name="stn" />
+              </label>
+              <br></br>
 
-          <label>
-            City.
-            <input defaultValue={user.info.city} type="text" name="city" />
-          </label>
-          <br></br>
-
-          <label>
-            Zip Code.
-            <input defaultValue={user.info.zipCode} type="number" name="zc" />
-          </label>
-          <br />
-          <label>
-            Phone
-            <input defaultValue={user.info.phone} type="number" name="phone" />
-          </label>
-          <br></br>
-          <button disabled={cart.length < 3}>
-            Confirm Your Selections And Proceed To Payment Page
-          </button>
-        </form>
-      )}
-      {sameAddress && (
-        <button onClick={submitOrder} disabled={cart.length < 3}>
-          Confirm Your Selections And Proceed To Payment Page
-        </button>
-      )}
-    </div>
+              <label>
+                City.
+                <input defaultValue={user.info.city} type="text" name="city" />
+              </label>
+              <br></br>
+              
+              <label>
+                Zip Code.
+                <input defaultValue={user.info.zipCode} type="number" name="zc" />
+              </label>
+              <br />
+              <label>
+                Phone
+                <input defaultValue={user.info.phone} type="number" name="phone" />
+              </label>
+              <br></br>
+              <button disabled={cart.length < 3}>
+                Confirm Your Selections And Proceed To Payment Page
+              </button>
+            </form>
+          )}
+          {sameAddress && (
+            <button onClick={placeOrder} disabled={cart.length < 3}>
+              Confirm Your Selections And Proceed To Payment Page
+            </button>
+          )}
+        </div>
   );
 };
 
