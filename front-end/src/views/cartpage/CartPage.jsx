@@ -47,14 +47,6 @@ const CartPage = () => {
     e.target.reset();
   }; */
 
-  /*  user enters card number, date, 3dig - click confirm order
-  last 4 dig card is stored in database order
-  stripe sandbox to process  payment*/
-  /*  const payment = ((e) => {
-    e.preventDefault()
-    ??setCardNum =cardNumber.slice(-4)
-  })
- */
   // * Yohannes and Sameer modify the placeOrder function
 
   // ===========================================================================
@@ -94,8 +86,9 @@ const CartPage = () => {
       try {
         if (response.ok) {
           setOrders([...orders, result.data._id]);
-          setCart([]);
-          navigate('/payment');
+          setPlacedOrder(true)
+          //setCart([]);
+          //navigate('/payment');
         } else {
           throw new Error(result.message);
         }
@@ -176,7 +169,11 @@ const CartPage = () => {
   return (
     <div>
       {placedOrder ? (
-        <h2>Thanks for placing order: </h2>
+        <>
+        <h2>Order summary </h2>
+
+        <button onClick={stripe} >Pay</button>
+        </>
       ) : (
         <div className="ordered-meals-container">
           {cart.length === 3 ? null : (
@@ -217,9 +214,6 @@ const CartPage = () => {
               </div>
             );
           })}
-        </div>
-      )}
-
       <div className="total">
         {' '}
         {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
@@ -294,6 +288,8 @@ const CartPage = () => {
         <button onClick={submitOrder} disabled={cart.length < 3}>
           Confirm Your Selections And Proceed To Payment Page
         </button>
+      )}
+      </div>
       )}
     </div>
   );
