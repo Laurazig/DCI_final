@@ -5,7 +5,7 @@ import MealsPage from '../mealspage/MealsPage';
 import './cartPage.scss';
 
 const CartPage = () => {
-  const { cart, setCart, user, setOrders, orders, meals } =
+  const { cart, setCart, user, setOrders, orders, addToCart, removeFromCart, changeQuantity } =
     useContext(MyContext);
 
   const navigate = useNavigate();
@@ -23,25 +23,7 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
-  const changeQuantity = (e, meal) => {
-    const item = cart.find((elem) => elem._id === meal._id);
-    item.quantity = Number(e.target.value);
-    setCart([...cart]);
-    console.log(item);
-  };
-  const addToCart = (meal) => {
-    let item = cart.find((elem) => elem._id === meal._id);
-    if (item) {
-      item.quantity += 1;
-      setCart([...cart]);
-    } else {
-      if (cart.length + 1 > 3) {
-        alert('Reached Maximum Quantity of Meals');
-        return;
-      }
-      setCart([...cart, { ...meal, quantity: 1 }]);
-    }
-  };
+  
   /*   const reduceToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
     if (item) {
@@ -78,7 +60,7 @@ const CartPage = () => {
   // ===========================================================================
   // The customer placing an order in the front end and post it in the back end
   //============================================================================
-  const placeOrder = async (e) => {
+  const submitOrder = async (e) => {
     e.preventDefault();
     if (!user) {
       navigate('/register');
@@ -251,14 +233,18 @@ const CartPage = () => {
                   <img src={meal.img} width="100" alt="" />{' '}
                 </div>
                 <h4>{meal.mealName}</h4>
-                <p>{meal.price}€</p>
-                <div>
+                <div className="add-reduce-quantity-container">
+                <div><button onClick={() => addToCart(meal)}>+</button></div>
+                <div className="value-input-container">
                   <input
                     type="text"
-                    defaultValue={meal.quantity}
+                    value={meal.quantity}
                     onChange={(e) => changeQuantity(e, meal)}
                   />
                 </div>
+                <div><button onClick={() => removeFromCart(meal)}>-</button></div>
+              </div>
+                <p>{meal.price}€</p>
                 <div
                   id={meal._id}
                   onClick={() => deleteSingleOrderedMeal(meal)}
@@ -277,6 +263,32 @@ const CartPage = () => {
           </div>
 
           <h3>{message}</h3>
+
+      <label>
+        <b>Delivery Address Is Same as Registered Address :</b>{' '}
+        <input
+          style={{
+            width: '50px',
+            height: '25px',
+            cursor: 'pointer',
+            border: '3px solid black',
+          }}
+          type={'checkbox'}
+          defaultChecked
+          onChange={changeAddress} /* name="check" */
+        />
+        <br></br>{' '}
+        <p style={{ color: 'red' }}>
+          PLEASE NOTE : If your delivery address is Different than your
+          REGISTERED Address than please UNCHECK the Box Above and Fill New
+          Delivery Address:
+        </p>
+        <br></br>
+      </label>
+      <br></br>
+      {!sameAddress && (
+        <form onSubmit={submitOrder}>
+          <h3>New Delivery Address: </h3>
 
           <label>
             <b>Delivery Address Is Same as Registered Address :</b>{' '}
@@ -325,7 +337,7 @@ const CartPage = () => {
                 <input defaultValue={user.info.city} type="text" name="city" />
               </label>
               <br></br>
-
+              
               <label>
                 Zip Code.
                 <input defaultValue={user.info.zipCode} type="number" name="zc" />
@@ -347,8 +359,6 @@ const CartPage = () => {
             </button>
           )}
         </div>
-      )}
-    </div>
   );
 };
 

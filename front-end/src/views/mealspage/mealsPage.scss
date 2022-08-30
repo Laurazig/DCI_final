@@ -1,0 +1,39 @@
+
+.meals-container {
+    width: 90%;
+    margin: 1rem auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1rem;
+}
+
+.meal {
+    box-shadow: 0 0 2px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 0.3rem;
+
+    &:hover{
+        transform: scale(1.05);
+        transition: 0.6s;
+    }
+
+    & img {
+        width: 20rem;
+        height: 15rem;
+    }
+
+    & button {
+        background-color: greenyellow;
+        font-size: 1.4rem;
+        padding: 0.4rem;
+        border-radius: 0.3rem;
+
+        &:hover{
+            background-color: aquamarine;
+            transition: 0.4s;
+            transform: scale(1.1);
+        }
+    }
+
+}
