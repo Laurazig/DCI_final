@@ -4,7 +4,7 @@ import Navigation from "./components/globalComponents/navbar/Navigation";
 import LoginPage from "./views/loginpage/LoginPage";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import HowItWorksPage from "./views/howitworks/HowItWorksPage";
-import SupportPage from "./views/sustainability/Sustainability";
+import SustainabilityPage from "./views/sustainability/Sustainability";
 import CommunityPage from "./views/community/CommunityPage";
 import MealsPage from "./views/mealspage/MealsPage";
 import React, { useState, useEffect } from "react";
@@ -183,7 +183,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/howitworks" element={<HowItWorksPage />} />
-            <Route path="/support" element={<SupportPage />} />
+            <Route path="/sustainability" element={<SustainabilityPage />} />
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/login" element={<LoginPage />} />
