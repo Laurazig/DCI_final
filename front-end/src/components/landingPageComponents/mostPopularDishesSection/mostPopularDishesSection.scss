@@ -1,104 +1,66 @@
-@import '../../../scss-styling/styleVariables.scss';
+@import "../../../scss-styling/styleVariables.scss";
 
 .mostPopularDishesSection {
-    background-color: pink;
+  display: flex;
+  flex-direction: column;
+  margin: 0 30px;
+
+  h2 {
+    @include sectionTitle;
+    padding: 10px;
+    
+    @media (max-width: 700px) {
+      font-size: 44px;        }
+    
+
+  }
+
+  .cardsContainer {
     display: flex;
-    flex-direction: column;
-    padding: 0 30px;
+    justify-content: center;
+    gap: 20px;
 
-    h2 {
-        @include sectionTitle
+    @media (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
     }
 
-    .cardsContainer {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        background-color: yellow;
+    .card {
+      padding: 20px;
+      max-width: 400px;
 
-        @media (max-width:650px) {
-            flex-direction: column;
-            align-items: center;
-        }
+      .cardImg {
+        @include cardImg;
+        background-color: aqua;
+      }
 
-        .card {
-            @include cardInnerLayout;
-            padding: 20px;
-            border: 2px solid;
-            max-width: 400px;
+      .cardImg1 {
+        background-image: url(../../../assets/dish1.jpg);
+      }
 
-            .cardImg {
-                @include cardImg;
-                background-color: aqua;
-            }
+      .cardImg2 {
+        background-image: url(../../../assets/dish2.jpg);
+      }
 
+      .cardImg3 {
+        background-image: url(../../../assets/dish3.jpg);
+      }
 
-            .cardImg1 {
-                background-image: url(../../../assets/dish1.jpg);
-            }
+      h3 {
+        @include sectionSubTitle;
+        margin-top: 10px;
+      }
 
-            .cardImg2 {
-                background-image: url(../../../assets/dish2.jpg);
-            }
+      p {
+        @include paragraphStyle;
+        min-width: 200px;
 
-            .cardImg3 {
-                background-image: url(../../../assets/dish3.jpg);
-            }
+      }
 
-            h3{
-            }
-        }
-
+      button {
+        @include buttonOutline;
+        min-width: 100px;
+      }
     }
+  }
 }
-
-
-// .mostPopularDishesSection {
-//    flex-direction: column;
-
-//     h2 {
-//         @include sectionTitle
-//     }
-
-//     .cardsContainer {
-//         display: flex;
-//         justify-content: space-between;
-//         align-content: space-between;
-
-//         .card {
-//             @include cardInnerLayout;
-
-//             .cardImg {
-//                 @include cardImg;
-//             }
-
-//             .cardImg1 {
-//                 background-image: url(../../../assets/dish1.jpg);
-//             }
-
-//             .cardImg2 {
-//                 background-image: url(../../../assets/dish2.jpg);
-//             }
-
-//             .cardImg3 {
-//                 background-image: url(../../../assets/dish3.jpg);
-//             }
-
-//         }
-
-//         h3 {
-//             @include sectionSubTitle
-//         }
-
-//         p {
-//             @include paragraphStyle
-//         }
-
-
-//         button{
-//             @include buttonOutline
-//         }
-
-//     }
-
-// }
