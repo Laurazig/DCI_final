@@ -112,7 +112,7 @@ const CartPage = () => {
       try {
         if (response.ok) {
           setOrders([...orders, result.data._id]);
-          setCart([]);
+          //setCart([]);
           setPlacedOrder([true])
           // navigate('/payment');
         } else {
