@@ -11,7 +11,7 @@ export default function LandingPage () {
         <MainVisual/>
          <TrademarkSection/>
         <MostPopularDishesSection/>
-        {/*<PremiumSection/> */}
+        <PremiumSection/>
     </div>
   )
 }

@@ -25,6 +25,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState("");
+  const [hideSidemenu, setHideSideMenu] = useState(true);
+
 
   //======================================================================
   // UseEffect used to handle user and meal data functions 

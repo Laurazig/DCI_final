@@ -2,20 +2,19 @@
 
 .mobileNav {
     display: flex;
-align-items: center;
+    align-items: center;
     z-index: 10;
 
     .menuIcon {
         position: absolute;
         right: 20px;
-        top: 9px;
         color: $mainCol;
         cursor: pointer;
         z-index: 4;
 
     }
 
-    .showUserIcon{
+    .showUserIcon {
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -27,8 +26,8 @@ align-items: center;
         z-index: 5;
         color: $mainCol;
 
-        
-        .userIconWrapper{
+
+        .userIconWrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -36,15 +35,16 @@ align-items: center;
             width: 90px;
             height: 90px;
 
-            .userIcon{
+            .userIcon {
                 color: $secondaryCol;
 
             }
-        p{
-            @include paragraphAccentStyle;
-            color: $mainCol;
-         
-           }
+
+            p {
+                @include paragraphAccentStyle;
+                color: $mainCol;
+
+            }
         }
     }
 
@@ -64,24 +64,24 @@ align-items: center;
         padding: 40px 50px;
         background-color: $mainCol;
         width: 26vw;
-        height: 88vh;
+        height: 230vh;
         z-index: 2;
-        
 
 
-        .linkWrapper{
+
+        .linkWrapper {
             display: flex;
             flex-direction: column;
-            gap:10px;
+            gap: 10px;
         }
 
 
-        .closeIcon{
+        .closeIcon {
             color: $secondaryCol;
         }
 
 
-        
+
         span {
             display: flex;
             flex-direction: column;
@@ -89,9 +89,9 @@ align-items: center;
             margin-bottom: 20px;
         }
 
-        
 
-        
+
+
 
 
     }
@@ -100,46 +100,48 @@ align-items: center;
         color: $secondaryCol;
         font-size: clamp(12px, 10vw, 20px);
 
-   
-        
+
+
     }
 
-    a:hover{
-text-decoration: underline;      } 
+    a:hover {
+        text-decoration: underline;
+    }
 
-    .hide{
+    .hide {
         display: none;
     }
 
-    .filter{
+    .filter {
         width: 100vw;
-        height: 100vw;
+        height: 260vw;
         position: absolute;
         top: 0;
         right: 0;
         background-color: rgba(255, 255, 255, 0.343);
 
-        backdrop-filter: blur(2px);        
-        z-index: 1;   
+        backdrop-filter: blur(2px);
+        z-index: 1;
     }
-.nav-logo{
-    position: absolute;
-    right: 30px;
-    top:0;
-    z-index: 11;
 
-}
+    .nav-logo {
+        position: absolute;
+        right: 30px;
+        top: 0;
+        z-index: 11;
 
-.userName{
-    position: absolute;
-    right: 30px;
-    color:$mainCol;
-    z-index: 11;
-}
+    }
 
-.logoutButton{
-    margin-left: 25px;
+    .userName {
+        position: absolute;
+        right: 30px;
+        color: $mainCol;
+        z-index: 11;
+    }
 
-}
+    .logoutButton {
+        margin-left: 25px;
+
+    }
 
 }
