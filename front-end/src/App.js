@@ -52,6 +52,7 @@ function App() {
           setIsLoggedIn(true);
           setUser({id:result.data._id, info:result.data, expiry: tokenExpiry.toISOString(), token:result.token  })
           setToken( data.token );
+          setIsAdmin(data.info.isAdmin);
           //setIsAdmin(result.isAdmin)
         } else {
           throw new Error(result.message)

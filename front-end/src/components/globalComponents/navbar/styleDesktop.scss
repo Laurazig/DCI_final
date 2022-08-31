@@ -1,4 +1,4 @@
-@import '../../../scss-styling/styleVariables.scss';
+@import "../../../scss-styling/styleVariables.scss";
 
 .desktopNav {
   position: sticky;
@@ -15,7 +15,6 @@
     gap: 4%;
     justify-content: center;
     width: 79%;
-
   }
 
   a {
@@ -23,8 +22,18 @@
     font-size: clamp(12px, 10vw, 20px);
   }
 
-  a:hover{
-text-decoration: underline;  } 
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  // a:active {
+  //   color: red;
+  //   text-decoration: underline;
+  //   background: aee6fa;
+  //   border-radius: 0.3rem;
+  //   pointer-events: none;
+  // }
+
 
   span {
     display: flex;
@@ -36,11 +45,8 @@ text-decoration: underline;  }
 
     .regButton {
       @include buttonOutline;
-
     }
-
   }
-
 
   .showUserIcon {
     display: flex;
@@ -55,14 +61,10 @@ text-decoration: underline;  }
     .logoutButton {
       @include buttonOutline;
       cursor: pointer;
-
     }
-
   }
 
   .hide {
     display: none;
   }
-
-
 }

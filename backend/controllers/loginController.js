@@ -42,7 +42,7 @@ export const loginController = async ( req, res, next ) =>
        return res.json( { id: foundUser._id, token: newToken, data:foundUser } );
     } else
     {
-        return next( createError( 401, "You could not be logged in. Please try again" ) );
+        return next( createError( 401, "User not found. Please register" ) );
     }
 };
 

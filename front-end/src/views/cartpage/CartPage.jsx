@@ -1,11 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
-import UsersData from '../../components/UserData';
 import './cartPage.scss';
 
 const CartPage = () => {
-  const { cart, setCart, user, setOrders, orders, addToCart, removeFromCart, changeQuantity, isAdmin, token } =
+  const { cart, setCart, user, setOrders, orders, addToCart, removeFromCart, changeQuantity } =
     useContext(MyContext);
 
   const navigate = useNavigate();
@@ -143,7 +142,6 @@ const CartPage = () => {
   //ternary operator: 1. placed order===true - show success page | 2. placed order===false - show delete meals option
   return (
     <div>
-      <div> {isAdmin && <UsersData token={user.token} user={user.id} /> } </div>
       {placedOrder ? (
         <h2>Thanks for placing order: </h2>
       ) : (

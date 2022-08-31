@@ -54,3 +54,8 @@
 
   }
 }
+
+.registerLink {
+  @include buttonFilled;
+  padding: 0.5rem;
+}

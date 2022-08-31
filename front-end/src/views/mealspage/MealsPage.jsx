@@ -1,15 +1,39 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MyContext } from "../../App";
 import ReactStars from "react-rating-stars-component";
 import DeregisterUser from "../../components/DeregisterUser";
+import { useNavigate } from 'react-router-dom';
+import UserData from "../../components/UserData"
 import "./mealsPage.scss";
 
 const MealsPage = () => {
-  const { meals, user, addToCart, deleteUserAccount } = useContext(MyContext);
+  const { meals, user, cart, setCart, isLoggedIn, deleteUserAccount, isAdmin, token } = useContext(MyContext);
+  const navigate = useNavigate();
+  const addToCart = (meal) => {
+    let item = cart.find((elem) => elem._id === meal._id);
+    
+    if(!isLoggedIn) {
+      alert("Please login");
+      navigate("/login")
+    } else {
+      if (item) {
+        item.quantity += 1;
+        setCart([...cart]);
+      } else {if ((cart.length +1) > 3 ){
+        alert('Reached Maximum Quantity of Meals')
+        return 
+      }
+        setCart([...cart, { ...meal, quantity: 1 }]);
+      }
+    }
+    
+  };
 
   return (
     <div>
       <DeregisterUser deleteUserAccount={deleteUserAccount} />
+      {isAdmin && <UserData token={token} user={user.id} /> } 
+      
       <div>
         <h2>Welcome {user && user.info.firstName}</h2>
       </div>

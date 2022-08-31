@@ -2,7 +2,7 @@ import User from "../models/user.js";
 import createError from "http-errors";
 import jwt from "jsonwebtoken";
 
-const isAdmin = async (req, res, next) => {
+const admin = async (req, res, next) => {
     let token;
 
     try {
@@ -30,4 +30,4 @@ const isAdmin = async (req, res, next) => {
     }
 }
 
-export default isAdmin;
+export default admin;

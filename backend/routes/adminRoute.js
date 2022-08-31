@@ -1,8 +1,12 @@
 import express from "express";
-import { countCustomers } from "../controllers/adminController.js";
+import { countCustomerOrder } from "../controllers/adminController.js";
+import admin from "../middleware/admin.js";
 
 const router = express.Router();
 
-router.get("/:id/count", countCustomers)
+router.use(admin);
+
+router.get("/:id/count", countCustomerOrder)
+//router.get("/:id/orders/count", countOrderPerUser)
 
 export default router;
