@@ -8,10 +8,10 @@ const MealsPage = () => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <h2>Welcome {user && user.firstName}</h2>
       </div>
-      <h2>Meals page</h2>
+      <h2>Meals page</h2> */}
       <div className="meals-container">
         {meals.map((meal) => {
           return (
