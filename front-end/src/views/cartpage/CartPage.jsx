@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
-import MealsPage from '../mealspage/MealsPage';
+//import MealsPage from '../mealspage/MealsPage';
 import './cartPage.scss';
 
 const CartPage = () => {
@@ -134,7 +134,7 @@ const CartPage = () => {
         alert(err.message)
       } */
   };
-  console.log(cart);
+  console.log(`console.log cartpage: pay-${cart}`);
 
   // ===========================================================================
   // Customer clicks pay on success page to load stripe payment (order already in database)
@@ -143,7 +143,7 @@ const CartPage = () => {
     const pay = {
       total: total,
     };
-    console.log(pay);
+    console.log(`console.log cartpage: pay-${pay}`);
     const settings = {
       method: 'POST',
       body: JSON.stringify(pay),
@@ -158,6 +158,7 @@ const CartPage = () => {
         //STRIPE - taken from Youtube tutorial
         // .then(({ url }) => {   console.log(url) })
         // .then(({ url }) => {   window.location = url })
+        //setCart([]);
       } else {
         throw new Error(result.message);
       }
