@@ -155,10 +155,11 @@ const CartPage = () => {
     const result = await response.json();
     try {
       if (response.ok) {
+        window.location.href= result.url
         //STRIPE - taken from Youtube tutorial
         // .then(({ url }) => {   console.log(url) })
         // .then(({ url }) => {   window.location = url })
-        //setCart([]);
+        //setCart([]);  use effect on payment success page
       } else {
         throw new Error(result.message);
       }
