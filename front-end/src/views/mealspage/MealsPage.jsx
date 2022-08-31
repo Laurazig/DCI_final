@@ -20,7 +20,7 @@ const MealsPage = () => {
               <h2>{meal.mealName}</h2>
               <p>{meal.description}</p>
               <h3>
-                <strong>$ {meal.price}</strong>
+                <strong>€ {meal.price}</strong>
               </h3>
               <ReactStars
                 count={5}
