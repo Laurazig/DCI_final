@@ -9,6 +9,8 @@ import CommunityPage from "./views/community/CommunityPage";
 import MealsPage from "./views/mealspage/MealsPage";
 import React, { useState, useEffect } from "react";
 import CartPage from "./views/cartpage/CartPage";
+import StripeSuccessPage from "./views/stripe/stripeSuccess";
+import StripeCancelPage from "./views/stripe/stripeCancel";
 import Footer from "./components/globalComponents/footer/Footer";
 import './App.scss';
 
@@ -189,6 +191,8 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/stripe-success" element={<StripeSuccessPage />} />
+            <Route path="/stripe-cancel" element={<StripeCancelPage />} />
           </Routes>
           <Footer />
         </HashRouter>

@@ -14,6 +14,7 @@ const CartPage = () => {
   const [total, setTotal] = useState(0);
   const [userData, SetUserData] = useState(null);
   const [sameAddress, setSameAddress] = useState(true);
+  //const [stripeState, setStripeState] = useState(false)
 
   useEffect(() => {
     const sum = cart.reduce((acc, item) => {
@@ -22,32 +23,6 @@ const CartPage = () => {
     }, 0);
     setTotal(sum);
   }, [cart]);
-
-
-  /*   const reduceToCart = (meal) => {
-    let item = cart.find((elem) => elem._id === meal._id);
-    if (item) {
-      item.quantity -= 1;
-      setCart([...cart]);
-    }
-      setCart([...cart, { ...meal, quantity: 1 }]);
-    }
-  }; */
-
-  /*   const getAddress = (e) => {
-    e.preventDefault();
-    let userAddress = {
-      houseNo: e.target.hn.value,
-      street: e.target.stn.value,
-      zipCode: e.target.pc.value,
-      city: e.target.city.value,
-      phone: e.target.phone.value,
-    };
-    console.log(userAddress);
-    e.target.reset();
-  }; */
-
-  // * Yohannes and Sameer modify the placeOrder function
 
   // ===========================================================================
   // The customer placing an order in the front end and post it in the back end
@@ -72,7 +47,7 @@ const CartPage = () => {
         },
       };
 
-      console.log(newOrder);
+      // console.log(newOrder);
 
       const settings = {
         method: 'POST',
@@ -87,8 +62,6 @@ const CartPage = () => {
         if (response.ok) {
           setOrders([...orders, result.data._id]);
           setPlacedOrder(true)
-          //setCart([]);
-          //navigate('/payment');
         } else {
           throw new Error(result.message);
         }
@@ -101,7 +74,6 @@ const CartPage = () => {
   const changeAddress = (e) => {
     setSameAddress(e.target.checked);
   };
-  // * Yohannes and Sameer modify the placeOrder function
 
   // ===========================================================================
   // Deleting a single ordered meal by the customer
@@ -134,7 +106,7 @@ const CartPage = () => {
         alert(err.message)
       } */
   };
-  console.log(`console.log cartpage: pay-${cart}`);
+  //console.log(`console.log cartpage: pay-${cart}`);
 
   // ===========================================================================
   // Customer clicks pay on success page to load stripe payment (order already in database)
@@ -143,7 +115,7 @@ const CartPage = () => {
     const pay = {
       total: total,
     };
-    console.log(`console.log cartpage: pay-${pay}`);
+    // console.log(`console.log cartpage: pay-${pay}`);
     const settings = {
       method: 'POST',
       body: JSON.stringify(pay),
@@ -155,11 +127,9 @@ const CartPage = () => {
     const result = await response.json();
     try {
       if (response.ok) {
-        window.location.href= result.url
-        //STRIPE - taken from Youtube tutorial
-        // .then(({ url }) => {   console.log(url) })
-        // .then(({ url }) => {   window.location = url })
-        //setCart([]);  use effect on payment success page
+        //setStripeState(true)
+        setCart([]);
+        window.location.href = result.url
       } else {
         throw new Error(result.message);
       }
@@ -167,6 +137,8 @@ const CartPage = () => {
       alert(err.message);
     }
   };
+
+
   //ternary operator: 1. placed order===true - show success page | 2. placed order===false - show delete meals option
   return (
     <div>

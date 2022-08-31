@@ -8,10 +8,10 @@ const MealsPage = () => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <h2>Welcome {user && user.firstName}</h2>
       </div>
-      <h2>Meals page</h2>
+      <h2>Meals page</h2> */}
       <div className="meals-container">
         {meals.map((meal) => {
           return (
@@ -20,7 +20,7 @@ const MealsPage = () => {
               <h2>{meal.mealName}</h2>
               <p>{meal.description}</p>
               <h3>
-                <strong>$ {meal.price}</strong>
+                <strong>€ {meal.price}</strong>
               </h3>
               <ReactStars
                 count={5}
