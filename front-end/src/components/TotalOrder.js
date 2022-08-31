@@ -1,11 +1,9 @@
 import React, {useContext} from 'react';
 import  { MyContext }  from "../App.js";
 
-const UsersData = () => {
+const TotalOrder = () => {
     const { user, token } = useContext(MyContext);
-
-    // Function to show all the customers of BioBites
-    const showUserOrderedCount = async () => {
+    const showAllOrderedCount = async () => {
       
       const settings = {
         headers: {
@@ -18,7 +16,7 @@ const UsersData = () => {
   
       try {
         if (response.ok) {
-          alert(`Current number of customers are ${result.count}.`);
+          alert(`The total number of order is ${result.count}.`);
         } else {
           throw new Error(result.message);
         }
@@ -28,11 +26,11 @@ const UsersData = () => {
     };
   
     return (
-      <button className="logout-btn" onClick={showUserOrderedCount}>
-        View User Data
+      <button className="logout-btn" onClick={showAllOrderedCount}>
+        Total Oder
       </button>
     );
   };
   
-  export default UsersData;
+  export default TotalOrder;
   

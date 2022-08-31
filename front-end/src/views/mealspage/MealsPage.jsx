@@ -3,7 +3,9 @@ import { MyContext } from "../../App";
 import ReactStars from "react-rating-stars-component";
 import DeregisterUser from "../../components/DeregisterUser";
 import { useNavigate } from 'react-router-dom';
-import UserData from "../../components/UserData"
+import UserData from "../../components/UserData";
+import TotalOrder from "../../components/TotalOrder";
+import TotalOrderPerCustomer from "../../components/TotalOrderPerCustomer";
 import "./mealsPage.scss";
 
 const MealsPage = () => {
@@ -31,8 +33,12 @@ const MealsPage = () => {
 
   return (
     <div>
-      <DeregisterUser deleteUserAccount={deleteUserAccount} />
-      {isAdmin && <UserData token={token} user={user.id} /> } 
+      <div className="admin-buttons">
+        <div> <DeregisterUser deleteUserAccount={deleteUserAccount} /> </div>
+        <div>{isAdmin && <UserData token={token} user={user.id} /> } </div>
+        <div> {isAdmin && <TotalOrder token={token} user={user.id} /> } </div>
+        <div>  {isAdmin && <TotalOrderPerCustomer token={token} user={user.id} /> }  </div>
+      </div>
       
       <div>
         <h2>Welcome {user && user.info.firstName}</h2>
