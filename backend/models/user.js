@@ -15,7 +15,6 @@ const userSchema = new Schema( {
     zipCode: { type: String, required: true },
     city:{ type: String, required: true },
     orders: [ { type: mongoose.Types.ObjectId, ref: "orders" } ]
-    //shipping address
 }, { timestamps: true } );
 
 userSchema.pre("save", async function(next) {

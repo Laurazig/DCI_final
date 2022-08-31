@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
-import MealsPage from '../mealspage/MealsPage';
+import UsersData from '../../components/UserData';
 import './cartPage.scss';
 
 const CartPage = () => {
-  const { cart, setCart, user, setOrders, orders, addToCart, removeFromCart, changeQuantity } =
+  const { cart, setCart, user, setOrders, orders, addToCart, removeFromCart, changeQuantity, isAdmin, token } =
     useContext(MyContext);
 
   const navigate = useNavigate();
@@ -23,38 +23,6 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
-  
-  /*   const reduceToCart = (meal) => {
-    let item = cart.find((elem) => elem._id === meal._id);
-    if (item) {
-      item.quantity -= 1;
-      setCart([...cart]);
-    }
-      setCart([...cart, { ...meal, quantity: 1 }]);
-    }
-  }; */
-
-  /*   const getAddress = (e) => {
-    e.preventDefault();
-    let userAddress = {
-      houseNo: e.target.hn.value,
-      street: e.target.stn.value,
-      zipCode: e.target.pc.value,
-      city: e.target.city.value,
-      phone: e.target.phone.value,
-    };
-    console.log(userAddress);
-    e.target.reset();
-  }; */
-
-  /*  user enters card number, date, 3dig - click confirm order
-  last 4 dig card is stored in database order
-  stripe sandbox to process  payment*/
-  /*  const payment = ((e) => {
-    e.preventDefault()
-    ??setCardNum =cardNumber.slice(-4)
-  })
- */
   // * Yohannes and Sameer modify the placeOrder function
 
   // ===========================================================================
@@ -141,7 +109,7 @@ const CartPage = () => {
         alert(err.message)
       } */
   };
-  console.log(cart);
+
 
   // ===========================================================================
   // Customer clicks pay on success page to load stripe payment (order already in database)
@@ -175,6 +143,7 @@ const CartPage = () => {
   //ternary operator: 1. placed order===true - show success page | 2. placed order===false - show delete meals option
   return (
     <div>
+      <div> {isAdmin && <UsersData token={user.token} user={user.id} /> } </div>
       {placedOrder ? (
         <h2>Thanks for placing order: </h2>
       ) : (

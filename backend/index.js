@@ -11,8 +11,9 @@ import registerRouter from "./routes/registerRoute.js";
 import loginRouter from "./routes/loginRoute.js";
 import mealRouter from "./routes/mealRoute.js";
 import orderRouter from "./routes/ordersRoute.js";
-import usersRoutes from "./routes/usersRoutes.js"
+import usersRouter from "./routes/usersRoute.js"
 import paymentRouter from "./routes/paymentRoute.js";
+import adminRouter from "./routes/adminRoute.js"
 
 const app = express();
 app.use(cors({origin:"http://localhost:3000"}));
@@ -29,8 +30,9 @@ app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/meals", mealRouter);
 app.use("/orders", orderRouter);
-app.use("/users", usersRoutes);
+app.use("/users", usersRouter);
 app.use("/payment", paymentRouter);
+app.use("/admin", adminRouter);
 
 // http://localhost:3001/Meal1_HummusBowl.jpg
 app.use(express.static("assets"));

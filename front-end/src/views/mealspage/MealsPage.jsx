@@ -1,15 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MyContext } from "../../App";
 import ReactStars from "react-rating-stars-component";
+import DeregisterUser from "../../components/DeregisterUser";
 import "./mealsPage.scss";
 
 const MealsPage = () => {
-  const { meals, user, addToCart } = useContext(MyContext);
+  const { meals, user, addToCart, deleteUserAccount } = useContext(MyContext);
 
   return (
     <div>
+      <DeregisterUser deleteUserAccount={deleteUserAccount} />
       <div>
-        <h2>Welcome {user && user.firstName}</h2>
+        <h2>Welcome {user && user.info.firstName}</h2>
       </div>
       <h2>Meals page</h2>
       <div className="meals-container">

@@ -51,11 +51,11 @@ const logOut=()=>{
           </NavLink>
           <NavLink to="/register">
             <button className={isLoggedIn === true ? "hide" : "regButton" }>
-              {" "}
               Register
             </button>
           </NavLink>
         </div>
+
       </div>
       {/* toggle area */}
       <div
@@ -69,10 +69,10 @@ const logOut=()=>{
             <p>Hello {user && user.firstName} </p>
            
             <div >
-            <AccountCircleIcon onClick={()=>{setLogOutButton(!logOutButton)}}style={{ fontSize: 50, cursor:"pointer" }} />
+            <AccountCircleIcon onClick={()=>{setLogOutButton(!logOutButton)}} style={{ fontSize: 50, cursor:"pointer" }} />
               <p onClick={logOut} style={{position:"absolute", right:"50px", width:"120px", padding:"5px", color:"white", backgroundColor:"gray",textAlign:"center", display:logOutButton ?"block" : "none", cursor:"pointer"}}>Log-Out</p>
             </div>
-          </div>
+      </div>
     </div>
   );
 };
