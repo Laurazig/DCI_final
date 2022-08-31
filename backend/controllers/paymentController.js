@@ -2,8 +2,6 @@ import Stripe from "stripe"
 
 export const paymentPost = async (req, res, next) => {
     try {
-        console.log(process.env.STRIPE_PRIVATE_KEY)
-        //{"error":"Missing required param: success_url."}
         const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
@@ -20,8 +18,8 @@ export const paymentPost = async (req, res, next) => {
                     quantity: 1
                 }
             ],
-            success_url:`http://localhost:3000/#/meals`,
-            cancel_url: `http://localhost:3000/#/cart`
+            success_url:`http://localhost:3000/#/stripe-success`,
+            cancel_url: `http://localhost:3000/#/stripe-cancel`
         }
         )
         //cancel_url: `${process.env.CLIENT_URL}/cancel.html`,
