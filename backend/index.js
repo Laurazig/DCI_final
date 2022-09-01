@@ -14,6 +14,7 @@ import orderRouter from "./routes/ordersRoute.js";
 import usersRouter from "./routes/usersRoute.js"
 import paymentRouter from "./routes/paymentRoute.js";
 import adminRouter from "./routes/adminRoute.js"
+import landingPageRouter from "./routes/landingPageRoute.js"
 
 const app = express();
 app.use(cors({origin:"http://localhost:3000"}));
@@ -33,6 +34,7 @@ app.use("/orders", orderRouter);
 app.use("/users", usersRouter);
 app.use("/payment", paymentRouter);
 app.use("/admin", adminRouter);
+app.use("/landingPage", landingPageRouter);
 
 // http://localhost:3001/Meal1_HummusBowl.jpg
 app.use(express.static("assets"));

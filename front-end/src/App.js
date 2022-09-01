@@ -27,7 +27,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [userId, setUserId] = useState("");
   const [hideSidemenu, setHideSideMenu] = useState(true);
 
 
