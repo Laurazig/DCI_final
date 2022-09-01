@@ -4,7 +4,8 @@ import "./premiumSection.scss";
 export default function PremiumSection() {
   return (
     <div className="premiumSection">
-      <h2>Join our premium plan</h2>
+      <h2>Premium plan</h2>
+      <h3>coming soon</h3>
 
       <div className="horizontalCardContainer">
         
@@ -24,7 +25,7 @@ export default function PremiumSection() {
             <li>Choosing the time you will receive your box.</li>
             <li>10% discount on orders Monday to Friday </li>
           </ul>
-          <button>Try premium</button>
+          {/* <button>Try premium</button> */}
         </div>
       </div>
     </div>
