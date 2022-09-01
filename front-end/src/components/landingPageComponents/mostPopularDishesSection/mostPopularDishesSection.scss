@@ -32,19 +32,9 @@
       .cardImg {
         @include cardImg;
         background-color: aqua;
+     
       }
 
-      .cardImg1 {
-        background-image: url(../../../assets/dish1.jpg);
-      }
-
-      .cardImg2 {
-        background-image: url(../../../assets/dish2.jpg);
-      }
-
-      .cardImg3 {
-        background-image: url(../../../assets/dish3.jpg);
-      }
 
       h3 {
         @include sectionSubTitle;
@@ -60,6 +50,7 @@
       button {
         @include buttonOutline;
         min-width: 100px;
+        cursor: pointer; 
       }
     }
   }

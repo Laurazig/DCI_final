@@ -11,6 +11,7 @@ import "./mealsPage.scss";
 const MealsPage = () => {
   const { meals, user, cart, setCart, isLoggedIn, deleteUserAccount, isAdmin, token } = useContext(MyContext);
   const navigate = useNavigate();
+ 
   const addToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
     
@@ -58,7 +59,7 @@ const MealsPage = () => {
                 count={5}
                 value={meal.rating}
                 size={24}
-                half={true}
+                isHalf={true}
                 activeColor="yellow"
               />
               <div>
