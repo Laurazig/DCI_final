@@ -4,8 +4,16 @@ import { MyContext } from '../../App';
 import './cartPage.scss';
 
 const CartPage = () => {
-  const { cart, setCart, user, setOrders, orders, addToCart, removeFromCart, changeQuantity } =
-    useContext(MyContext);
+  const {
+    cart,
+    setCart,
+    user,
+    setOrders,
+    orders,
+    addToCart,
+    removeFromCart,
+    changeQuantity,
+  } = useContext(MyContext);
 
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
@@ -22,7 +30,6 @@ const CartPage = () => {
     }, 0);
     setTotal(sum);
   }, [cart]);
-
 
   // * Yohannes and Sameer modify the placeOrder function
   // ===========================================================================
@@ -62,7 +69,7 @@ const CartPage = () => {
       try {
         if (response.ok) {
           setOrders([...orders, result.data._id]);
-          setPlacedOrder(true)
+          setPlacedOrder(true);
         } else {
           throw new Error(result.message);
         }
@@ -129,7 +136,7 @@ const CartPage = () => {
       if (response.ok) {
         //setStripeState(true)
         setCart([]);
-        window.location.href = result.url
+        window.location.href = result.url;
       } else {
         throw new Error(result.message);
       }
@@ -137,7 +144,6 @@ const CartPage = () => {
       alert(err.message);
     }
   };
-
 
   //ternary operator: 1. placed order===true - show success page | 2. placed order===false - show delete meals option
   return (
@@ -170,7 +176,7 @@ const CartPage = () => {
             {' '}
             {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
           </div>
-          <button onClick={stripe} >Pay</button>
+          <button onClick={stripe}>Pay</button>
         </>
       ) : (
         <div className="ordered-meals-container">
@@ -190,7 +196,9 @@ const CartPage = () => {
                 </div>
                 <h4>{meal.mealName}</h4>
                 <div className="add-reduce-quantity-container">
-                  <div><button onClick={() => addToCart(meal)}>+</button></div>
+                  <div>
+                    <button onClick={() => addToCart(meal)}>+</button>
+                  </div>
                   <div className="value-input-container">
                     <input
                       type="text"
@@ -198,7 +206,9 @@ const CartPage = () => {
                       onChange={(e) => changeQuantity(e, meal)}
                     />
                   </div>
-                  <div><button onClick={() => removeFromCart(meal)}>-</button></div>
+                  <div>
+                    <button onClick={() => removeFromCart(meal)}>-</button>
+                  </div>
                 </div>
                 <p>{meal.price}€</p>
                 <div
@@ -267,12 +277,20 @@ const CartPage = () => {
 
               <label>
                 Zip Code.
-                <input defaultValue={user.info.zipCode} type="number" name="zc" />
+                <input
+                  defaultValue={user.info.zipCode}
+                  type="number"
+                  name="zc"
+                />
               </label>
               <br />
               <label>
                 Phone
-                <input defaultValue={user.info.phone} type="number" name="phone" />
+                <input
+                  defaultValue={user.info.phone}
+                  type="number"
+                  name="phone"
+                />
               </label>
               <br></br>
               <button disabled={cart.length < 3}>
