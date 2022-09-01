@@ -26,23 +26,24 @@ function App() {
   const [user, setUser] = useState(userData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
+<<<<<<< HEAD
+  const [isAdmin, setIsAdmin] = useState(false);
+=======
   const [userId, setUserId] = useState("");
   const [hideSidemenu, setHideSideMenu] = useState(true);
 
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
 
   //======================================================================
   // UseEffect used to handle user and meal data functions 
   //======================================================================
-
   useEffect( () => {
-    //======================================================================
+    //===============================
     // Function to fetch user data
-    //======================================================================
+    //==============================
     const fetchUserData = async () => {
       const data = JSON.parse( localStorage.getItem( "data" ) );
     if ( data ) {
-      console.log(data.token)
-
       const settings = {
         method: "POST",
         headers: {
@@ -51,9 +52,7 @@ function App() {
       }
 
       const response = await fetch( process.env.REACT_APP_SERVER_URL + "/users/verifytoken", settings);
-
       const result = await response.json();
-
       try{
         if(response.ok) {
           const now = new Date();
@@ -61,27 +60,24 @@ function App() {
           setIsLoggedIn(true);
           setUser({id:result.data._id, info:result.data, expiry: tokenExpiry.toISOString(), token:result.token  })
           setToken( data.token );
-          setUserId( data.id );
+          setIsAdmin(data.info.isAdmin);
+          //setIsAdmin(result.isAdmin)
         } else {
           throw new Error(result.message)
         }
       }catch(err){
         alert(err.message)
       }
-
     }
     }
     fetchUserData();
     
-    //======================================================================
+    //================================
     // Function to fetch meals data
-    //======================================================================
+    //===============================
     const fetchMealsData = async () => {
-
       const response = await fetch(process.env.REACT_APP_SERVER_URL + "/meals");
-
       const result = await response.json();
-
       try{
         if(response.ok) {
           setMeals(result)
@@ -98,18 +94,14 @@ function App() {
   //======================================================================
   // UseEffect used to store user data and cart data in the local storage
   //======================================================================
-
   useEffect( () =>  {
     localStorage.setItem( "data", JSON.stringify( user ) );
     localStorage.setItem( "cart", JSON.stringify( cart ) );
   }, [ user,cart ] );
-
-
   
   // =======================================================================
   // Function to Add to the Cart
   //========================================================================
-
  const addToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
     
@@ -127,7 +119,6 @@ function App() {
   // =======================================================================
   // Function to Remove from the Cart Item/s 
   //========================================================================
-  
   const removeFromCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
     
@@ -140,45 +131,42 @@ function App() {
   // =======================================================================
   // Function to Change Quantity
   //========================================================================
-
   const changeQuantity = (e, meal) => {
-    const item = cart.find((elem) => elem._id === meal._id);
-    item.quantity = Number(e.target.value);
+    const foundItem = cart.find((elem) => elem._id === meal._id);
+    foundItem.quantity =  Number(e.target.value);
     setCart([...cart]);
   };
 
  // =======================================================================
-  // Function to delete user account
-  //========================================================================
+ // Function to delete user account
+ //========================================================================
+  const deleteUserAccount = async () => {
  
+      const settings = {
+        method: "DELETE",
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+      };
+      const response = await fetch( process.env.REACT_APP_SERVER_URL + `/users/${user.id}`, settings );
+      const result = await response.json();
   
-  const deletUserAccount = async event => {
-    const settings = {
-      method: "DELETE",
-      headers: {
-          "Authorization": "Bearer " + token
+      try{
+        if(response.ok) {
+          setToken(false);
+          alert(result.message);
+          setIsLoggedIn(false);
+          setUser([...user]);
+        } else {
+          throw new Error(result.message)
+        }
+      }catch(err){
+        alert(err.message)
       }
     };
-    const response = await fetch( process.env.REACT_APP_SERVER_URL + `/users/${ userId }`, settings );
-    const result = await response.json();
-
-    try{
-      if(response.od) {
-        alert(result.message)
-        setIsLoggedIn(false)
-        setUserId("")
-      } else {
-        throw new Error(result.message)
-      }
-    }catch(err){
-      alert(err.message)
-    }
-  };
   
-
-
-  return (
-    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, userId, token, setToken, isLoggedIn, setIsLoggedIn, addToCart, removeFromCart, changeQuantity }}>
+ return (
+    <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn, addToCart, removeFromCart, changeQuantity, deleteUserAccount, isAdmin, setIsAdmin }}>
       <div className='App'>
         <HashRouter>
           <Navigation isLoggedIn={isLoggedIn} />

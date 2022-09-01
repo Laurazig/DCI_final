@@ -31,6 +31,7 @@ export const registerController = async ( req, res, next ) =>
             houseNo: houseNo,
             zipCode: zipCode,
             city: city,
+            isAdmin: false,
             orders:[]
         } );
         // Save the new user to the database

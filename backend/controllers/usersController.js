@@ -51,6 +51,25 @@ res.send({success:false, message:err.message})
     }
 }
 
+//=============================================================
+// Delete User Account
+// =============================================================
+
+export const deleteUserAccount = async (req, res, next) => {
+
+    const userId = req.params.id;
+  
+    try {
+      await User.findByIdAndRemove(userId);
+    } catch {
+      return next(createError(500, "User could not be deleted. Please try again"));
+    }
+  
+    // find user using id and delete 
+  
+    res.json({ message: `The account has been successfully deleted. Come back soon!` });
+  };
+
 
 
 

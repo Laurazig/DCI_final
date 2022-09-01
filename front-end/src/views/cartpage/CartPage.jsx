@@ -1,7 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
+<<<<<<< HEAD
+=======
 //import MealsPage from '../mealspage/MealsPage';
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
 import './cartPage.scss';
 
 const CartPage = () => {
@@ -24,6 +27,11 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
+<<<<<<< HEAD
+  // * Yohannes and Sameer modify the placeOrder function
+
+=======
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
   // ===========================================================================
   // The customer placing an order in the front end and post it in the back end
   //============================================================================
@@ -106,7 +114,11 @@ const CartPage = () => {
         alert(err.message)
       } */
   };
+<<<<<<< HEAD
+
+=======
   //console.log(`console.log cartpage: pay-${cart}`);
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
 
   // ===========================================================================
   // Customer clicks pay on success page to load stripe payment (order already in database)

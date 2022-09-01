@@ -14,8 +14,9 @@ const userSchema = new Schema( {
     houseNo: { type: Number, required: true },
     zipCode: { type: String, required: true },
     city:{ type: String, required: true },
+    isAdmin: { type: Boolean, required: true },
     orders: [ { type: mongoose.Types.ObjectId, ref: "orders" } ]
-    //shipping address
+    
 }, { timestamps: true } );
 
 userSchema.pre("save", async function(next) {

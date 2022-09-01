@@ -41,11 +41,15 @@ const [logOutButton, setLogOutButton] = useState(false);
 
       {/* Links */}
       <div className="linkWrapper">
+       <NavLink to="howitworks" style={({ isActive }) => ({
+        color: isActive && "#FFFFFF", background: isActive && "#91C88A", borderRadius: isActive && "0.3rem", padding: isActive && "0.3rem", pointerEvents: isActive && "none"})}>How it works</NavLink> 
         
-        <NavLink to="howitworks">How it works</NavLink>
-        <NavLink to="/meals"> Meals</NavLink>
-        <NavLink to="/sustainability">Sustainability</NavLink>
-        <NavLink className={props.isLoggedIn === false ? "hide" : "cartPage"} to="/cart">
+        <NavLink to="/meals" style={({ isActive }) => ({
+          color: isActive && "#FFFFFF",  background: isActive && "#91C88A", borderRadius: isActive && "0.3rem", padding: isActive && "0.3rem", pointerEvents: isActive && "none"})}> Meals</NavLink>
+        <NavLink to="/sustainability" style={({ isActive }) => ({
+          color: isActive && "#FFFFFF", background: isActive && "#91C88A", borderRadius: isActive && "0.3rem", padding: isActive && "0.3rem", pointerEvents: isActive && "none"})}>Sustainability</NavLink>
+        <NavLink className={props.isLoggedIn === false ? "hide" : "cartPage"} to="/cart" style={({ isActive }) => ({
+          color: isActive && "#FFFFFF", background: isActive && "#91C88A", borderRadius: isActive && "0.3rem", padding: isActive && "0.3rem", pointerEvents: isActive && "none"})}>
           Cart
         </NavLink>
       </div>
