@@ -39,10 +39,11 @@ const MealsPage = () => {
         {isAdmin && <TotalOrder token={token} userId={user.id} />}
         {isAdmin && <TotalOrderPerCustomer token={token} userId={user.id} />} 
       </div>
-      <div>
+      {/* <div>
         <h2>Welcome {user && user.info.firstName}</h2>
       </div>
-      <h2>Meals page</h2> 
+      <h2>Meals page</h2>  */}
+      <p>Select 3 meals and proceed to cart for checkout</p>
       <div className="meals-container">
         {meals.map((meal) => {
           return (

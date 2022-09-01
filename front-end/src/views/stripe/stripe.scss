@@ -1,0 +1,24 @@
+@import "../../scss-styling/styleVariables.scss";
+
+.boxAlignment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+}
+
+.paymentBox{
+    color: $mainCol;
+    height: 25vh;
+    align-items: center;
+    text-align: center;
+    border: 1px solid $mainCol;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 3rem;
+    background-color: $mainColLighter;
+}
+
+h2{
+    margin: 1rem;
+}
