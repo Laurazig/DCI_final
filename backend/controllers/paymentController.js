@@ -1,8 +1,8 @@
 import Stripe from "stripe"
-const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
 export const paymentPost = async (req, res, next) => {
     try {
+        const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             mode: "payment",
@@ -13,16 +13,17 @@ export const paymentPost = async (req, res, next) => {
                         product_data: {
                             name: "Biobites order"
                         },
-                        unit_amount: req.body.total,
+                        unit_amount:+req.body.total *100,
                     },
                     quantity: 1
                 }
-            ]
+            ],
+            success_url:`http://localhost:3000/#/stripe-success`,
+            cancel_url: `http://localhost:3000/#/stripe-cancel`
         }
         )
-            //react router path "We are processing your order "
-            //cancel_url: `${process.env.CLIENT_URL}/cancel.html`,
-            res.json({ url: session.url })
+        //cancel_url: `${process.env.CLIENT_URL}/cancel.html`,
+        res.json({ url: session.url })
     } catch (e) {
         res.status(500).json({ error: e.message })
     }

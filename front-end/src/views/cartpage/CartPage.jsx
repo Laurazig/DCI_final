@@ -1,6 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
+<<<<<<< HEAD
+=======
+//import MealsPage from '../mealspage/MealsPage';
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
 import './cartPage.scss';
 
 const CartPage = () => {
@@ -13,6 +17,7 @@ const CartPage = () => {
   const [total, setTotal] = useState(0);
   const [userData, SetUserData] = useState(null);
   const [sameAddress, setSameAddress] = useState(true);
+  //const [stripeState, setStripeState] = useState(false)
 
   useEffect(() => {
     const sum = cart.reduce((acc, item) => {
@@ -22,8 +27,11 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
+<<<<<<< HEAD
   // * Yohannes and Sameer modify the placeOrder function
 
+=======
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
   // ===========================================================================
   // The customer placing an order in the front end and post it in the back end
   //============================================================================
@@ -47,7 +55,7 @@ const CartPage = () => {
         },
       };
 
-      console.log(newOrder);
+      // console.log(newOrder);
 
       const settings = {
         method: 'POST',
@@ -61,8 +69,7 @@ const CartPage = () => {
       try {
         if (response.ok) {
           setOrders([...orders, result.data._id]);
-          setCart([]);
-          navigate('/payment');
+          setPlacedOrder(true)
         } else {
           throw new Error(result.message);
         }
@@ -75,7 +82,6 @@ const CartPage = () => {
   const changeAddress = (e) => {
     setSameAddress(e.target.checked);
   };
-  // * Yohannes and Sameer modify the placeOrder function
 
   // ===========================================================================
   // Deleting a single ordered meal by the customer
@@ -108,7 +114,11 @@ const CartPage = () => {
         alert(err.message)
       } */
   };
+<<<<<<< HEAD
 
+=======
+  //console.log(`console.log cartpage: pay-${cart}`);
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
 
   // ===========================================================================
   // Customer clicks pay on success page to load stripe payment (order already in database)
@@ -117,7 +127,7 @@ const CartPage = () => {
     const pay = {
       total: total,
     };
-    console.log(pay);
+    // console.log(`console.log cartpage: pay-${pay}`);
     const settings = {
       method: 'POST',
       body: JSON.stringify(pay),
@@ -129,9 +139,9 @@ const CartPage = () => {
     const result = await response.json();
     try {
       if (response.ok) {
-        //STRIPE - taken from Youtube tutorial
-        // .then(({ url }) => {   console.log(url) })
-        // .then(({ url }) => {   window.location = url })
+        //setStripeState(true)
+        setCart([]);
+        window.location.href = result.url
       } else {
         throw new Error(result.message);
       }
@@ -139,11 +149,41 @@ const CartPage = () => {
       alert(err.message);
     }
   };
+
+
   //ternary operator: 1. placed order===true - show success page | 2. placed order===false - show delete meals option
   return (
     <div>
       {placedOrder ? (
-        <h2>Thanks for placing order: </h2>
+        <>
+          <h2>Order summary </h2>
+          <h3>Meals:</h3>
+          {cart.map((meal) => {
+            return (
+              <div key={meal._id} className="ordered-meals">
+                <div>
+                  {' '}
+                  <img src={meal.img} width="100" alt="" />{' '}
+                </div>
+                <h4>{meal.mealName}</h4>
+                <p>{meal.price}€</p>
+                <div> {meal.quantity}</div>
+              </div>
+            );
+          })}
+
+          <h3>Address:</h3>
+          <p>{user.info.houseNo}</p>
+          <p>{user.info.street}</p>
+          <p>{user.info.city}</p>
+          <p>{user.info.zipcode}</p>
+          <p>{user.info.phone}</p>
+          <div className="total">
+            {' '}
+            {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
+          </div>
+          <button onClick={stripe} >Pay</button>
+        </>
       ) : (
         <div className="ordered-meals-container">
           {cart.length === 3 ? null : (
@@ -162,16 +202,16 @@ const CartPage = () => {
                 </div>
                 <h4>{meal.mealName}</h4>
                 <div className="add-reduce-quantity-container">
-                <div><button onClick={() => addToCart(meal)}>+</button></div>
-                <div className="value-input-container">
-                  <input
-                    type="text"
-                    value={meal.quantity}
-                    onChange={(e) => changeQuantity(e, meal)}
-                  />
+                  <div><button onClick={() => addToCart(meal)}>+</button></div>
+                  <div className="value-input-container">
+                    <input
+                      type="text"
+                      value={meal.quantity}
+                      onChange={(e) => changeQuantity(e, meal)}
+                    />
+                  </div>
+                  <div><button onClick={() => removeFromCart(meal)}>-</button></div>
                 </div>
-                <div><button onClick={() => removeFromCart(meal)}>-</button></div>
-              </div>
                 <p>{meal.price}€</p>
                 <div
                   id={meal._id}
@@ -184,83 +224,80 @@ const CartPage = () => {
               </div>
             );
           })}
-        </div>
-      )}
+          <div className="total">
+            {' '}
+            {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
+          </div>
 
-      <div className="total">
-        {' '}
-        {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
-      </div>
-
-      <h3>{message}</h3>
-
-      <label>
-        <b>Delivery Address Is Same as Registered Address :</b>{' '}
-        <input
-          style={{
-            width: '50px',
-            height: '25px',
-            cursor: 'pointer',
-            border: '3px solid black',
-          }}
-          type={'checkbox'}
-          defaultChecked
-          onChange={changeAddress} /* name="check" */
-        />
-        <br></br>{' '}
-        <p style={{ color: 'red' }}>
-          PLEASE NOTE : If your delivery address is Different than your
-          REGISTERED Address than please UNCHECK the Box Above and Fill New
-          Delivery Address:
-        </p>
-        <br></br>
-      </label>
-      <br></br>
-      {!sameAddress && (
-        <form onSubmit={submitOrder}>
-          <h3>New Delivery Address: </h3>
+          <h3>{message}</h3>
           <label>
-            House No.
+            <b>Delivery Address Is Same as Registered Address :</b>{' '}
             <input
-              defaultValue={user.info.houseNo}
-              type="number"
-              name="hn"
-              min={1}
+              style={{
+                width: '50px',
+                height: '25px',
+                cursor: 'pointer',
+                border: '3px solid black',
+              }}
+              type={'checkbox'}
+              defaultChecked
+              onChange={changeAddress} /* name="check" */
             />
+            <br></br>{' '}
+            <p style={{ color: 'red' }}>
+              PLEASE NOTE : If your delivery address is Different than your
+              REGISTERED Address than please UNCHECK the Box Above and Fill New
+              Delivery Address:
+            </p>
+            <br></br>
           </label>
           <br></br>
+          {!sameAddress && (
+            <form onSubmit={submitOrder}>
+              <h3>New Delivery Address: </h3>
+              <label>
+                House No.
+                <input
+                  defaultValue={user.info.houseNo}
+                  type="number"
+                  name="hn"
+                  min={1}
+                />
+              </label>
+              <br></br>
 
-          <label>
-            Street No.
-            <input defaultValue={user.info.street} type="text" name="stn" />
-          </label>
-          <br></br>
+              <label>
+                Street No.
+                <input defaultValue={user.info.street} type="text" name="stn" />
+              </label>
+              <br></br>
+              <label>
+                City.
+                <input defaultValue={user.info.city} type="text" name="city" />
+              </label>
+              <br></br>
 
-          <label>
-            City.
-            <input defaultValue={user.info.city} type="text" name="city" />
-          </label>
-          <br></br>
-
-          <label>
-            Zip Code.
-            <input defaultValue={user.info.zipCode} type="number" name="zc" />
-          </label>
-          <br />
-          <label>
-            Phone
-            <input defaultValue={user.info.phone} type="number" name="phone" />
-          </label>
-          <br></br>
-          <button disabled={cart.length < 3}>
-            Confirm Your Selections And Proceed To Payment Page
-          </button>
-        </form>
-      )}
-      {sameAddress && (
-        <button onClick={submitOrder} disabled={cart.length < 3}>
-          Confirm Your Selections And Proceed To Payment Page
-        </button>
+              <label>
+                Zip Code.
+                <input defaultValue={user.info.zipCode} type="number" name="zc" />
+              </label>
+              <br />
+              <label>
+                Phone
+                <input defaultValue={user.info.phone} type="number" name="phone" />
+              </label>
+              <br></br>
+              <button disabled={cart.length < 3}>
+                Confirm Your Selections And Proceed To Payment Page
+              </button>
+            </form>
+          )}
+          {sameAddress && (
+            <button onClick={submitOrder} disabled={cart.length < 3}>
+              Confirm Your Selections And Proceed To Payment Page
+            </button>
+          )}
+        </div>
       )}
     </div>
   );

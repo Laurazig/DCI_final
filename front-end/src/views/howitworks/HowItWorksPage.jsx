@@ -1,11 +1,17 @@
 import React from 'react'
+import "./howItWorks.scss"
+
 
 const HowItWorksPage = () => {
   return (
-    <div>
+    <div className='howItWorksPage'>
+
       <h1>How It Works</h1>
+
+      <div className='stepOne'>
       <h3>1. Choose 3 meals</h3>
       <p>login and select your 3 meals from the long list. On the Cart page enter your card details and click to confirm order. Easy peasy!</p>
+      </div>
 
       <h3>2. Get your delivery</h3>
       <p>Each week, you’ll open simple step-by-step recipes complete with nutritional information and fresh, pre-measured ingredients to get you whipping up delicious dinners in no time.</p>

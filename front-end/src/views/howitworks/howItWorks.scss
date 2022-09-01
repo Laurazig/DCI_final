@@ -1,0 +1,15 @@
+@import "../../scss-styling/styleVariables.scss";
+
+.howItWorksPage{
+    
+    h1{
+        @include sectionTitle;
+    }
+
+    .stepOne{
+        background-image: url(../../assets/inpho-icon.png);
+        background-repeat: no-repeat;
+
+    }
+
+}

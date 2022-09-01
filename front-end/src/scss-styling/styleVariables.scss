@@ -8,6 +8,7 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
 * {
     margin: 0;
     padding: 0;
+    
 
     a {
         text-decoration: none;
@@ -19,6 +20,8 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     width: clamp(12px, 10vw, 95px);
     height: 35px;
     border-radius: 7px;
+    min-width: 100px;
+
 }
 
 @mixin buttonFilled {
@@ -94,24 +97,23 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
 
 
 @mixin sectionTitle {
-    font-size: 48px;
+    font-size: clamp(4px, 10vw, 60px);
     color: $tertiaryCol;
     font-weight: 250;
-    padding: 40px 0;
+    text-align: center;
 }
 
 @mixin sectionSubTitle {
-    font-size: 22px;
+    font-size: clamp(12px, 10vw, 22px);
     color: $tertiaryCol;
     font-weight: 500;
-    padding: 20px 0 10px 0;
+    padding: 0px 0 10px 0;
 }
 
 @mixin paragraphStyle {
 
-    font-size: 17px;
+    font-size: clamp(4px, 10vw, 17px);
     color: $tertiaryCol;
-    text-align: justify;
     margin-bottom: 20px;
 }
 
@@ -130,9 +132,9 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
 //------- Layout & Cards -------
 
 @mixin cardInnerLayout {
-    width: 400px;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 @mixin navBarFooterDisplay {
@@ -144,8 +146,10 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
 }
 
 @mixin cardImg {
-    width: 400px;
-    height: 280px;
+    aspect-ratio: 16 /10;
+    max-width: 400px;
+    
+    max-height: 280px;
     background-size: cover;
     background-position: center;
 }

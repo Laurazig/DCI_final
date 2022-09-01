@@ -33,6 +33,7 @@ const MealsPage = () => {
 
   return (
     <div>
+<<<<<<< HEAD
       <div className="admin-buttons">
         <div> <DeregisterUser deleteUserAccount={deleteUserAccount} /> </div>
         <div>{isAdmin && <UserData token={token} user={user.id} /> } </div>
@@ -42,8 +43,12 @@ const MealsPage = () => {
       
       <div>
         <h2>Welcome {user && user.info.firstName}</h2>
+=======
+      {/* <div>
+        <h2>Welcome {user && user.firstName}</h2>
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
       </div>
-      <h2>Meals page</h2>
+      <h2>Meals page</h2> */}
       <div className="meals-container">
         {meals.map((meal) => {
           return (
@@ -52,7 +57,7 @@ const MealsPage = () => {
               <h2>{meal.mealName}</h2>
               <p>{meal.description}</p>
               <h3>
-                <strong>$ {meal.price}</strong>
+                <strong>€ {meal.price}</strong>
               </h3>
               <ReactStars
                 count={5}

@@ -5,7 +5,7 @@ const UsersData = () => {
     const { user, token } = useContext(MyContext);
 
     // Function to show all the customers of BioBites
-    const showUserOrderedCount = async () => {
+    const showTotalCustomers = async () => {
       
       const settings = {
         headers: {
@@ -18,7 +18,7 @@ const UsersData = () => {
   
       try {
         if (response.ok) {
-          alert(`Current number of customers are ${result.count}.`);
+          alert(`Current number of customers is ${result.count}.`);
         } else {
           throw new Error(result.message);
         }
@@ -28,7 +28,7 @@ const UsersData = () => {
     };
   
     return (
-      <button className="logout-btn" onClick={showUserOrderedCount}>
+      <button className="logout-btn" onClick={showTotalCustomers}>
         View User Data
       </button>
     );

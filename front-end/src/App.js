@@ -4,11 +4,13 @@ import Navigation from "./components/globalComponents/navbar/Navigation";
 import LoginPage from "./views/loginpage/LoginPage";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import HowItWorksPage from "./views/howitworks/HowItWorksPage";
-import SupportPage from "./views/sustainability/Sustainability";
+import SustainabilityPage from "./views/sustainability/Sustainability";
 import CommunityPage from "./views/community/CommunityPage";
 import MealsPage from "./views/mealspage/MealsPage";
 import React, { useState, useEffect } from "react";
 import CartPage from "./views/cartpage/CartPage";
+import StripeSuccessPage from "./views/stripe/stripeSuccess";
+import StripeCancelPage from "./views/stripe/stripeCancel";
 import Footer from "./components/globalComponents/footer/Footer";
 import './App.scss';
 
@@ -24,7 +26,13 @@ function App() {
   const [user, setUser] = useState(userData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
+<<<<<<< HEAD
   const [isAdmin, setIsAdmin] = useState(false);
+=======
+  const [userId, setUserId] = useState("");
+  const [hideSidemenu, setHideSideMenu] = useState(true);
+
+>>>>>>> f1c75c1022b9acf742ba688fd375e13ec91161eb
 
   //======================================================================
   // UseEffect used to handle user and meal data functions 
@@ -165,12 +173,14 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/howitworks" element={<HowItWorksPage />} />
-            <Route path="/support" element={<SupportPage />} />
+            <Route path="/sustainability" element={<SustainabilityPage />} />
             <Route path="/meals" element={<MealsPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/stripe-success" element={<StripeSuccessPage />} />
+            <Route path="/stripe-cancel" element={<StripeCancelPage />} />
           </Routes>
           <Footer />
         </HashRouter>

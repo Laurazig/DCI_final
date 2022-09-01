@@ -1,62 +1,66 @@
-@import '../../../scss-styling/styleVariables.scss';
+@import "../../../scss-styling/styleVariables.scss";
 
-.mostPopularDishesSection{
-    background-color: pink;
+.mostPopularDishesSection {
+  display: flex;
+  flex-direction: column;
+  margin: 0 30px;
+
+  h2 {
+    @include sectionTitle;
+    padding: 10px;
+    
+    @media (max-width: 700px) {
+      font-size: 44px;        }
+    
+
+  }
+
+  .cardsContainer {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
 
-    .cardsContainer{
-        display: flex;
+    @media (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
     }
+
+    .card {
+      padding: 20px;
+      max-width: 400px;
+
+      .cardImg {
+        @include cardImg;
+        background-color: aqua;
+      }
+
+      .cardImg1 {
+        background-image: url(../../../assets/dish1.jpg);
+      }
+
+      .cardImg2 {
+        background-image: url(../../../assets/dish2.jpg);
+      }
+
+      .cardImg3 {
+        background-image: url(../../../assets/dish3.jpg);
+      }
+
+      h3 {
+        @include sectionSubTitle;
+        margin-top: 10px;
+      }
+
+      p {
+        @include paragraphStyle;
+        min-width: 200px;
+
+      }
+
+      button {
+        @include buttonOutline;
+        min-width: 100px;
+      }
+    }
+  }
 }
-
-
-// .mostPopularDishesSection {
-//    flex-direction: column;
-
-//     h2 {
-//         @include sectionTitle
-//     }
-
-//     .cardsContainer {
-//         display: flex;
-//         justify-content: space-between;
-//         align-content: space-between;
-
-//         .card {
-//             @include cardInnerLayout;
-
-//             .cardImg {
-//                 @include cardImg;
-//             }
-
-//             .cardImg1 {
-//                 background-image: url(../../../assets/dish1.jpg);
-//             }
-
-//             .cardImg2 {
-//                 background-image: url(../../../assets/dish2.jpg);
-//             }
-
-//             .cardImg3 {
-//                 background-image: url(../../../assets/dish3.jpg);
-//             }
-
-//         }
-
-//         h3 {
-//             @include sectionSubTitle
-//         }
-
-//         p {
-//             @include paragraphStyle
-//         }
-
-
-//         button{
-//             @include buttonOutline
-//         }
-
-//     }
-
-// }
