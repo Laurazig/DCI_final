@@ -79,7 +79,7 @@ const HowItWorksPage = () => {
           </p>
           <p>
             No worries. You can easily skip a week (or several!) when you need
-            to. Just be sure to do so by your cutoff time 5 days prior to your
+            to. <br/>Just be sure to do so by your cutoff time 5 days prior to your
             delivery.
           </p>
         </span>
