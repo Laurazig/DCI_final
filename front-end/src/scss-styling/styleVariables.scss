@@ -78,6 +78,12 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     }
 }
 
+@mixin buttonAdmin {
+    @include buttonOutline;
+    width: 17%;
+    margin: 1rem auto;
+}
+
 // ------- input flieds -------
 
 @mixin standardInput {

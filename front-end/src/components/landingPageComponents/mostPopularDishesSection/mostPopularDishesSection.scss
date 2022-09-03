@@ -8,16 +8,16 @@
   h2 {
     @include sectionTitle;
     padding: 10px;
-    
-    @media (max-width: 700px) {
-      font-size: 44px;        }
-    
 
+    @media (max-width: 700px) {
+      font-size: 44px;
+    }
   }
 
   .cardsContainer {
     display: flex;
     justify-content: center;
+    text-align: center;
     gap: 20px;
 
     @media (max-width: 700px) {
@@ -28,29 +28,37 @@
     .card {
       padding: 20px;
       max-width: 400px;
+      border: 1px solid $mainCol;
+      border-radius: 1em;
 
       .cardImg {
         @include cardImg;
-        background-color: aqua;
-     
+        margin: 0;
+        padding: 0;
       }
-
 
       h3 {
         @include sectionSubTitle;
         margin-top: 10px;
+        margin: 0.4em;
+        padding: 0;
       }
 
       p {
         @include paragraphStyle;
         min-width: 200px;
+        margin: 0;
+        padding: 0;
+      }
 
+      #mealCardPrice {
+        margin: 0;
+        padding: 0;
       }
 
       button {
         @include buttonOutline;
-        min-width: 100px;
-        cursor: pointer; 
+        margin: 0;
       }
     }
   }
