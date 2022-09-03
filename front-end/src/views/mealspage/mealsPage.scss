@@ -1,3 +1,4 @@
+@import '../../scss-styling/styleVariables.scss';
 
 .meals-container {
     width: 90%;
@@ -13,8 +14,8 @@
     padding: 1rem;
     border-radius: 0.3rem;
 
-    &:hover{
-        transform: scale(1.05);
+    &:hover {
+        transform: scale(1.01);
         transition: 0.6s;
     }
 
@@ -24,24 +25,13 @@
     }
 
     & button {
-        // background-color: greenyellow;
-        // font-size: 1.4rem;
-        // padding: 0.4rem;
-        // border-radius: 0.3rem;
-        width: clamp(12px, 10vw, 95px);
-        height: 35px;
-        border-radius: 7px;
-        min-width: 100px;
-        color: #91c88a;
-        background-color: transparent;
-        border: 2px solid #91c88a;
-        min-width: 100px;
+        @include buttonOutline;
 
-        &:hover{
-            background-color: #91c88a21;
-            transition: 0.4s;
-            transform: scale(1.1);
-        }
+        // &:hover{
+        //     background-color: #91c88a21;
+        //     transition: 0.4s;
+        //     transform: scale(1.1);
+        // }
     }
 
 }

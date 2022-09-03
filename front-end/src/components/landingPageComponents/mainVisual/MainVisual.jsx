@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import "./mainVisual.scss"
 
-import mainVisualPhoto from '../../../assets/mainVisualAlternative.jpg'
+//import mainVisualPhoto from '../../../assets/mainVisualAlternative.jpg'
 
 
 export default function MainVisual() {

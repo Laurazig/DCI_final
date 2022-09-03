@@ -149,7 +149,7 @@ const CartPage = () => {
   return (
     <div>
       {placedOrder ? (
-        <>
+        <div id='orderSummary'>
           <h2>Order summary </h2>
           <h3>Meals:</h3>
           {cart.map((meal) => {
@@ -160,8 +160,8 @@ const CartPage = () => {
                   <img src={meal.img} width="100" alt="" />{' '}
                 </div>
                 <h4>{meal.mealName}</h4>
-                <p>{meal.price}€</p>
-                <div> {meal.quantity}</div>
+                <p className='individualMealPrice'>{meal.price}€ </p>
+                <div> {meal.quantity} </div>
               </div>
             );
           })}
@@ -176,17 +176,18 @@ const CartPage = () => {
             {' '}
             {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
           </div>
-          <button onClick={stripe}>Pay</button>
-        </>
+          <button onClick={stripe} className='buttonCheckout'>Pay</button>
+        </div>
       ) : (
         <div className="ordered-meals-container">
+          <h3 id='cartChoicesH3'>Your choices this week: </h3>
           {cart.length === 3 ? null : (
-            <h3 style={{ color: 'Red' }}>
+            <h3 id='cartNotificationSelect'>
               Please Select 3 Separate Meals From Our Meal's Selection page to
               proceed to Payment page{' '}
             </h3>
           )}
-          <h3>Your choices this week: </h3>
+
           {cart.map((meal) => {
             return (
               <div key={meal._id} className="ordered-meals">
@@ -217,7 +218,7 @@ const CartPage = () => {
                   className="deleteOrderedMeal"
                 >
                   {' '}
-                  <span>X</span>
+                  <span id='XdeleteMealCart'>X</span>
                 </div>
               </div>
             );
@@ -229,7 +230,7 @@ const CartPage = () => {
 
           <h3>{message}</h3>
           <label>
-            <b>Delivery Address Is Same as Registered Address :</b>{' '}
+            <b>Delivery address is same as registered address:</b>{' '}
             <input
               style={{
                 width: '50px',
@@ -242,11 +243,11 @@ const CartPage = () => {
               onChange={changeAddress} /* name="check" */
             />
             <br></br>{' '}
-            <p style={{ color: 'red' }}>
-              PLEASE NOTE : If your delivery address is Different than your
-              REGISTERED Address than please UNCHECK the Box Above and Fill New
-              Delivery Address:
+            <p className='cartNotification'>
+              <strong>PLEASE NOTE:</strong>
             </p>
+            <p>If your DELIVERY address is different from your
+              REGISTERED Address than please UNCHECK the box above and fill in a new delivery address.</p>
             <br></br>
           </label>
           <br></br>
@@ -293,15 +294,19 @@ const CartPage = () => {
                 />
               </label>
               <br></br>
-              <button disabled={cart.length < 3}>
-                Confirm Your Selections And Proceed To Payment Page
+              <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
+              <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >
+                checkout
               </button>
             </form>
           )}
           {sameAddress && (
-            <button onClick={submitOrder} disabled={cart.length < 3}>
-              Confirm Your Selections And Proceed To Payment Page
-            </button>
+            <>
+              <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
+              <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >
+                checkout
+              </button>
+            </>
           )}
         </div>
       )}

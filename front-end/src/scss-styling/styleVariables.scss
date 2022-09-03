@@ -1,5 +1,6 @@
 $mainCol: #91c88a;
 $mainColLighter: #91c88a73;
+$buttonHover: #91c88a15;
 
 $secondaryCol: white;
 $tertiaryCol: black;
@@ -41,10 +42,15 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     color: $mainCol;
     background-color: transparent;
     border: 2px solid $mainCol;
+    cursor: pointer;
 
     a {
         color: $mainCol;
         text-decoration: none;
+    }
+    &:hover{
+        transform: scale(1.01);
+        background-color: $buttonHover; 
     }
 }
 

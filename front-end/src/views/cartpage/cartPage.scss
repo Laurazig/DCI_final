@@ -1,52 +1,110 @@
-body{
+@import '../../scss-styling/styleVariables.scss';
+
+body {
     margin-left: 10px;
-}
-
-.deleteCartItems{
-   display: flex;
-   flex-flow: row nowrap; 
-   align-items: space-between;
-}
-.cartButtons{
-    margin: 0.5rem 1rem 0.5rem 1rem;
-    padding: 3px;
-}
-.cartButtonsDelete{
-color: red;
-margin-left: 1.5rem;
-padding:0px 15px;
-border-radius: 50%;
-}
-
-.deleteOrderedMeal{
-    cursor: pointer;
 }
 
 .ordered-meals {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    // &.individualMealPrice{
+    //     margin-right: 1em;
+    //     background-color: green;
+    // }
+}
+
+.buttonCheckout {
+    margin: 1em;
+    @include buttonOutline;
+
+}
+
+#orderSummary {
+    width: 90%;
+    margin: auto;
+
+    .orderSummBox {
+        border: 1px solid $mainCol;
+        padding: 2em;
+        border-radius: 1em;
+        width: 60%;
+    }
 }
 
 .ordered-meals-container {
     width: 90%;
     margin: auto;
-}
 
-.add-reduce-quantity-container {
-    display: flex;
-    height: 2rem;
+    .add-reduce-quantity-container {
+        display: flex;
+        height: 2rem;
+        margin-right: 1em;
 
-    & input {
-        padding: 0.4rem;
-        width: 4rem;
-        font-size: 1.4rem;
-        text-align: center;
+        & input {
+            padding: 0.4rem;
+            width: 4rem;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        & button {
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            background-color: $mainCol;
+            cursor: pointer;
+        }
     }
 
-    & button {
-        padding: 0.5rem 1rem;
-        font-size: 1.2rem;
-        background-color: greenyellow;
+    .deleteOrderedMeal {
         cursor: pointer;
+
+        #XdeleteMealCart {
+            background-color: $mainCol;
+            padding: 0.5rem;
+            border-radius: 30%;
+            color: white;
+        }
+    }
+
+    // label{
+    //     & b{
+    //         margin-bottom: 1em;
+    //     }
+    // }
+
+    #cartChoicesH3 {
+        margin-top: 1em;
+    }
+
+    #cartNotificationSelect {
+        padding: 3em;
+        margin: 2em;
+        border: 1px solid $mainCol;
+        border-radius: 1em;
+        color: $mainCol;
+    }
+
+    .cartNotification {
+        background-color: $mainCol ;
+        color: white;
+        margin-top: 1em;
     }
 }
+
+// .deleteCartItems {
+//     display: flex;
+//     flex-flow: row nowrap;
+//     align-items: space-between;
+// }
+
+// .cartButtons {
+//     margin: 0.5rem 1rem 0.5rem 1rem;
+//     padding: 3px;
+// }
+
+// .cartButtonsDelete {
+//     color: $mainCol;
+//     margin-left: 1.5rem;
+//     padding: 0px 15px;
+//     border-radius: 50%;
+// }
