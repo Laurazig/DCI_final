@@ -2,7 +2,7 @@ import LandingPage from "./views/landingpage/LandingPage";
 import RegisterPage from './views/registerpage/RegisterPage';
 import Navigation from "./components/globalComponents/navbar/Navigation";
 import LoginPage from "./views/loginpage/LoginPage";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import HowItWorksPage from "./views/howitworks/HowItWorksPage";
 import SustainabilityPage from "./views/sustainability/Sustainability";
 import CommunityPage from "./views/community/CommunityPage";
@@ -187,7 +187,7 @@ function App() {
  return (
     <MyContext.Provider value={{ meals, setMeals, cart, setCart, orders, setOrders, user, setUser, token, setToken, isLoggedIn, setIsLoggedIn, addToCart, removeFromCart, changeQuantity, deleteUserAccount, isAdmin, setIsAdmin }}>
       <div className='App'>
-        <HashRouter>
+        <Router>
           <Navigation isLoggedIn={isLoggedIn} />
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -202,7 +202,7 @@ function App() {
             <Route path="/stripe-cancel" element={<StripeCancelPage />} />
           </Routes>
           <Footer />
-        </HashRouter>
+        </Router>
       </div>
     </MyContext.Provider>
   );

@@ -10,7 +10,7 @@ export const mealGet = async (req, res, next) => {
   try {
     foundMeals = await Meal.find();
   } catch {
-    return next(createError(500, "Database could get meals. Please try again"));
+    return next(createError(500, "Database could not get meals. Please try again"));
   }
   // res.send(foundMeals)
   res.status(201).json(foundMeals);
