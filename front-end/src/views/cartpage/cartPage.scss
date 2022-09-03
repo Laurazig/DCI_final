@@ -103,8 +103,13 @@ body {
     }
 
     & form {
-        background-color: yellow;
-        display: block;
+        // border: 1px solid $mainCol;
+        & label{
+            color: $mainCol;
+        }
+        & input {
+            @include standardInput;
+          }
     }
 }
 

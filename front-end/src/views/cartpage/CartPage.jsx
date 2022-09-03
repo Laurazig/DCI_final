@@ -244,58 +244,61 @@ const CartPage = () => {
               defaultChecked
               onChange={changeAddress} /* name="check" */
             />
-            <br></br>{' '}
+            <br />{' '}
             <p className='cartNotification'>
               <strong>PLEASE NOTE:</strong>
             </p>
             <p>If your DELIVERY address is different from your
               REGISTERED Address than please UNCHECK the box above and fill in a new delivery address.</p>
-            <br></br>
+            <br />
           </label>
-          <br></br>
+          <br />
           {!sameAddress && (
             <form onSubmit={submitOrder}>
               <h3>New Delivery Address: </h3>
               <label>
                 Street
               </label>
-              <br></br>
+              <br />
               <input defaultValue={user.info.street} type="text" name="stn" />
-              <br></br>
+              <br />
               <label>
                 House No.
-                <input
-                  defaultValue={user.info.houseNo}
-                  type="number"
-                  name="hn"
-                  min={1}
-                />
               </label>
-              <br></br>
+              <br />
+              <input
+                defaultValue={user.info.houseNo}
+                type="number"
+                name="hn"
+                min={1}
+              />
+              <br />
               <label>
                 City
-                <input defaultValue={user.info.city} type="text" name="city" />
               </label>
-              <br></br>
-
+              <br />
+              <input defaultValue={user.info.city} type="text" name="city" />
+              <br />
               <label>
-                Zip Code.
-                <input
-                  defaultValue={user.info.zipCode}
-                  type="number"
-                  name="zc"
-                />
+                Zip Code
               </label>
+              <br />
+              <input
+                defaultValue={user.info.zipCode}
+                type="number"
+                name="zc"
+              />
               <br />
               <label>
                 Phone
-                <input
+              </label>
+              <br />
+              <input
                   defaultValue={user.info.phone}
                   type="number"
                   name="phone"
                 />
-              </label>
-              <br></br>
+              
               <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
               <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >
                 checkout
