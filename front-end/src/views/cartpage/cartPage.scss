@@ -1,3 +1,4 @@
+@import '../../scss-styling/styleVariables.scss';
 
 .cart-page-container {
     width: 90%;
@@ -8,14 +9,14 @@
     padding: 0.3rem 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 3px;
-    background-color: #f0ffff;
+    // background-color: #f0ffff;
 
     .heading {
-        color: red;
+        color: $mainCol;
         font-size: 1.6rem;
     }
 
-    .cart-length-container{
+    .cart-length-container {
         margin: 2rem 0;
     }
 }
@@ -39,16 +40,30 @@
             border-radius: 2%;
         }
     }
+
     .meal-name {
         width: 85%;
-        margin: 1rem auto;  
+        margin: 1rem auto;
     }
-    .add-reduce-quantity-container{
+
+    .add-reduce-quantity-container {
         width: 85%;
-        margin: auto; 
-        box-shadow: 0 0 1px; 
+        margin: auto;
+        box-shadow: 0 0 1px;
         border-radius: 0.3rem;
         padding: 1rem;
+    }
+
+    & form {
+
+        // border: 1px solid $mainCol;
+        & label {
+            color: $mainCol;
+        }
+
+        & input {
+            @include standardInput;
+        }
     }
 }
 
@@ -66,19 +81,19 @@
         text-align: center;
     }
 
-    .quantity-button button  {
+    .quantity-button button {
         min-width: 90%;
         font-size: 1.4rem;
         padding: 0.16rem 0.5rem;
         border-radius: 0.3rem;
         font-weight: 700;
         text-align: center;
-        background-color: #ade3adda;
+        background-color: $mainCol;
         color: black;
         cursor: pointer;
 
         &:hover {
-            background-color: greenyellow;
+            background-color: $mainColLighter;
             transition: 0.5s;
         }
     }
@@ -110,7 +125,6 @@
 .total {
     font-weight: 900;
     font-size: 1.2rem;
-    color: blue;
 }
 
 .delivery-address {
@@ -118,7 +132,8 @@
 
     .check-box-container {
         margin-top: 0.5rem;
-        background-color: #f5cbf5;
+        background-color: $mainColLighter;
+
 
         .same-delivery-address-paragraph {
             font-size: 1.3rem;
@@ -158,9 +173,9 @@
             margin-bottom: 1rem;
         }
 
-       .label {
-        font-size: 1.3rem;
-       }
+        .label {
+            font-size: 1.3rem;
+        }
     }
 }
 
@@ -178,17 +193,18 @@
 }
 
 .new-address-btn {
-    font-size: 1.4rem;
-    padding: 0.16rem 0.5rem;
-    border-radius: 0.3rem;
-    font-weight: 700;
-    text-align: center;
-    background-color: #ade3adda;
-    color: black;
-    cursor: pointer;
+    @include buttonOutline
+    // font-size: 1.4rem;
+    // padding: 0.16rem 0.5rem;
+    // border-radius: 0.3rem;
+    // font-weight: 700;
+    // text-align: center;
+    // background-color: $mainCol;
+    // color: black;
+    // cursor: pointer;
 
-    &:hover {
-        background-color: greenyellow;
-        transition: 0.5s;
-    }
+    // &:hover {
+    //     background-color: greenyellow;
+    //     transition: 0.5s;
+    // }
 }
