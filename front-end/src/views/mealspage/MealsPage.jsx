@@ -47,7 +47,7 @@ const MealsPage = () => {
         {isAdmin && <DeregisterUser token={token} userId={user.id} deleteUserAccount={deleteUserAccount} />}
       </div>
       {/* </div> */}
-      <h3 id="mealPageText">Select 3 meals and proceed to cart for checkout</h3>
+      <h3 className="mealPageText">Select 3 meals and proceed to cart for checkout</h3>
       <div className="meals-container">
         {meals.map((meal) => {
           return (
