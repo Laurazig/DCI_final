@@ -56,6 +56,4 @@
 }
 
 .registerLink {
-  @include buttonFilled;
-  padding: 0.5rem;
-}
+@include paragraphAccentStyle}

@@ -35,20 +35,16 @@ export default function DesktopNav(props) {
       {/* Links */}
       <div className="linkWrapper">
         <NavLink to="howitworks" style={({ isActive }) => ({
-          color: isActive && "#FFFFFF", background: isActive && "#91C88A", borderRadius: isActive && "0.3rem", padding: isActive && "0.3rem", pointerEvents: isActive && "none"
-        })}>How it works</NavLink>
+          textDecoration: isActive && "underline"})}>How it works</NavLink>
 
         <NavLink to="/meals" style={({ isActive }) => ({
-          color: isActive && "#FFFFFF", background: isActive && "#91C88A", borderRadius: isActive && "0.3rem", padding: isActive && "0.3rem", pointerEvents: isActive && "none"
-        })}> Meals</NavLink>
+          textDecoration: isActive && "underline"})}> Meals</NavLink>
 
         <NavLink to="/sustainability" style={({ isActive }) => ({
-          color: isActive && "#FFFFFF", background: isActive && "#91C88A", borderRadius: isActive && "0.3rem", padding: isActive && "0.3rem", pointerEvents: isActive && "none"
-        })}>Sustainability</NavLink>
+          textDecoration: isActive && "underline"})}>Sustainability</NavLink>
         
         <NavLink className={props.isLoggedIn === false ? "hide" : "cartPage"} to="/cart" style={({ isActive }) => ({
-          color: isActive && "#FFFFFF", background: isActive && "#91C88A", borderRadius: isActive && "0.3rem", padding: isActive && "0.3rem", pointerEvents: isActive && "none"
-        })}>
+          textDecoration: isActive && "underline"})}>
           Cart
         </NavLink>
       </div>

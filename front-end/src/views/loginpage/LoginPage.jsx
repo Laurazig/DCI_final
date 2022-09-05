@@ -104,7 +104,7 @@ const LoginPage = () => {
         <span><NavLink to="/meals"> Meals Page</NavLink></span> to discover new dishes from all around the world.
       </p>
 
-      <div> Not registered? <NavLink className="registerLink" to="/register"> Register </NavLink></div>
+      <div> Not registered yet? <NavLink className="registerLink" to="/register"> Click here </NavLink></div>
 
       </div>
 
