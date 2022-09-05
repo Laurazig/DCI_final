@@ -145,57 +145,49 @@ const CartPage = () => {
       alert(err.message);
     }
   };
-
   return (
     <section className='cart-page-container'>
       {placedOrder ? (
-        <div id='orderSummary'>
-          <h2>Order summary </h2>
-          <div className='orderSummBox'>
+        <React.Fragment className="cart-ordered-meals-container"> {/*THis is used to */}
+          <h2> Order Summary </h2>
             <h3>Meals:</h3>
             {cart.map((meal) => {
               return (
-                <div key={meal._id} id="ordered-meals-summ">
-                  <div>
-                    {' '}
-                    <img src={meal.img} width="100" alt="" />{' '}
-                  </div>
+                <div key={meal._id} className="ordered-meal">
+                  <div> <img src={meal.img} width="100" alt="" /> </div>
                   <h4>{meal.mealName}</h4>
-                  <p className='individualMealPrice'>{meal.price}€ </p>
-                  <div> {meal.quantity} </div>
+                  <p>{meal.price}€</p>
+                  <div> {meal.quantity}</div>
                 </div>
               );
             })}
-          </div>
-          <div className='orderSummBox'>
-            <h3>Address:</h3>
-            <p>{user.info.street} {user.info.houseNo}</p>
-            <p>{user.info.city}</p>
-            <p>{user.info.zipcode}</p>
-            <p>{user.info.phone}</p>
-          </div>
-          <div className="total">
-            {' '}
-            {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
-          </div>
-          <button onClick={stripe} className='buttonCheckout'>Pay</button>
-        </div>
+            <section>
+              <h3>Customer Address:</h3>
+              <p>{user.info.houseNo}</p>
+              <p>{user.info.street}</p>
+              <p>{user.info.city}</p>
+              <p>{user.info.zipcode}</p>
+              <p>{user.info.phone}</p>
+              <div className="total">
+                {cart.length > 0 && <h2> Total : {total}€ </h2>}
+              </div>
+              <button onClick={stripe}>Pay</button>
+            </section>
+        </React.Fragment>
       ) : (
-        <div className="ordered-meals-container">
-          <h3 id='cartChoicesH3'>Your choices this week: </h3>
-          {cart.length === 3 ? null : (
-            <h3 id='cartNotificationSelect'>
-              Please select 3 separate meals from our meal's selection page to
-              proceed to payment page{' '}
-            </h3>
-          )}
-          
+        <section className="cart-after-placing-order-container">
+         <div className='cart-length-container'>
+            {cart.length === 3 ? null : (
+                <h3 className='heading'> Please Select Three Separate Meals From the Meal page  to proceed to Payment</h3>
+              )}
+         </div>
+          <h2 className='meals-choice'>Your meals' choices for this week are: </h2>
+         <div className='ordered-meals-container'>
           {cart.map((meal) => {
               return (
                 <div key={meal._id} className="ordered-meals">
                   <div className='image-container'> <img src={meal.img} width="450" height="340" alt="" /></div>
                   <h4 className='meal-name'>{meal.mealName}</h4>
-
                   <div className="add-reduce-quantity-container">
                     <div className='quantity-button'> <button onClick={() => addToCart(meal)}>+</button> </div>
                     <div className="value-input-container">
@@ -206,37 +198,32 @@ const CartPage = () => {
                       />
                     </div>
                     <div className='quantity-button'> <button onClick={() => removeFromCart(meal)}>-</button> </div>
-
                     <div className='meal-price'>{meal.price}€</div>
-
                     <div id={meal._id} onClick={() => deleteSingleOrderedMeal(meal)} className="deleteOrderedMeal">  <span>X</span> </div>
                   </div>
                 </div>
               );
             })}
          </div>
-
          <hr />
           <div className="total">
             {cart.length > 0 && <h2> Total : {total}€ </h2>}
           </div>
           <hr />
-
           <div className='delivery-address'>
             <h3>{message}</h3>  {/* What is the importance of message state variable */}
             <div className='check-box-container'>
                 <label className='check-box-and-paragraph-container'>
                     <p className='same-delivery-address-paragraph'>If Delivery Address Is Same as Registered Address, click continue. Otherwise, please UNCHECK the Box next to this paragraph and then Fill out the New Delivery Address.</p>
                     <div className='check-box'>
-                      <input 
+                      <input
                         type={'checkbox'}
                         defaultChecked
-                        onChange={changeAddress} 
+                        onChange={changeAddress}
                       />
                   </div>
               </label>
             </div>
-
             <div>
                 {!sameAddress && (
                   <form onSubmit={submitOrder} className="new-delivery-address-form">
@@ -246,22 +233,18 @@ const CartPage = () => {
                           <div className='label'> <label htmlFor="hn"></label>House Number</div>
                           <div> <input type="number" defaultValue={user.info.houseNo} id="hn" name="hn" min={1} /></div>
                         </div>
-
                         <div className='label-and-input'>
                           <div className='label'> <label htmlFor="stn"></label>Street Name</div>
                           <div> <input defaultValue={user.info.street} type="text" id='btn' name="stn" /> </div>
                         </div>
-
                         <div className='label-and-input'>
                           <div className='label'> <label htmlFor="zc"></label> Zip Code</div>
                           <div> <input defaultValue={user.info.zipCode} type="number" name="zc" /> </div>
                         </div>
-
                         <div className='label-and-input'>
                           <div className='label'> <label htmlFor="city"></label> City </div>
                           <div> <input defaultValue={user.info.city} type="text" id='city' name="city" /> </div>
                         </div>
-
                         <div className='label-and-input'>
                           <div className='label'> <label htmlFor="phone"></label> Phone </div>
                           <div> <input defaultValue={user.info.phone} type="tel" name="phone" /> </div>
@@ -271,7 +254,6 @@ const CartPage = () => {
                   </form>
                 )}
             </div>
-
             <div>
               {sameAddress && (
                 <div>
@@ -279,12 +261,12 @@ const CartPage = () => {
                 </div>
             )}
             </div>
-
           </div>
         </section>
       )}
     </section>
   );
 };
+  
 
 export default CartPage;
