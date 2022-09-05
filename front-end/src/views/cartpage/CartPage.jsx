@@ -119,10 +119,11 @@ const CartPage = () => {
   // Customer clicks pay on success page to load stripe payment (order already in database)
   //============================================================================
   const stripe = async () => {
+
     const pay = {
       total: total,
     };
-    // console.log(`console.log cartpage: pay-${pay}`);
+    
     const settings = {
       method: 'POST',
       body: JSON.stringify(pay),
@@ -145,9 +146,8 @@ const CartPage = () => {
     }
   };
 
-  //ternary operator: 1. placed order===true - show success page | 2. placed order===false - show delete meals option
   return (
-    <div>
+    <section className='cart-page-container'>
       {placedOrder ? (
         <div id='orderSummary'>
           <h2>Order summary </h2>
@@ -189,132 +189,101 @@ const CartPage = () => {
               proceed to payment page{' '}
             </h3>
           )}
+          
           {cart.map((meal) => {
-            return (
-              <div key={meal._id} className="ordered-meals">
-                <div>
-                  {' '}
-                  <img src={meal.img} width="100" alt="" />{' '}
-                </div>
-                <h4>{meal.mealName}</h4>
-                <div className="add-reduce-quantity-container">
-                  <div>
-                    <button onClick={() => addToCart(meal)}>+</button>
+              return (
+                <div key={meal._id} className="ordered-meals">
+                  <div className='image-container'> <img src={meal.img} width="450" height="340" alt="" /></div>
+                  <h4 className='meal-name'>{meal.mealName}</h4>
+
+                  <div className="add-reduce-quantity-container">
+                    <div className='quantity-button'> <button onClick={() => addToCart(meal)}>+</button> </div>
+                    <div className="value-input-container">
+                      <input
+                        type="text"
+                        value={meal.quantity}
+                        onChange={(e) => changeQuantity(e, meal)}
+                      />
+                    </div>
+                    <div className='quantity-button'> <button onClick={() => removeFromCart(meal)}>-</button> </div>
+
+                    <div className='meal-price'>{meal.price}€</div>
+
+                    <div id={meal._id} onClick={() => deleteSingleOrderedMeal(meal)} className="deleteOrderedMeal">  <span>X</span> </div>
                   </div>
-                  <div className="value-input-container">
-                    <input
-                      type="text"
-                      value={meal.quantity}
-                      onChange={(e) => changeQuantity(e, meal)}
-                    />
-                  </div>
-                  <div>
-                    <button onClick={() => removeFromCart(meal)}>-</button>
-                  </div>
                 </div>
-                <p>{meal.price}€</p>
-                <div
-                  id={meal._id}
-                  onClick={() => deleteSingleOrderedMeal(meal)}
-                  className="deleteOrderedMeal"
-                >
-                  {' '}
-                  <span id='XdeleteMealCart'>X</span>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+         </div>
+
+         <hr />
           <div className="total">
-            {' '}
-            {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
+            {cart.length > 0 && <h2> Total : {total}€ </h2>}
           </div>
-          <h3>{message}</h3>
-          <label>
-            <b>Delivery address is same as registered address:</b>{' '}
+          <hr />
 
-            <input
-              style={{
-                width: '50px',
-                height: '25px',
-                cursor: 'pointer',
-                border: '3px solid black',
-              }}
-              type={'checkbox'}
-              defaultChecked
-              onChange={changeAddress} /* name="check" */
-            />
-            <br />{' '}
-            <p className='cartNotification'>
-              <strong>PLEASE NOTE:</strong>
-            </p>
-            <p>If your DELIVERY address is different from your
-              REGISTERED Address than please UNCHECK the box above and fill in a new delivery address.</p>
-            <br />
-          </label>
-          <br />
-          {!sameAddress && (
-            <form onSubmit={submitOrder}>
-              <h3>New Delivery Address: </h3>
-              <label>
-                Street
+          <div className='delivery-address'>
+            <h3>{message}</h3>  {/* What is the importance of message state variable */}
+            <div className='check-box-container'>
+                <label className='check-box-and-paragraph-container'>
+                    <p className='same-delivery-address-paragraph'>If Delivery Address Is Same as Registered Address, click continue. Otherwise, please UNCHECK the Box next to this paragraph and then Fill out the New Delivery Address.</p>
+                    <div className='check-box'>
+                      <input 
+                        type={'checkbox'}
+                        defaultChecked
+                        onChange={changeAddress} 
+                      />
+                  </div>
               </label>
-              <br />
-              <input defaultValue={user.info.street} type="text" name="stn" />
-              <br />
-              <label>
-                House No.
-              </label>
-              <br />
-              <input
-                defaultValue={user.info.houseNo}
-                type="number"
-                name="hn"
-                min={1}
-              />
-              <br />
-              <label>
-                City
-              </label>
-              <br />
-              <input defaultValue={user.info.city} type="text" name="city" />
-              <br />
-              <label>
-                Zip Code
-              </label>
-              <br />
-              <input
-                defaultValue={user.info.zipCode}
-                type="number"
-                name="zc"
-              />
-              <br />
-              <label>
-                Phone
-              </label>
-              <br />
-              <input
-                  defaultValue={user.info.phone}
-                  type="number"
-                  name="phone"
-                />
-              <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
-              <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >
-                checkout
-              </button>
-            </form>
-          )}
-          {sameAddress && (
+            </div>
 
-            <>
-              <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
-              <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >
-                checkout
-              </button>
-            </>
-          )}
-        </div>
+            <div>
+                {!sameAddress && (
+                  <form onSubmit={submitOrder} className="new-delivery-address-form">
+                    <h3>New Delivery Address: </h3>
+                    <div className='new-delivery-address-container'>
+                        <div className='label-and-input'>
+                          <div className='label'> <label htmlFor="hn"></label>House Number</div>
+                          <div> <input type="number" defaultValue={user.info.houseNo} id="hn" name="hn" min={1} /></div>
+                        </div>
+
+                        <div className='label-and-input'>
+                          <div className='label'> <label htmlFor="stn"></label>Street Name</div>
+                          <div> <input defaultValue={user.info.street} type="text" id='btn' name="stn" /> </div>
+                        </div>
+
+                        <div className='label-and-input'>
+                          <div className='label'> <label htmlFor="zc"></label> Zip Code</div>
+                          <div> <input defaultValue={user.info.zipCode} type="number" name="zc" /> </div>
+                        </div>
+
+                        <div className='label-and-input'>
+                          <div className='label'> <label htmlFor="city"></label> City </div>
+                          <div> <input defaultValue={user.info.city} type="text" id='city' name="city" /> </div>
+                        </div>
+
+                        <div className='label-and-input'>
+                          <div className='label'> <label htmlFor="phone"></label> Phone </div>
+                          <div> <input defaultValue={user.info.phone} type="tel" name="phone" /> </div>
+                        </div>
+                    </div>
+                    <button className='new-address-btn' disabled={cart.length < 3}> Continue </button>
+                  </form>
+                )}
+            </div>
+
+            <div>
+              {sameAddress && (
+                <div>
+                  <button onClick={submitOrder} disabled={cart.length < 3} className='new-address-btn'>Continue</button>
+                </div>
+            )}
+            </div>
+
+          </div>
+        </section>
       )}
-    </div>
+    </section>
   );
 };
 
