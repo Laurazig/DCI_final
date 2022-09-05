@@ -123,7 +123,7 @@ const CartPage = () => {
     const pay = {
       total: total,
     };
-    
+
     const settings = {
       method: 'POST',
       body: JSON.stringify(pay),
@@ -203,13 +203,12 @@ const CartPage = () => {
                   </div>
                 </div>
               );
-            })}
-         </div>
-         <hr />
+            })} 
+            {/* //  <hr /> */}
           <div className="total">
             {cart.length > 0 && <h2> Total : {total}€ </h2>}
           </div>
-          <hr />
+          {/* // <hr /> */}
           <div className='delivery-address'>
             <h3>{message}</h3>  {/* What is the importance of message state variable */}
             <div className='check-box-container'>
@@ -261,11 +260,15 @@ const CartPage = () => {
                 </div>
             )}
             </div>
+            </div>
+        </div>
+      )};
           </div>
         </section>
       )}
+
     </section>
-  );
+  )
 };
   
 
