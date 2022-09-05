@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import  { MyContext }  from "../App.js";
+import './admin.scss'
 
 const TotalOrder = () => {
     const { user, token } = useContext(MyContext);
@@ -26,8 +27,8 @@ const TotalOrder = () => {
     };
   
     return (
-      <button className="logout-btn" onClick={showAllOrderedCount}>
-        Total Oder
+      <button  onClick={showAllOrderedCount}>
+        Total order
       </button>
     );
   };

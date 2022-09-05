@@ -1,0 +1,20 @@
+@import '../scss-styling/styleVariables.scss';
+
+#admin{
+    display: flex;
+        justify-content: center;
+    & button{
+        @include buttonAdmin;  
+    }
+    
+}
+#buttonDel{
+    display: flex;
+    justify-content: center;
+    & button{
+        @include buttonAdmin;
+        @include buttonFilled;
+        width: 17%;  
+    }
+}
+

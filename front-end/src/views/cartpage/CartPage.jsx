@@ -149,45 +149,47 @@ const CartPage = () => {
   return (
     <section className='cart-page-container'>
       {placedOrder ? (
-        <React.Fragment className="cart-ordered-meals-container"> {/*THis is used to */}
-          <h2> Order Summary </h2>
+        <div id='orderSummary'>
+          <h2>Order summary </h2>
+          <div className='orderSummBox'>
             <h3>Meals:</h3>
             {cart.map((meal) => {
               return (
-                <div key={meal._id} className="ordered-meal">
-                  <div> <img src={meal.img} width="100" alt="" /> </div>
+                <div key={meal._id} id="ordered-meals-summ">
+                  <div>
+                    {' '}
+                    <img src={meal.img} width="100" alt="" />{' '}
+                  </div>
                   <h4>{meal.mealName}</h4>
-                  <p>{meal.price}€</p>
-                  <div> {meal.quantity}</div>
+                  <p className='individualMealPrice'>{meal.price}€ </p>
+                  <div> {meal.quantity} </div>
                 </div>
               );
             })}
-
-            <section>
-              <h3>Customer Address:</h3>
-              <p>{user.info.houseNo}</p>
-              <p>{user.info.street}</p>
-              <p>{user.info.city}</p>
-              <p>{user.info.zipcode}</p>
-              <p>{user.info.phone}</p>
-              <div className="total">
-                {cart.length > 0 && <h2> Total : {total}€ </h2>}
-              </div>
-              <button onClick={stripe}>Pay</button>
-            </section>
-        </React.Fragment>
+          </div>
+          <div className='orderSummBox'>
+            <h3>Address:</h3>
+            <p>{user.info.street} {user.info.houseNo}</p>
+            <p>{user.info.city}</p>
+            <p>{user.info.zipcode}</p>
+            <p>{user.info.phone}</p>
+          </div>
+          <div className="total">
+            {' '}
+            {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
+          </div>
+          <button onClick={stripe} className='buttonCheckout'>Pay</button>
+        </div>
       ) : (
-        <section className="cart-after-placing-order-container"> 
-
-         <div className='cart-length-container'>
-            {cart.length === 3 ? null : (
-                <h3 className='heading'> Please Select Three Separate Meals From the Meal page  to proceed to Payment</h3>
-              )}
-         </div>
-
-          <h2 className='meals-choice'>Your meals' choices for this week are: </h2>
-
-         <div className='ordered-meals-container'>
+        <div className="ordered-meals-container">
+          <h3 id='cartChoicesH3'>Your choices this week: </h3>
+          {cart.length === 3 ? null : (
+            <h3 id='cartNotificationSelect'>
+              Please select 3 separate meals from our meal's selection page to
+              proceed to payment page{' '}
+            </h3>
+          )}
+          
           {cart.map((meal) => {
               return (
                 <div key={meal._id} className="ordered-meals">

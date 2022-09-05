@@ -18,8 +18,8 @@ export const paymentPost = async (req, res, next) => {
                     quantity: 1
                 }
             ],
-            success_url:`http://localhost:3000/#/stripe-success`,
-            cancel_url: `http://localhost:3000/#/stripe-cancel`
+            success_url:`http://localhost:3000/stripe-success`,
+            cancel_url: `http://localhost:3000/stripe-cancel`
         }
         )
         //cancel_url: `${process.env.CLIENT_URL}/cancel.html`,

@@ -71,8 +71,8 @@ export default function MostPopularDishesSection() {
               </div>
               <h3>{meal.mealName}</h3>
               <p>{meal.description}</p>
-              <h3>
-                <strong>€ {meal.price}</strong>
+              <h3 id='mealCardPrice'>
+                € {meal.price}
               </h3>
               <ReactStars
                 count={5}
