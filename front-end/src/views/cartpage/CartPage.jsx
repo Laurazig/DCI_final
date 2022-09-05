@@ -181,12 +181,12 @@ const CartPage = () => {
       ) : (
         <div className="ordered-meals-container">
           {cart.length === 3 ? null : (
-            <h3 style={{ color: 'Red' }}>
+            <h3  style={{ color: 'Red' }}>
               Please Select 3 Separate Meals From Our Meal's Selection page to
               proceed to Payment page{' '}
             </h3>
           )}
-          <h3>Your choices this week: </h3>
+          <h3 className='yourChoices'>Your choices this week: </h3>
           {cart.map((meal) => {
             return (
               <div key={meal._id} className="ordered-meals">
@@ -227,9 +227,9 @@ const CartPage = () => {
             {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
           </div>
 
-          <h3>{message}</h3>
-          <label>
-            <b>Delivery Address Is Same as Registered Address :</b>{' '}
+          <h3 >{message}</h3>
+          <label >
+            <b className='deliveryAddress' >Delivery Address Is Same as Registered Address :</b>{' '}
             <input
               style={{
                 width: '50px',
@@ -294,13 +294,13 @@ const CartPage = () => {
               </label>
               <br></br>
               <button disabled={cart.length < 3}>
-                Confirm Your Selections And Proceed To Payment Page
+              Proceed chekout
               </button>
             </form>
           )}
           {sameAddress && (
-            <button onClick={submitOrder} disabled={cart.length < 3}>
-              Confirm Your Selections And Proceed To Payment Page
+            <button className='checkoutButton' onClick={submitOrder} disabled={cart.length < 3}>
+              Proceed to checkout
             </button>
           )}
         </div>
