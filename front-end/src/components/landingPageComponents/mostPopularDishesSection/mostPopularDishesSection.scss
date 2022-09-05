@@ -4,8 +4,9 @@
   display: flex;
   flex-direction: column;
   margin: 0 30px;
+  align-items: center;
 
-  h2 {
+  .pageTitle {
     @include sectionTitle;
     padding: 10px;
 
@@ -18,48 +19,50 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    gap: 20px;
+    gap: 30px;
 
-    @media (max-width: 700px) {
-      flex-direction: column;
-      align-items: center;
-    }
+}
+// this is the card with border
+.popularMeals {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 0 2px;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  width: 20%;
+  padding:20px;
+}
 
-    .card {
-      padding: 20px;
-      max-width: 400px;
-      border: 1px solid $mainCol;
-      border-radius: 1em;
+.mealName{
+  @include paragraphStyle;
+  font-size: 18px;
+  margin: 20px 0;
+  text-align: left;
+}
 
-      .cardImg {
-        @include cardImg;
-        margin: 0;
-        padding: 0;
-      }
+.price{
+  @include paragraphAccentStyle;
+  margin: 20px;
+}
 
-      h3 {
-        @include sectionSubTitle;
-        margin-top: 10px;
-        margin: 0.4em;
-        padding: 0;
-      }
+.mealDescription{
+  @include paragraphStyle;
+  text-align: left;
+  width:80%; 
+}
 
-      p {
-        @include paragraphStyle;
-        min-width: 200px;
-        margin: 0;
-        padding: 0;
-      }
+.mealPageText{
+@include paragraphStyle;
+}
 
-      #mealCardPrice {
-        margin: 0;
-        padding: 0;
-      }
 
-      button {
-        @include buttonOutline;
-        margin: 0;
-      }
-    }
-  }
+.addToCart{
+  @include buttonOutline;
+margin-bottom: 20px;
+}
+
+.imgPopular{
+  height: 200px;
+}
 }

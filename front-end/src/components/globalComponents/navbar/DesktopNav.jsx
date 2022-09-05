@@ -67,7 +67,7 @@ export default function DesktopNav(props) {
       {/* display name of user & user Icon */}
       <div className={props.isLoggedIn === true ? "showUserIcon" : "hide"}>
         {/* display name of user */}
-        <p>Hello {user && user.firstName} </p>
+        {/* <p>Hello {user && user.firstName} </p> */}
         <button onClick={logOut} className="logoutButton">
           Logout
         </button>
