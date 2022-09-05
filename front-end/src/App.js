@@ -24,7 +24,8 @@ function App() {
   const [cart, setCart] = useState(cartItems);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState(userData);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // this is the state variable that monitors the login
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState("");
