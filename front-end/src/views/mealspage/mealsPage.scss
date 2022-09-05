@@ -71,4 +71,7 @@
     @include paragraphStyle;
 }
 
-
+.mealPageText{
+ @include sectionTitle;
+ font-size: 40px;   
+}
