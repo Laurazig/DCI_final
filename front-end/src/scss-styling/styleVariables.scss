@@ -1,5 +1,7 @@
 $mainCol: #91c88a;
 $mainColLighter: #91c88a73;
+$buttonOutlineHover: #91c88a15;
+$buttonFilledHover: #a9d3a4;
 
 $secondaryCol: white;
 $tertiaryCol: black;
@@ -8,7 +10,6 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
 * {
     margin: 0;
     padding: 0;
-    
 
     a {
         text-decoration: none;
@@ -21,7 +22,6 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     height: 35px;
     border-radius: 7px;
     min-width: 100px;
-
 }
 
 @mixin buttonFilled {
@@ -29,10 +29,16 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     background-color: $mainCol;
     border: none;
     color: $secondaryCol;
+    cursor: pointer;
 
     a {
         color: $secondaryCol;
         text-decoration: none;
+    }
+
+    &:hover {
+        transform: scale(1.01);
+        background-color: $buttonFilledHover;
     }
 }
 
@@ -41,10 +47,16 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     color: $mainCol;
     background-color: transparent;
     border: 2px solid $mainCol;
+    cursor: pointer;
 
     a {
         color: $mainCol;
         text-decoration: none;
+    }
+
+    &:hover {
+        transform: scale(1.01);
+        background-color: $buttonOutlineHover;
     }
 }
 
@@ -59,6 +71,17 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
         color: $secondaryCol;
         text-decoration: none;
     }
+
+    &:hover {
+        transform: scale(1.01);
+        background-color: $buttonOutlineHover;
+    }
+}
+
+@mixin buttonAdmin {
+    @include buttonOutline;
+    width: 17%;
+    margin: 1rem auto;
 }
 
 // ------- input flieds -------
@@ -72,14 +95,10 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     padding-left: 10px;
 
     @media (min-width: 481px) and (max-width: 768px) {
-        background-color: aqua;
+        // background-color: aqua;
         width: 300px;
     }
-
 }
-
-
-
 
 //------- typography -------
 
@@ -93,8 +112,6 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     opacity: 90%;
     font-weight: 900;
 }
-
-
 
 @mixin sectionTitle {
     font-size: clamp(4px, 10vw, 60px);
@@ -128,7 +145,6 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     }
 }
 
-
 //------- Layout & Cards -------
 
 @mixin cardInnerLayout {
@@ -142,13 +158,11 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     align-items: center;
     color: $mainCol;
     justify-content: space-between;
-
 }
 
 @mixin cardImg {
     aspect-ratio: 16 /10;
     max-width: 400px;
-    
     max-height: 280px;
     background-size: cover;
     background-position: center;
@@ -163,12 +177,10 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     background-color: none;
 
     @media (min-width: 481px) and (max-width: 768px) {
-        background-color: aqua;
+        // background-color: aqua;
         width: 90vw;
     }
 }
-
-
 
 @mixin formSizeAndDisplay {
     width: 600px;
@@ -189,10 +201,7 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     @media (min-width: 481px) and (max-width: 768px) {
         font-size: 30px;
         margin: 0 5px;
-
-
     }
-
 }
 
 // ---- lists
@@ -202,5 +211,4 @@ $secondaryColTransparency: rgba(255, 255, 255, 0.38);
     list-style-type: none;
     color: $mainCol;
     font-size: clamp(12px, 10vw, 18px);
-
 }

@@ -1,77 +1,131 @@
 @import '../../scss-styling/styleVariables.scss';
 
-body{
+body {
     margin-left: 10px;
-}
-
-.deleteCartItems{
-   display: flex;
-   flex-flow: row nowrap; 
-   align-items: space-between;
-}
-.cartButtons{
-    margin: 0.5rem 1rem 0.5rem 1rem;
-    padding: 3px;
-}
-.cartButtonsDelete{
-color: red;
-margin-left: 1.5rem;
-padding:0px 15px;
-border-radius: 50%;
-}
-
-.deleteOrderedMeal{
-    cursor: pointer;
 }
 
 .ordered-meals {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    padding: 0.25em;
+    text-align: center;
+    align-items: center;
+}
+
+.buttonCheckout {
+    margin: 1em;
+    @include buttonOutline;
+
+}
+
+#orderSummary {
+    width: 90%;
+    margin: auto;
+
+    .orderSummBox {
+        border: 1px solid $mainCol;
+        padding: 0.5em 2em;
+        margin: 1em;
+        border-radius: 1em;
+        width: 60%;
+
+        &h3 {
+            margin-bottom: 0.5em;
+        }
+
+        #ordered-meals-summ {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 0.25em;
+            text-align: center;
+            align-items: center;
+        }
+    }
 }
 
 .ordered-meals-container {
     width: 90%;
     margin: auto;
-}
 
-.add-reduce-quantity-container {
-    display: flex;
-    height: 2rem;
+    .add-reduce-quantity-container {
+        display: flex;
+        height: 2rem;
+        margin-right: 1em;
 
-    & input {
-        padding: 0.4rem;
-        width: 4rem;
-        font-size: 1.4rem;
-        text-align: center;
+        & input {
+            padding: 0.4rem;
+            width: 4rem;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        & button {
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            background-color: $mainCol;
+            cursor: pointer;
+        }
     }
-
-    & button {
-        @include buttonFilled;
+    .deleteOrderedMeal {
         cursor: pointer;
+
+        #XdeleteMealCart {
+            background-color: $mainCol;
+            padding: 0.5rem;
+            border-radius: 30%;
+            color: white;
+        }
     }
 
-    
+    // label{
+    //     & b{
+    //         margin-bottom: 1em;
+    //     }
+    // }
 
+    #cartChoicesH3 {
+        margin-top: 1em;
+    }
+
+    #cartNotificationSelect {
+        padding: 3em;
+        margin: 2em;
+        border: 1px solid $mainCol;
+        border-radius: 1em;
+        color: $mainCol;
+    }
+
+    .cartNotification {
+        background-color: $mainCol ;
+        color: white;
+        margin-top: 1em;
+    }
+
+    & form {
+        // border: 1px solid $mainCol;
+        & label{
+            color: $mainCol;
+        }
+        & input {
+            @include standardInput;
+          }
+    }
 }
 
-.yourChoices{ 
-    @include sectionSubTitle;
-color:$mainCol ;}
+// .deleteCartItems {
+//     display: flex;
+//     flex-flow: row nowrap;
+//     align-items: space-between;
+// }
 
-.deliveryAddress{ 
-@include sectionSubTitle;
-}
+// .cartButtons {
+//     margin: 0.5rem 1rem 0.5rem 1rem;
+//     padding: 3px;
+// }
 
-input{
-height: 15px;
-width: 15px;
-margin: 5px;
-background-color: $mainCol;
-cursor: pointer;
-border: 2px solid $mainCol;}
-
-.checkoutButton{
-    @include buttonOutline;
-    width: 140px;
-margin-bottom: 40px;
-}
+// .cartButtonsDelete {
+//     color: $mainCol;
+//     margin-left: 1.5rem;
+//     padding: 0px 15px;
+//     border-radius: 50%;
+// }

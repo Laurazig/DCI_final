@@ -149,44 +149,46 @@ const CartPage = () => {
   return (
     <div>
       {placedOrder ? (
-        <>
+        <div id='orderSummary'>
           <h2>Order summary </h2>
-          <h3>Meals:</h3>
-          {cart.map((meal) => {
-            return (
-              <div key={meal._id} className="ordered-meals">
-                <div>
-                  {' '}
-                  <img src={meal.img} width="100" alt="" />{' '}
+          <div className='orderSummBox'>
+            <h3>Meals:</h3>
+            {cart.map((meal) => {
+              return (
+                <div key={meal._id} id="ordered-meals-summ">
+                  <div>
+                    {' '}
+                    <img src={meal.img} width="100" alt="" />{' '}
+                  </div>
+                  <h4>{meal.mealName}</h4>
+                  <p className='individualMealPrice'>{meal.price}€ </p>
+                  <div> {meal.quantity} </div>
                 </div>
-                <h4>{meal.mealName}</h4>
-                <p>{meal.price}€</p>
-                <div> {meal.quantity}</div>
-              </div>
-            );
-          })}
-
-          <h3>Address:</h3>
-          <p>{user.info.houseNo}</p>
-          <p>{user.info.street}</p>
-          <p>{user.info.city}</p>
-          <p>{user.info.zipcode}</p>
-          <p>{user.info.phone}</p>
+              );
+            })}
+          </div>
+          <div className='orderSummBox'>
+            <h3>Address:</h3>
+            <p>{user.info.street} {user.info.houseNo}</p>
+            <p>{user.info.city}</p>
+            <p>{user.info.zipcode}</p>
+            <p>{user.info.phone}</p>
+          </div>
           <div className="total">
             {' '}
             {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
           </div>
-          <button onClick={stripe}>Pay</button>
-        </>
+          <button onClick={stripe} className='buttonCheckout'>Pay</button>
+        </div>
       ) : (
         <div className="ordered-meals-container">
+          <h3 id='cartChoicesH3'>Your choices this week: </h3>
           {cart.length === 3 ? null : (
-            <h3  style={{ color: 'Red' }}>
-              Please Select 3 Separate Meals From Our Meal's Selection page to
-              proceed to Payment page{' '}
+            <h3 id='cartNotificationSelect'>
+              Please select 3 separate meals from our meal's selection page to
+              proceed to payment page{' '}
             </h3>
           )}
-          <h3 className='yourChoices'>Your choices this week: </h3>
           {cart.map((meal) => {
             return (
               <div key={meal._id} className="ordered-meals">
@@ -217,7 +219,7 @@ const CartPage = () => {
                   className="deleteOrderedMeal"
                 >
                   {' '}
-                  <span>X</span>
+                  <span id='XdeleteMealCart'>X</span>
                 </div>
               </div>
             );
@@ -226,10 +228,10 @@ const CartPage = () => {
             {' '}
             {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
           </div>
+          <h3>{message}</h3>
+          <label>
+            <b>Delivery address is same as registered address:</b>{' '}
 
-          <h3 >{message}</h3>
-          <label >
-            <b className='deliveryAddress' >Delivery Address Is Same as Registered Address :</b>{' '}
             <input
               style={{
                 width: '50px',
@@ -241,67 +243,74 @@ const CartPage = () => {
               defaultChecked
               onChange={changeAddress} /* name="check" */
             />
-            <br></br>{' '}
-            <p style={{ color: 'red' }}>
-              PLEASE NOTE : If your delivery address is Different than your
-              REGISTERED Address than please UNCHECK the Box Above and Fill New
-              Delivery Address:
+            <br />{' '}
+            <p className='cartNotification'>
+              <strong>PLEASE NOTE:</strong>
             </p>
-            <br></br>
+            <p>If your DELIVERY address is different from your
+              REGISTERED Address than please UNCHECK the box above and fill in a new delivery address.</p>
+            <br />
           </label>
-          <br></br>
+          <br />
           {!sameAddress && (
             <form onSubmit={submitOrder}>
               <h3>New Delivery Address: </h3>
               <label>
+                Street
+              </label>
+              <br />
+              <input defaultValue={user.info.street} type="text" name="stn" />
+              <br />
+              <label>
                 House No.
-                <input
-                  defaultValue={user.info.houseNo}
-                  type="number"
-                  name="hn"
-                  min={1}
-                />
               </label>
-              <br></br>
-
+              <br />
+              <input
+                defaultValue={user.info.houseNo}
+                type="number"
+                name="hn"
+                min={1}
+              />
+              <br />
               <label>
-                Street No.
-                <input defaultValue={user.info.street} type="text" name="stn" />
+                City
               </label>
-              <br></br>
+              <br />
+              <input defaultValue={user.info.city} type="text" name="city" />
+              <br />
               <label>
-                City.
-                <input defaultValue={user.info.city} type="text" name="city" />
+                Zip Code
               </label>
-              <br></br>
-
-              <label>
-                Zip Code.
-                <input
-                  defaultValue={user.info.zipCode}
-                  type="number"
-                  name="zc"
-                />
-              </label>
+              <br />
+              <input
+                defaultValue={user.info.zipCode}
+                type="number"
+                name="zc"
+              />
               <br />
               <label>
                 Phone
-                <input
+              </label>
+              <br />
+              <input
                   defaultValue={user.info.phone}
                   type="number"
                   name="phone"
                 />
-              </label>
-              <br></br>
-              <button disabled={cart.length < 3}>
-              Proceed chekout
+              <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
+              <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >
+                checkout
               </button>
             </form>
           )}
           {sameAddress && (
-            <button className='checkoutButton' onClick={submitOrder} disabled={cart.length < 3}>
-              Proceed to checkout
-            </button>
+
+            <>
+              <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
+              <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >
+                checkout
+              </button>
+            </>
           )}
         </div>
       )}

@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import  { MyContext }  from "../App.js";
+import './admin.scss'
 
 const UsersData = () => {
     const { user, token } = useContext(MyContext);
@@ -28,8 +29,8 @@ const UsersData = () => {
     };
   
     return (
-      <button className="logout-btn" onClick={showTotalCustomers}>
-        View User Data
+      <button  onClick={showTotalCustomers}>
+        View user data
       </button>
     );
   };

@@ -11,40 +11,43 @@ import "./mealsPage.scss";
 const MealsPage = () => {
   const { meals, user, cart, setCart, isLoggedIn, deleteUserAccount, isAdmin, token } = useContext(MyContext);
   const navigate = useNavigate();
- 
+
   const addToCart = (meal) => {
     let item = cart.find((elem) => elem._id === meal._id);
-    
-    if(!isLoggedIn) {
+
+    if (!isLoggedIn) {
       alert("Please login");
       navigate("/login")
     } else {
       if (item) {
         item.quantity += 1;
         setCart([...cart]);
-      } else {if ((cart.length +1) > 3 ){
-        alert('Reached Maximum Quantity of Meals')
-        return 
-      }
+      } else {
+        if ((cart.length + 1) > 3) {
+          alert('Reached Maximum Quantity of Meals')
+          return
+        }
         setCart([...cart, { ...meal, quantity: 1 }]);
       }
     }
-    
+
   };
 
   return (
     <div>
-      <div>
-      {isAdmin && <DeregisterUser token={token} userId={user.id} deleteUserAccount={deleteUserAccount} />}
+      {isAdmin && <h2 id="mealPageTitle">Admin Tools</h2>}
+
+      {/* <div id="adminBox"> */}
+      <div id='admin'>
         {isAdmin && <UserData token={token} userId={user.id} />}
         {isAdmin && <TotalOrder token={token} userId={user.id} />}
-        {isAdmin && <TotalOrderPerCustomer token={token} userId={user.id} />} 
+        {isAdmin && <TotalOrderPerCustomer token={token} userId={user.id} />}
       </div>
-      {/* <div>
-        <h2>Welcome {user && user.info.firstName}</h2>
+      <div id='buttonDel'>
+        {isAdmin && <DeregisterUser token={token} userId={user.id} deleteUserAccount={deleteUserAccount} />}
       </div>
-      <h2>Meals page</h2>  */}
-      <h1 className="pageTitle">Select 3 meals and proceed to cart for checkout!</h1>
+      {/* </div> */}
+      <h3 id="mealPageText">Select 3 meals and proceed to cart for checkout</h3>
       <div className="meals-container">
         {meals.map((meal) => {
           return (
