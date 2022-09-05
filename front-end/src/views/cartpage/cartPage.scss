@@ -1,3 +1,5 @@
+@import '../../scss-styling/styleVariables.scss';
+
 body{
     margin-left: 10px;
 }
@@ -44,9 +46,32 @@ border-radius: 50%;
     }
 
     & button {
-        padding: 0.5rem 1rem;
-        font-size: 1.2rem;
-        background-color: greenyellow;
+        @include buttonFilled;
         cursor: pointer;
     }
+
+    
+
+}
+
+.yourChoices{ 
+    @include sectionSubTitle;
+color:$mainCol ;}
+
+.deliveryAddress{ 
+@include sectionSubTitle;
+}
+
+input{
+height: 15px;
+width: 15px;
+margin: 5px;
+background-color: $mainCol;
+cursor: pointer;
+border: 2px solid $mainCol;}
+
+.checkoutButton{
+    @include buttonOutline;
+    width: 140px;
+margin-bottom: 40px;
 }

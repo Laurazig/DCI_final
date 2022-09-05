@@ -1,17 +1,20 @@
+@import "../../scss-styling/styleVariables.scss";
+
 
 .meals-container {
-    width: 90%;
+    width: 70%;
     margin: 1rem auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 15px;
 }
 
 .meal {
     box-shadow: 0 0 2px;
     margin-bottom: 1rem;
-    padding: 1rem;
     border-radius: 0.3rem;
+    padding: 20px;
 
     &:hover{
         transform: scale(1.05);
@@ -24,18 +27,9 @@
     }
 
     & button {
-        // background-color: greenyellow;
-        // font-size: 1.4rem;
-        // padding: 0.4rem;
-        // border-radius: 0.3rem;
-        width: clamp(12px, 10vw, 95px);
-        height: 35px;
-        border-radius: 7px;
-        min-width: 100px;
-        color: #91c88a;
-        background-color: transparent;
-        border: 2px solid #91c88a;
-        min-width: 100px;
+        @include buttonOutline;
+        margin-bottom: 20px;
+
 
         &:hover{
             background-color: #91c88a21;
@@ -52,3 +46,29 @@
     width: 50%;
     margin: 2rem;
 }
+
+.pageTitle{
+    @include sectionTitle;
+    font-size: 30px;
+    text-align: left;
+    margin-left: 250px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mealName{
+    @include sectionSubTitle;
+    font-size: 19px;
+    margin: 20px 0;
+}
+
+.price{
+    @include paragraphAccentStyle;
+    margin: 20px;
+}
+
+.mealDescription{
+    @include paragraphStyle;
+}
+
+

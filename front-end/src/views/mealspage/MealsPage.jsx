@@ -44,27 +44,26 @@ const MealsPage = () => {
         <h2>Welcome {user && user.info.firstName}</h2>
       </div>
       <h2>Meals page</h2>  */}
-      <p>Select 3 meals and proceed to cart for checkout</p>
+      <h1 className="pageTitle">Select 3 meals and proceed to cart for checkout!</h1>
       <div className="meals-container">
         {meals.map((meal) => {
           return (
             <div key={meal._id} className="meal">
               <img src={meal.img} width="300" alt="" />
-              <h2>{meal.mealName}</h2>
-              <p>{meal.description}</p>
-              <h3>
-                <strong>€ {meal.price}</strong>
-              </h3>
-              <ReactStars
-                count={5}
-                value={meal.rating}
-                size={24}
-                isHalf={true}
-                activeColor="yellow"
-              />
+              <h2 className="mealName">{meal.mealName} <strong className="price">€ {meal.price}</strong></h2>
+              <p className="mealDescription">{meal.description}</p>
+              
+           
               <div>
                 <button onClick={() => addToCart(meal)}>Add To Cart</button>
               </div>
+              <ReactStars 
+                count={5}
+                value={meal.rating}
+                size={16}
+                isHalf={true}
+                activeColor="yellow"
+              />
             </div>
           );
         })}
