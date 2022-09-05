@@ -5,9 +5,10 @@
   flex-direction: column;
   margin: 0 30px;
 
-  h2 {
+  .pageTitle {
     @include sectionTitle;
     padding: 10px;
+    background-color: yellow;
 
     @media (max-width: 700px) {
       font-size: 44px;
@@ -62,4 +63,30 @@
       }
     }
   }
+}
+
+.meal {
+  box-shadow: 0 0 2px;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  padding: 20px;
+}
+
+.mealName{
+  @include paragraphStyle;
+  font-size: 19px;
+  margin: 20px 0;
+}
+
+.price{
+  @include paragraphAccentStyle;
+  margin: 20px;
+}
+
+.mealDescription{
+  @include paragraphStyle;
+}
+
+.mealPageText{
+@include paragraphStyle;
 }
