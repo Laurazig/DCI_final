@@ -46,7 +46,6 @@ const MealsPage = () => {
       <div id='buttonDel'>
         {isAdmin && <DeregisterUser token={token} userId={user.id} deleteUserAccount={deleteUserAccount} />}
       </div>
-
       {/* </div> */}
       <h3 id="mealPageText">Select 3 meals and proceed to cart for checkout</h3>
       <div className="meals-container">
@@ -54,21 +53,20 @@ const MealsPage = () => {
           return (
             <div key={meal._id} className="meal">
               <img src={meal.img} width="300" alt="" />
-              <h2>{meal.mealName}</h2>
-              <p>{meal.description}</p>
-              <h3>
-                <strong>€ {meal.price}</strong>
-              </h3>
-              <ReactStars
-                count={5}
-                value={meal.rating}
-                size={24}
-                isHalf={true}
-                activeColor="yellow"
-              />
+              <h2 className="mealName">{meal.mealName} <strong className="price">€ {meal.price}</strong></h2>
+              <p className="mealDescription">{meal.description}</p>
+              
+           
               <div>
                 <button onClick={() => addToCart(meal)}>Add To Cart</button>
               </div>
+              <ReactStars 
+                count={5}
+                value={meal.rating}
+                size={16}
+                isHalf={true}
+                activeColor="yellow"
+              />
             </div>
           );
         })}

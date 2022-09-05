@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const HowItWorksPage = () => {
-  const [hideFAQ, setHideFAQ] = useState(false);
+  const [hideFAQ, setHideFAQ] = useState(true);
 
   const handleCliclFAQ = (event) => {
     setHideFAQ((current) => !current);

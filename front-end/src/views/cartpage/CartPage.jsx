@@ -189,7 +189,6 @@ const CartPage = () => {
               proceed to payment page{' '}
             </h3>
           )}
-
           {cart.map((meal) => {
             return (
               <div key={meal._id} className="ordered-meals">
@@ -229,10 +228,10 @@ const CartPage = () => {
             {' '}
             {cart.length > 0 && <h2> Total : {total}€ </h2>}{' '}
           </div>
-
           <h3>{message}</h3>
           <label>
             <b>Delivery address is same as registered address:</b>{' '}
+
             <input
               style={{
                 width: '50px',
@@ -298,7 +297,6 @@ const CartPage = () => {
                   type="number"
                   name="phone"
                 />
-              
               <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
               <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >
                 checkout
@@ -306,6 +304,7 @@ const CartPage = () => {
             </form>
           )}
           {sameAddress && (
+
             <>
               <p className='cartNotification'><strong>Confirm your selection and proceed to payment page</strong> </p>
               <button onClick={submitOrder} disabled={cart.length < 3} className='buttonCheckout' >

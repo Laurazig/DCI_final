@@ -1,3 +1,4 @@
+
 @import '../../scss-styling/styleVariables.scss';
 
 #mealPageTitle {
@@ -23,8 +24,9 @@
     color: $mainCol;
 }
 
+
 .meals-container {
-    width: 90%;
+    width: 70%;
     margin: 1rem auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -51,10 +53,8 @@
             height: 15rem;
             margin: auto;
         }
-
         & button {
             @include buttonOutline;
         }
-
     }
 }
