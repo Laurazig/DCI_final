@@ -150,40 +150,40 @@ const CartPage = () => {
       {placedOrder ? (
         <React.Fragment className="cart-ordered-meals-container"> {/*THis is used to */}
           <h2> Order Summary </h2>
-            <h3>Meals:</h3>
-            {cart.map((meal) => {
-              return (
-                <div key={meal._id} className="ordered-meal">
-                  <div> <img src={meal.img} width="100" alt="" /> </div>
-                  <h4>{meal.mealName}</h4>
-                  <p>{meal.price}€</p>
-                  <div> {meal.quantity}</div>
-                </div>
-              );
-            })}
-            <section>
-              <h3>Customer Address:</h3>
-              <p>{user.info.houseNo}</p>
-              <p>{user.info.street}</p>
-              <p>{user.info.city}</p>
-              <p>{user.info.zipcode}</p>
-              <p>{user.info.phone}</p>
-              <div className="total">
-                {cart.length > 0 && <h2> Total : {total}€ </h2>}
+          <h3>Meals:</h3>
+          {cart.map((meal) => {
+            return (
+              <div key={meal._id} className="ordered-meal">
+                <div> <img src={meal.img} width="100" alt="" /> </div>
+                <h4>{meal.mealName}</h4>
+                <p>{meal.price}€</p>
+                <div> {meal.quantity}</div>
               </div>
-              <button onClick={stripe}>Pay</button>
-            </section>
+            );
+          })}
+          <section>
+            <h3>Customer Address:</h3>
+            <p>{user.info.houseNo}</p>
+            <p>{user.info.street}</p>
+            <p>{user.info.city}</p>
+            <p>{user.info.zipcode}</p>
+            <p>{user.info.phone}</p>
+            <div className="total">
+              {cart.length > 0 && <h2> Total : {total}€ </h2>}
+            </div>
+            <button onClick={stripe}>Pay</button>
+          </section>
         </React.Fragment>
       ) : (
         <section className="cart-after-placing-order-container">
-         <div className='cart-length-container'>
+          <div className='cart-length-container'>
             {cart.length === 3 ? null : (
-                <h3 className='heading'> Please Select Three Separate Meals From the Meal page  to proceed to Payment</h3>
-              )}
-         </div>
+              <h3 className='heading'> Please Select Three Separate Meals From the Meal page  to proceed to Payment</h3>
+            )}
+          </div>
           <h2 className='meals-choice'>Your meals' choices for this week are: </h2>
-         <div className='ordered-meals-container'>
-          {cart.map((meal) => {
+          <div className='ordered-meals-container'>
+            {cart.map((meal) => {
               return (
                 <div key={meal._id} className="ordered-meals">
                   <div className='image-container'> <img src={meal.img} width="450" height="340" alt="" /></div>
@@ -203,73 +203,71 @@ const CartPage = () => {
                   </div>
                 </div>
               );
-            })} 
+            })}
             {/* //  <hr /> */}
-          <div className="total">
-            {cart.length > 0 && <h2> Total : {total}€ </h2>}
-          </div>
-          {/* // <hr /> */}
-          <div className='delivery-address'>
-            <h3>{message}</h3>  {/* What is the importance of message state variable */}
-            <div className='check-box-container'>
-                <label className='check-box-and-paragraph-container'>
-                    <p className='same-delivery-address-paragraph'>If Delivery Address Is Same as Registered Address, click continue. Otherwise, please UNCHECK the Box next to this paragraph and then Fill out the New Delivery Address.</p>
-                    <div className='check-box'>
-                      <input
-                        type={'checkbox'}
-                        defaultChecked
-                        onChange={changeAddress}
-                      />
-                  </div>
-              </label>
+            <div className="total">
+              {cart.length > 0 && <h2> Total : {total}€ </h2>}
             </div>
-            <div>
+            {/* // <hr /> */}
+            <div className='delivery-address'>
+              <h3>{message}</h3>  {/* What is the importance of message state variable */}
+              <div className='check-box-container'>
+                <label className='check-box-and-paragraph-container'>
+                  <p className='same-delivery-address-paragraph'>If Delivery Address Is Same as Registered Address, click continue. Otherwise, please UNCHECK the Box next to this paragraph and then Fill out the New Delivery Address.</p>
+                  <div className='check-box'>
+                    <input
+                      type={'checkbox'}
+                      defaultChecked
+                      onChange={changeAddress}
+                    />
+                  </div>
+                </label>
+              </div>
+              <div>
                 {!sameAddress && (
                   <form onSubmit={submitOrder} className="new-delivery-address-form">
                     <h3>New Delivery Address: </h3>
                     <div className='new-delivery-address-container'>
-                        <div className='label-and-input'>
-                          <div className='label'> <label htmlFor="hn"></label>House Number</div>
-                          <div> <input type="number" defaultValue={user.info.houseNo} id="hn" name="hn" min={1} /></div>
-                        </div>
-                        <div className='label-and-input'>
-                          <div className='label'> <label htmlFor="stn"></label>Street Name</div>
-                          <div> <input defaultValue={user.info.street} type="text" id='btn' name="stn" /> </div>
-                        </div>
-                        <div className='label-and-input'>
-                          <div className='label'> <label htmlFor="zc"></label> Zip Code</div>
-                          <div> <input defaultValue={user.info.zipCode} type="number" name="zc" /> </div>
-                        </div>
-                        <div className='label-and-input'>
-                          <div className='label'> <label htmlFor="city"></label> City </div>
-                          <div> <input defaultValue={user.info.city} type="text" id='city' name="city" /> </div>
-                        </div>
-                        <div className='label-and-input'>
-                          <div className='label'> <label htmlFor="phone"></label> Phone </div>
-                          <div> <input defaultValue={user.info.phone} type="tel" name="phone" /> </div>
-                        </div>
+                      <div className='label-and-input'>
+                        <div className='label'> <label htmlFor="hn"></label>House Number</div>
+                        <div> <input type="number" defaultValue={user.info.houseNo} id="hn" name="hn" min={1} /></div>
+                      </div>
+                      <div className='label-and-input'>
+                        <div className='label'> <label htmlFor="stn"></label>Street Name</div>
+                        <div> <input defaultValue={user.info.street} type="text" id='btn' name="stn" /> </div>
+                      </div>
+                      <div className='label-and-input'>
+                        <div className='label'> <label htmlFor="zc"></label> Zip Code</div>
+                        <div> <input defaultValue={user.info.zipCode} type="number" name="zc" /> </div>
+                      </div>
+                      <div className='label-and-input'>
+                        <div className='label'> <label htmlFor="city"></label> City </div>
+                        <div> <input defaultValue={user.info.city} type="text" id='city' name="city" /> </div>
+                      </div>
+                      <div className='label-and-input'>
+                        <div className='label'> <label htmlFor="phone"></label> Phone </div>
+                        <div> <input defaultValue={user.info.phone} type="tel" name="phone" /> </div>
+                      </div>
                     </div>
                     <button className='new-address-btn' disabled={cart.length < 3}> Continue </button>
                   </form>
                 )}
+              </div>
+              <div>
+                {sameAddress && (
+                  <div>
+                    <button onClick={submitOrder} disabled={cart.length < 3} className='new-address-btn'>Continue</button>
+                  </div>
+                )}
+              </div>
             </div>
-            <div>
-              {sameAddress && (
-                <div>
-                  <button onClick={submitOrder} disabled={cart.length < 3} className='new-address-btn'>Continue</button>
-                </div>
-            )}
-            </div>
-            </div>
-        </div>
-      )};
           </div>
         </section>
-      )}
-
-    </section>
+      )
+      }
+    </section >
   )
 };
-  
+
 
 export default CartPage;
