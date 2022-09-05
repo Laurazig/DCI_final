@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import orderSchema from "./order";
+import orderSchema from "./order.js";
 
 const { Schema } = mongoose;
 
