@@ -64,15 +64,19 @@ export default function MostPopularDishesSection() {
       <div className="cardsContainer">
         {featuredMeals.map((meal) => {
           return (
-            <div key={meal._id} className="meal">
-              <img src={meal.img} width="300" alt="" />
+            <div key={meal._id} className="popularMeals">
+              <img className='imgPopular' src={meal.img} width="300" alt="" />
               <h2 className="mealName">{meal.mealName} <strong className="price">€ {meal.price}</strong></h2>
               <p className="mealDescription">{meal.description}</p>
-              
-           
-              <div>
-                <button onClick={() => addToCart(meal)}>Add To Cart</button>
-              </div>
+              <button className='addToCart' onClick={() => addToCart(meal)}>Add To Cart</button>
+              <ReactStars 
+                count={5}
+                value={meal.rating}
+                size={16}
+                isHalf={true}
+                activeColor="yellow"
+              />
+               
             </div>
           );
         })}
