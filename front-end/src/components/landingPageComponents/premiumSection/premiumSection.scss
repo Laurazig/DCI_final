@@ -11,8 +11,7 @@
 
     h2 {
         @include sectionTitle;
-        margin: 20px 0 0 0;
-
+margin-bottom: 40px;
         @media (max-width: 700px) {
             font-size: 44px;
         }
@@ -20,8 +19,8 @@
 
     h3 {
         @include sectionTitle;
-        margin:  0 0 20px 0;
         font-size: 34px;
+        text-align: left;
 
         @media (max-width: 700px) {
             font-size: 34px;
@@ -42,14 +41,14 @@
     }
 
     .premiumVisual {
-        width: 50%;
         background-image: url(../../../assets/premiumVisual.jpeg);
         background-size: cover;
-        background-repeat: no-repeat;
+        width: 500px;
+        height: 350px;
+        margin-left: 100px;
     }
 
     .titleAndParagraph {
-        @include cardInnerLayout;
 
         h3 {
             @include sectionSubTitle;
@@ -60,6 +59,7 @@
 
         p {
             @include paragraphStyle;
+        width: 20%;
         }
 
         span {
