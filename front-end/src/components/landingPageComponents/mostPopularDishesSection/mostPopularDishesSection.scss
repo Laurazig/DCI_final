@@ -1,52 +1,68 @@
-@import '../../../scss-styling/styleVariables.scss';
+@import "../../../scss-styling/styleVariables.scss";
 
 .mostPopularDishesSection {
-   @include pageSectionSizeAndDisplay;
-   flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  margin: 0 30px;
+  align-items: center;
 
-    h2 {
-        @include sectionTitle
+  .pageTitle {
+    @include sectionTitle;
+    padding: 10px;
+
+    @media (max-width: 700px) {
+      font-size: 44px;
     }
+  }
 
-    .cardsContainer {
-        display: flex;
-        justify-content: space-between;
-        align-content: space-between;
+  .cardsContainer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 30px;
 
-        .card {
-            @include cardInnerLayout;
+}
+// this is the card with border
+.popularMeals {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 0 2px;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  width: 20%;
+  padding:20px;
+}
 
-            .cardImg {
-                @include cardImg;
-            }
+.mealName{
+  @include paragraphStyle;
+  font-size: 18px;
+  margin: 20px 0;
+  text-align: left;
+}
 
-            .cardImg1 {
-                background-image: url(../../../assets/dish1.jpg);
-            }
+.price{
+  @include paragraphAccentStyle;
+  margin: 20px;
+}
 
-            .cardImg2 {
-                background-image: url(../../../assets/dish2.jpg);
-            }
+.mealDescription{
+  @include paragraphStyle;
+  text-align: left;
+  width:80%; 
+}
 
-            .cardImg3 {
-                background-image: url(../../../assets/dish3.jpg);
-            }
-
-        }
-
-        h3 {
-            @include sectionSubTitle
-        }
-
-        p {
-            @include paragraphStyle
-        }
+.mealPageText{
+@include paragraphStyle;
+}
 
 
-        button{
-            @include buttonOutline
-        }
+.addToCart{
+  @include buttonOutline;
+margin-bottom: 20px;
+}
 
-    }
-
+.imgPopular{
+  height: 200px;
+}
 }

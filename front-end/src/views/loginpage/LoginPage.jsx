@@ -55,7 +55,9 @@ const LoginPage = () => {
         // localStorage.setItem("data", JSON.stringify({token: parsedRes.token, id: parsedRes.id, expiry: tokenExpiry.toISOString()}));
         
         setIsLoggedIn(true);
-        setUser({token: parsedRes.token, id: parsedRes.id, firstName: parsedRes.firstName, expiry: tokenExpiry.toISOString()})
+        setUser({id:parsedRes.data._id, info:parsedRes.data, expiry: tokenExpiry.toISOString(), token:parsedRes.token })
+
+        /* setUser({token: parsedRes.token, id: parsedRes.id, firstName: parsedRes.firstName, expiry: tokenExpiry.toISOString()}) */
         navigate("/meals");
       } else {
         throw new Error(parsedRes.message);
@@ -101,6 +103,8 @@ const LoginPage = () => {
         Every Weekend we update our menu! Don't forget to visit our <br></br>
         <span><NavLink to="/meals"> Meals Page</NavLink></span> to discover new dishes from all around the world.
       </p>
+
+      <div> Not registered yet? <NavLink className="registerLink" to="/register"> Click here </NavLink></div>
 
       </div>
 

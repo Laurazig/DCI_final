@@ -1,0 +1,77 @@
+@import "../../scss-styling/styleVariables.scss";
+
+
+.meals-container {
+    width: 70%;
+    margin: 1rem auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 15px;
+}
+
+.meal {
+    box-shadow: 0 0 2px;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    padding: 20px;
+
+    &:hover{
+        transform: scale(1.05);
+        transition: 0.6s;
+    }
+
+    & img {
+        width: 20rem;
+        height: 15rem;
+    }
+
+    & button {
+        @include buttonOutline;
+        margin-bottom: 20px;
+
+
+        &:hover{
+            background-color: #91c88a21;
+            transition: 0.4s;
+            transform: scale(1.1);
+        }
+    }
+
+}
+
+.admin-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 2rem;
+}
+
+.pageTitle{
+    @include sectionTitle;
+    font-size: 30px;
+    text-align: left;
+    margin-left: 250px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mealName{
+    @include sectionSubTitle;
+    font-size: 19px;
+    margin: 20px 0;
+}
+
+.price{
+    @include paragraphAccentStyle;
+    margin: 20px;
+}
+
+.mealDescription{
+    @include paragraphStyle;
+}
+
+.mealPageText{
+ @include sectionTitle;
+ font-size: 40px;   
+}

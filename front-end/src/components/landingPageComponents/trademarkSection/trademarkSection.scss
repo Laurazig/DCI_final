@@ -4,12 +4,11 @@
 
     display: flex;
     align-items: center;
-
     justify-content: center;
-    padding-top: 40px;
+    gap: 40px;
+    margin-top: 25px;
 
     img {
-        height: 85px;
-        padding: 0px 20px;
+        height: clamp(40px, 10vw, 85px);
     }
 }

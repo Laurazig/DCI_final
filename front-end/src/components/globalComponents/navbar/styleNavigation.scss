@@ -1,0 +1,36 @@
+@import '../../../scss-styling/styleVariables.scss';
+
+.navBar {
+  display: flex;
+  align-items: center;
+  background: $secondaryCol;
+  width: 100vw;
+  overflow: hidden;
+}
+
+
+.nav-logo {
+  font-size: 21px;
+  color: $secondaryCol;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+
+  .logoImg {
+    width: clamp(20px, 10vw, 50px);
+    height: clamp(20px, 10vw, 50px);
+    background-image: url('../../../assets/logo.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  h1 {
+    color: $mainCol;
+    font-size: clamp(8px, 10vw, 23px);
+    padding-left: clamp(5px, 10vw, 10px);
+
+  }
+
+
+}

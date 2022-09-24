@@ -1,0 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+@import '../src/components/globalComponents/navbar/styleMobile.scss';
+
+.App{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll; 
+}
+
+.stopScroll{
+  overflow: hidden;
+  background-color: antiquewhite;
+}
+  

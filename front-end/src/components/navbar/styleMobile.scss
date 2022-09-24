@@ -1,0 +1,147 @@
+@import '../../../scss-styling/styleVariables.scss';
+
+.mobileNav {
+    display: flex;
+    align-items: center;
+    z-index: 10;
+
+    .menuIcon {
+        position: absolute;
+        right: 20px;
+        color: $mainCol;
+        cursor: pointer;
+        z-index: 4;
+
+    }
+
+    .showUserIcon {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 30px;
+        top: 60px;
+        left: 0;
+        z-index: 5;
+        color: $mainCol;
+
+
+        .userIconWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+
+            .userIcon {
+                color: $secondaryCol;
+
+            }
+
+            p {
+                @include paragraphAccentStyle;
+                color: $mainCol;
+
+            }
+        }
+    }
+
+    button {
+        @include buttonFilleSecondCol;
+        width: 90%;
+
+    }
+
+    .sectionWrapper {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        gap: 25px;
+        left: 0;
+        top: 0;
+        padding: 40px 50px;
+        background-color: $mainCol;
+        width: 26vw;
+        height: 230vh;
+        z-index: 2;
+
+
+
+        .linkWrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+
+        .closeIcon {
+            color: $secondaryCol;
+        }
+
+
+
+        span {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+
+
+
+
+
+    }
+
+    a {
+        color: $secondaryCol;
+        font-size: clamp(12px, 10vw, 20px);
+
+
+
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .filter {
+        width: 100vw;
+        height: 260vw;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.343);
+
+        backdrop-filter: blur(2px);
+        z-index: 1;
+    }
+
+    .nav-logo {
+        position: absolute;
+        right: 30px;
+        top: 0;
+        z-index: 11;
+
+    }
+
+    .userName {
+        position: absolute;
+        right: 30px;
+        color: $mainCol;
+        z-index: 11;
+    }
+
+    .logoutButton {
+        margin-left: 25px;
+
+    }
+
+}

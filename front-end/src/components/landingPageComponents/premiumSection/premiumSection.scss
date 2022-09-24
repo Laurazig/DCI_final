@@ -1,56 +1,85 @@
 @import '../../../scss-styling/styleVariables.scss';
 
 .premiumSection {
-    @include pageSectionSizeAndDisplay;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
     flex-direction: column;
+    padding: 0 20px;
+
+
 
     h2 {
-        @include sectionTitle
+        @include sectionTitle;
+margin-bottom: 40px;
+        @media (max-width: 700px) {
+            font-size: 44px;
+        }
+    }
+
+    h3 {
+        @include sectionTitle;
+        font-size: 34px;
+        text-align: left;
+
+        @media (max-width: 700px) {
+            font-size: 34px;
+        }
     }
 
     .horizontalCardContainer {
         display: flex;
         justify-content: space-between;
+        gap: 20px;
+
+        @media (max-width: 700px) {
+            flex-direction: column;
+            align-items: center;
+            padding: 0 70px;
+        }
+
     }
 
     .premiumVisual {
-        width: 870px;
-        height: 440px;
         background-image: url(../../../assets/premiumVisual.jpeg);
         background-size: cover;
-        background-position:0 -200px;
+        width: 500px;
+        height: 350px;
+        margin-left: 100px;
     }
 
     .titleAndParagraph {
-        @include cardInnerLayout;
 
-        h3{
-           @include sectionSubTitle;
-           padding-top: 0px
-        }   
+        h3 {
+            @include sectionSubTitle;
 
-        p{
-            @include paragraphStyle;
+
+
         }
-    
-        span{
+
+        p {
+            @include paragraphStyle;
+        width: 20%;
+        }
+
+        span {
             @include paragraphAccentStyle;
         }
-        
-        ul{
+
+        ul {
             padding-left: 20px;
 
         }
-    
-        button{
+
+        button {
             @include buttonFilled;
             margin-top: 20px;
-           
+
         }
 
     }
 
 
-   
+
 
 }

@@ -1,0 +1,114 @@
+@import "../../scss-styling/styleVariables.scss";
+
+.howItWorksPage {
+
+    .visualHowItWorks {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        aspect-ratio: 25 / 9;
+
+        background-image: url(../../assets/howItWorksVisual.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+        margin-bottom: 30px;
+
+
+        h1 {
+            @include mainTitle;
+            margin: 10px 0;
+            opacity: 80%;
+            text-align: left;
+            margin-left: 170px;
+
+            @media (max-width: 500px) {
+                font-size: 40px;
+                margin-left: 70px;
+
+
+            }
+        }
+
+
+    }
+
+    .pWrapper{
+        display: flex;
+    justify-content: space-around;    padding: 80px;
+    gap:80px;
+    
+    @media (max-width: 650px) {
+        flex-direction: column;
+        align-items: center;
+        gap:30px;
+    
+    
+      }
+
+
+      h3 {
+        @include sectionSubTitle;
+        margin-bottom: 20px;
+        color: $mainCol
+    }
+
+    }
+
+    .FAQtitle{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 80px;
+        gap:10px;
+        cursor: pointer;
+    
+
+        }
+
+        svg{
+        padding-top: 6px;
+
+        }
+    h2{
+        @include sectionTitle;
+        font-size: 30px;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+
+    }
+
+    .FAQwrapper{
+        display: flex;
+        flex-direction: column;
+        padding: 0 80px;
+        margin: 40px 0;
+
+        
+    
+        strong{
+            @include sectionSubTitle;
+            font-size: 20px;
+            margin: 0;
+            padding: 0 ;
+        }
+
+        p{
+@include paragraphStyle; 
+margin: 0;
+       }
+
+
+    }
+    
+    .hide{
+        display: none;
+        background-color: azure;
+    }
+    
+    span{
+        margin-bottom: 20px;
+    }
+}

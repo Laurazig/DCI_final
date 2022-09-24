@@ -1,0 +1,63 @@
+@import '../../scss-styling/styleVariables.scss';
+
+.sustPage{
+    display: flex;
+    flex-direction: column;
+
+    .visualSustPage{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 25 / 9;
+        background-image: url(../../assets/sustVisual.jpg);
+    background-size: cover;
+    
+    h1{
+        @include mainTitle;
+            margin: 10px 0;
+            opacity: 80%;
+
+            @media (max-width: 500px)  {
+                font-size: 40px;
+               
+            }
+    }
+
+}
+
+
+
+.pWrapper{
+    display: flex;
+justify-content: space-around;    padding: 80px;
+gap:80px;
+
+@media (max-width: 650px) {
+    flex-direction: column;
+    align-items: center;
+    gap:30px;
+
+
+  }
+
+    h2{
+        @include sectionSubTitle;
+        margin-bottom: 20px;
+        margin-left: 0;
+color: $mainCol;
+    }
+
+    p{
+       @include paragraphStyle;
+       margin-bottom: 80px;
+
+       @media (max-width: 650px){
+        margin-bottom:20px;
+
+       }
+    }
+}
+
+}

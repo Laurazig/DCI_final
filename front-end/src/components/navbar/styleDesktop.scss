@@ -1,0 +1,70 @@
+@import "../../../scss-styling/styleVariables.scss";
+
+.desktopNav {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  background: $secondaryCol;
+  color: $mainCol;
+  width: 100vw;
+  padding: 0 30px;
+  justify-content: space-between;
+
+  .linkWrapper {
+    display: flex;
+    gap: 4%;
+    justify-content: center;
+    width: 79%;
+  }
+
+  a {
+    color: $mainCol;
+    font-size: clamp(12px, 10vw, 20px);
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  // a:active {
+  //   color: red;
+  //   text-decoration: underline;
+  //   background: aee6fa;
+  //   border-radius: 0.3rem;
+  //   pointer-events: none;
+  // }
+
+
+  span {
+    display: flex;
+    gap: 12px;
+
+    .logInButton {
+      @include buttonFilled;
+    }
+
+    .regButton {
+      @include buttonOutline;
+    }
+  }
+
+  .showUserIcon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    p {
+      @include paragraphAccentStyle;
+    }
+
+    .logoutButton {
+      @include buttonOutline;
+      cursor: pointer;
+    }
+  }
+
+  .hide {
+    display: none;
+  }
+}

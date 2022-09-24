@@ -15,14 +15,13 @@
     h1 {
       @include sectionTitle;
       padding: 0;
-      padding-left: 30px;
 
     }
 
     h2 {
       @include sectionSubTitle;
       padding: 0;
-      padding-left: 30px;
+      margin-left: 0;
 
     }
 
@@ -33,6 +32,7 @@
         display: flex;
         flex-direction: column;
         padding: 30px;
+        padding-left: 0;
       }
 
       .inputRight {
