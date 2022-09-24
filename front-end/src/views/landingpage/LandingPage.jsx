@@ -10,7 +10,7 @@ export default function LandingPage () {
     <div className='LandingPage'>
         <MainVisual/>
          <TrademarkSection/>
-        <MostPopularDishesSection/>
+        {/* <MostPopularDishesSection/> */}
         <PremiumSection/>
     </div>
   )

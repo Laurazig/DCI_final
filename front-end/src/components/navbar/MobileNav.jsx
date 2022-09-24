@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import App, { MyContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
 import "../navbar/styleMobile.scss";
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+// import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 export default function MobileNav(props) {
   let navigate = useNavigate();
@@ -26,12 +26,12 @@ export default function MobileNav(props) {
   };
 
 // tryin to stop the page from scrolling
-  const stopScroll = ()=>{
-    if (hideSidemenu === false) {
-      return disableBodyScroll
+  // const stopScroll = ()=>{
+  //   if (hideSidemenu === false) {
+  //     return disableBodyScroll
 
-    }
-  }
+  //   }
+  // }
 
 
   // FUNCTION TO LOGOUT -----> will be given to the logout button --->  button onClick={logOut}

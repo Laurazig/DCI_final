@@ -9,9 +9,9 @@ export default function MostPopularDishesSection() {
   const { cart, token, isLoggedIn, setCart } = useContext(MyContext);
   const navigate = useNavigate();
   const [featuredMeals, setFeaturedMeals] = useState([]);
-  useEffect(() => {
-    selectMeals();
-  }, []);
+  // useEffect(() => {
+  //   selectMeals();
+  // }, []);
   const selectMeals = async () => {
     const settings = {
       method: 'GET',
@@ -61,7 +61,7 @@ export default function MostPopularDishesSection() {
     <div className="mostPopularDishesSection">
       <h2 className='pageTitle'> Try our most popular dishes</h2>
 
-      <div className="cardsContainer">
+      {/* <div className="cardsContainer">
         {featuredMeals.map((meal) => {
           return (
             <div key={meal._id} className="popularMeals">
@@ -69,18 +69,18 @@ export default function MostPopularDishesSection() {
               <h2 className="mealName">{meal.mealName} <strong className="price">€ {meal.price}</strong></h2>
               <p className="mealDescription">{meal.description}</p>
               <button className='addToCart' onClick={() => addToCart(meal)}>Add To Cart</button>
-              <ReactStars 
+              <ReactStars
                 count={5}
                 value={meal.rating}
                 size={16}
                 isHalf={true}
                 activeColor="yellow"
               />
-               
+
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 }
