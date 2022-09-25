@@ -20,6 +20,7 @@ export const loginController = async ( req, res, next ) =>
         let isPasswordCorrect;
         try
         {
+            console.log(password, foundUser.password)
             isPasswordCorrect = await bcrypt.compare( password, foundUser.password );
         } catch {
             return next( createError( 500, "could not compare passwords. Please try again!" ) );
@@ -38,10 +39,10 @@ export const loginController = async ( req, res, next ) =>
             return next( createError( 500, "could not generate token. Please try again!" ) );
         }
         // If the password is correct and the token is valid, return the user id and the user's token
-       return res.json( { id: foundUser._id, token: newToken,firstName: foundUser.firstName, lastName: foundUser.lastName } );
+       return res.json( { id: foundUser._id, token: newToken, data:foundUser } );
     } else
     {
-        return next( createError( 401, "You could not be logged in. Please try again" ) );
+        return next( createError( 401, "User not found. Please register" ) );
     }
 };
 

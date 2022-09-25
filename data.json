@@ -2,58 +2,65 @@
   "_id": {
     "$oid": "62fb87f4516137aba3978f10"
   },
-  "mealName": "spinach",
-  "description": "This is ada sfad asfqafsgg adfef asfsf adf af af sf  rfasfsdfsdfdssd fsf",
-  "price": 89,
-  "img": "https://dummyjson.com/image/i/products/21/thumbnail.png"
+  "mealName": "Pumpkin & Spinach Curry",
+  "description": "This pumpkin curry is excellent during this chilly time of the year, where tender pumpkin is scented with a very basic mixture of spices and manages a naturally creamy texture",
+  "price": 7,
+  "img": "https://i.pinimg.com/originals/1a/ea/fd/1aeafdb5d0077cc7df0d9e2a7c937978.jpg",
+  "rating": 4.5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f11"
   },
-  "mealName": "Hummus Bowl",
-  "description": "Delicious crispy pitta dipped in fresh creamy hummus from a traditional recipe. Served with lentils, grilled aubergine and fresh salad.",
-  "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal1_HummusBowl.jpg"
+  "mealName": "Hummus Falafel Dips",
+  "description": "Delicious crispy Falafel with fresh creamy hummus from a traditional recipe. Served with a selection of dips.",
+  "price": 8,
+  "img": "http://localhost:3001/Meal_hummousFalafel.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f12"
   },
   "mealName": "Mushroom Noodles",
   "description": "Tastey broccoli on a bed of creamy noodles with local Shitake mushrooms",
-  "price": 4,
-  "img": "https://biobites.herokuapp.com/Meal2_mushroomNoodles.jpg"
+  "price": 9,
+  "img": "http://localhost:3001/Meal_pasta.jpg",
+  "rating": 4.5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f13"
   },
   "mealName": "Curried Sausage With Chips",
-  "description": "Curried sauasge in a rich tomatoe sauce with crispiy potatoe slices and a minty cucumber salad",
-  "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal3_curriedSausageWithChips.jpg"
+  "description": "Curried sausage in a rich tomato sauce with crispy potato slices and a tomato bean side.",
+  "price": 7,
+  "img": "https://img.hellofresh.com/f_auto,fl_lossy,h_640,q_auto,w_1200/hellofresh_s3/image/sausage-and-chips-4e3bfb56.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f14"
   },
-  "mealName": "Beetroot Gnocchi With Walnut Pesto",
-  "description": "Traditional Gnocchi with italian walnut pesto and rocket leaves sprinkled on the top.",
-  "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal4_beetrootGnocchiWithWalnutPesto.jpg"
+  "mealName": "Gnocchi With Walnut Pesto",
+  "description": "Traditional Gnocchi with italian walnut pesto and fresh basil leaves sprinkled on the top.",
+  "price": 9,
+  "img": "http://localhost:3001/Meal4_beetrootGnocchiWithWalnutPesto.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f15"
   },
   "mealName": "Chimichurry & Chips",
   "description": "Traditional Argininian green uncooked sauce made from fresh parsley, oregano, garlic, olive oil, vinegar, and red pepper flake over salad and crispy sliced baked potatoes.",
-  "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal5_chimichurry_Chips.jpg"
+  "price": 8,
+  "img": "http://localhost:3001/Meal5_chimichurry_Chips.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f16"
   },
-  "mealName": "spinach2",
-  "description": "This is ada sfad asfqafsgg adfef asfsf adf af af sf  rfasfsdfsdfdssd fsf",
-  "price": 89,
-  "img": "https://dummyjson.com/image/i/products/21/thumbnail.png"
+  "mealName": "Pumpkin & Spinach Curry2",
+  "description": "This pumpkin curry is excellent during this chilly time of the year, where tender pumpkin is scented with a very basic mixture of spices and manages a naturally creamy texture",
+  "price": 6,
+  "img": "https://i.pinimg.com/originals/1a/ea/fd/1aeafdb5d0077cc7df0d9e2a7c937978.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f17"
@@ -61,7 +68,8 @@
   "mealName": "Hummus Bowl2",
   "description": "Delicious crispy pitta dipped in fresh creamy hummus from a traditional recipe. Served with lentils, grilled aubergine and fresh salad.",
   "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal1_HummusBowl.jpg"
+  "img": "http://localhost:3001/Meal1_HummusBowl.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f18"
@@ -69,7 +77,8 @@
   "mealName": "Mushroom Noodles2",
   "description": "Tastey broccoli on a bed of creamy noodles with local Shitake mushrooms",
   "price": 4,
-  "img": "https://biobites.herokuapp.com/Meal2_mushroomNoodles.jpg"
+  "img": "http://localhost:3001/Meal2_mushroomNoodles.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f19"
@@ -77,7 +86,8 @@
   "mealName": "Curried Sausage With Chips2",
   "description": "Curried sauasge in a rich tomatoe sauce with crispiy potatoe slices and a minty cucumber salad",
   "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal3_curriedSausageWithChips.jpg"
+  "img": "http://localhost:3001/Meal3_curriedSausageWithChips.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f1a"
@@ -85,7 +95,8 @@
   "mealName": "Beetroot Gnocchi With Walnut Pesto2",
   "description": "Traditional Gnocchi with italian walnut pesto and rocket leaves sprinkled on the top.",
   "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal4_beetrootGnocchiWithWalnutPesto.jpg"
+  "img": "http://localhost:3001/Meal4_beetrootGnocchiWithWalnutPesto.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f1b"
@@ -93,15 +104,17 @@
   "mealName": "Chimichurry & Chips2",
   "description": "Traditional Argininian green uncooked sauce made from fresh parsley, oregano, garlic, olive oil, vinegar, and red pepper flake over salad and crispy sliced baked potatoes.",
   "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal5_chimichurry_Chips.jpg"
+  "img": "http://localhost:3001/Meal5_chimichurry_Chips.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f1c"
   },
-  "mealName": "spinach3",
-  "description": "This is ada sfad asfqafsgg adfef asfsf adf af af sf  rfasfsdfsdfdssd fsf",
-  "price": 89,
-  "img": "https://dummyjson.com/image/i/products/21/thumbnail.png"
+  "mealName": "Pumpkin & Spinach Curry3",
+  "description": "This pumpkin curry is excellent during this chilly time of the year, where tender pumpkin is scented with a very basic mixture of spices and manages a naturally creamy texture",
+  "price": 6,
+  "img": "https://i.pinimg.com/originals/1a/ea/fd/1aeafdb5d0077cc7df0d9e2a7c937978.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f1d"
@@ -109,7 +122,8 @@
   "mealName": "Hummus Bowl3",
   "description": "Delicious crispy pitta dipped in fresh creamy hummus from a traditional recipe. Served with lentils, grilled aubergine and fresh salad.",
   "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal1_HummusBowl.jpg"
+  "img": "http://localhost:3001/Meal1_HummusBowl.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f1e"
@@ -117,7 +131,8 @@
   "mealName": "Mushroom Noodles3",
   "description": "Tastey broccoli on a bed of creamy noodles with local Shitake mushrooms",
   "price": 4,
-  "img": "https://biobites.herokuapp.com/Meal2_mushroomNoodles.jpg"
+  "img": "http://localhost:3001/Meal2_mushroomNoodles.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f1f"
@@ -125,7 +140,8 @@
   "mealName": "Curried Sausage With Chips3",
   "description": "Curried sauasge in a rich tomatoe sauce with crispiy potatoe slices and a minty cucumber salad",
   "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal3_curriedSausageWithChips.jpg"
+  "img": "http://localhost:3001/Meal3_curriedSausageWithChips.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f20"
@@ -133,7 +149,8 @@
   "mealName": "Beetroot Gnocchi With Walnut Pesto2",
   "description": "Traditional Gnocchi with italian walnut pesto and rocket leaves sprinkled on the top.",
   "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal4_beetrootGnocchiWithWalnutPesto.jpg"
+  "img": "http://localhost:3001/Meal4_beetrootGnocchiWithWalnutPesto.jpg",
+  "rating": 5
 },{
   "_id": {
     "$oid": "62fb87f4516137aba3978f21"
@@ -141,5 +158,6 @@
   "mealName": "Chimichurry & Chips3",
   "description": "Traditional Argininian green uncooked sauce made from fresh parsley, oregano, garlic, olive oil, vinegar, and red pepper flake over salad and crispy sliced baked potatoes.",
   "price": 5,
-  "img": "https://biobites.herokuapp.com/Meal5_chimichurry_Chips.jpg"
+  "img": "http://localhost:3001/Meal5_chimichurry_Chips.jpg",
+  "rating": 5
 }]

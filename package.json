@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "DCI Fullstack Web Development course - final project",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -19,7 +19,16 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.4",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "stripe": "^10.11.0"
   },
-  "type": "module"
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laurazig/DCI_final.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Laurazig/DCI_final/issues"
+  },
+  "homepage": "https://github.com/Laurazig/DCI_final#readme"
 }
