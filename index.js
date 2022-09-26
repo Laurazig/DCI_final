@@ -23,7 +23,7 @@ app.use(express.json());
 dotenv.config(); 
 
 //mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.r46gvie.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
-mongoose.connect(`mongodb+srv://n42:n42@cluster0.r46gvie.mongodb.net/biobites?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.r46gvie.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
 mongoose.connection.on("open", () => console.log("Database connection established"));
 mongoose.connection.on("error", () => console.error);
 
