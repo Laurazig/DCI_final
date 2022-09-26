@@ -17,7 +17,7 @@ import adminRouter from "./routes/adminRoute.js"
 import landingPageRouter from "./routes/landingPageRoute.js"
 
 const app = express();
-app.use(cors({origin:"http://localhost:3000"}));
+app.use(cors({origin:"https://biobites.herokuapp.com/"}));
 app.use(express.json());
 
 dotenv.config(); 
