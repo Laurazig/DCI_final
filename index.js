@@ -17,14 +17,12 @@ import adminRouter from "./routes/adminRoute.js"
 import landingPageRouter from "./routes/landingPageRoute.js"
 
 const app = express();
-// app.use(cors({origin:"http://localhost:3000"}))
-app.use(cors({origin:"https://biobites.herokuapp.com/"}));
+app.use(cors({origin:"http://localhost:3000"}));
 app.use(express.json());
 
 dotenv.config(); 
 
-// mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.r46gvie.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
-mongoose.connect(`mongodb+srv://${process.env.DB_ALL}?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`)
 mongoose.connection.on("open", () => console.log("Database connection established"));
 mongoose.connection.on("error", () => console.error);
 
