@@ -43,5 +43,5 @@ app.use(express.static("assets"));
 app.use(globalErrorHandler);
 
 app.listen(3001, () => {
-    console.log("The server has started on part 3001")
+    console.log("The server has started on port 3001")
 });
