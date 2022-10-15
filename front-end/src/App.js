@@ -31,8 +31,6 @@ function App() {
   const [userId, setUserId] = useState("");
   const [hideSidemenu, setHideSideMenu] = useState(true);
 
-
-
   //======================================================================
   // UseEffect used to handle user and meal data functions 
   //======================================================================

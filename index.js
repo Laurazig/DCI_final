@@ -42,6 +42,6 @@ app.use(express.static("assets"));
 // Global error handler
 app.use(globalErrorHandler);
 
-app.listen(3001, () => {
-    console.log("The server has started on port 3001")
+app.listen(5001, () => {
+    console.log("The server has started on port 5001")
 });

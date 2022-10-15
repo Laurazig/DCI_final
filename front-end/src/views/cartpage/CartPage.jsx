@@ -31,7 +31,6 @@ const CartPage = () => {
     setTotal(sum);
   }, [cart]);
 
-  // * Yohannes and Sameer modify the placeOrder function
   // ===========================================================================
   // The customer placing an order in the front end and post it in the back end
   //============================================================================

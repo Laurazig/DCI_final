@@ -55,12 +55,10 @@ const MealsPage = () => {
               <img src={meal.img} width="300" alt="" />
               <h2 className="mealName">{meal.mealName} <strong className="price">€ {meal.price}</strong></h2>
               <p className="mealDescription">{meal.description}</p>
-              
-           
               <div>
                 <button onClick={() => addToCart(meal)}>Add To Cart</button>
               </div>
-              <ReactStars 
+              <ReactStars
                 count={5}
                 value={meal.rating}
                 size={16}

@@ -61,7 +61,7 @@ export default function MostPopularDishesSection() {
     <div className="mostPopularDishesSection">
       <h2 className='pageTitle'> Try our most popular dishes</h2>
 
-      {/* <div className="cardsContainer">
+      <div className="cardsContainer">
         {featuredMeals.map((meal) => {
           return (
             <div key={meal._id} className="popularMeals">
@@ -80,7 +80,7 @@ export default function MostPopularDishesSection() {
             </div>
           );
         })}
-      </div> */}
+      </div>
     </div>
   );
 }
