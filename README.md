@@ -1,8 +1,11 @@
 # DCI_final
 DCI Fullstack Web Development - final project - An e-Commerce web-site
 
-A team of 4 coders. Project to be presented on 6th Sept 2022. 
+A team of 4 coders. Project presented on 6th Sept 2022. 
 A vegan organic version of Hello Fresh cooking kit.
+
+![image](https://user-images.githubusercontent.com/89987800/197616462-e5773170-c190-4af1-8882-300ea76e222d.png)
+
 
 1) Landing - Page
 Most Popular Meals Section, 3 Most Rated Meals by the Customers are selected Randomly from Database.
